@@ -1,0 +1,30 @@
+/*.locations-dropdown{*/
+/*!*  float: left;*!*/
+/*}*/
+
+/*.map{*/
+/*position: relative;*/
+/*top: 15px;*/
+/*}*/
+/*.active-path{*/
+/*fill: #C35989!important;*/
+/*}*/
+
+/*.map-region{*/
+/*fill: #B9CFDE;*/
+/*}*/
+
+/*.location-search{*/
+/*height: auto;*/
+/*}*/
+
+/*body{*/
+/*text-align: center;*/
+/*}*/
+#slmap {
+  cursor: pointer;
+}
+
+#slmap path:hover {
+  fill: #4caf50 !important;
+}
