@@ -1,1 +1,44 @@
-<p>login works!</p>
+<!--<app-signup [(stName)]="studentName"></app-signup>-->
+<!--<app-nav></app-nav>-->
+
+<button [routerLink]="'/nav/cont'" style="margin-top: 50px">Go to Cont</button>
+
+<div>
+  <label style="font-size: 50px">{{studentName}}</label>
+  <input type="text" [ngModel]="studentName" class="form-control">
+  <input type="text" [(ngModel)]="studentName" class="form-control">
+</div>
+
+<div style="font-size: 50px" *ngIf="x>7">
+  123
+</div>
+
+<div style="font-size: 50px" *ngIf="x<=7">
+  456
+</div>
+
+<div [ngStyle]="{'color':(x>7)?'red':'green'}" style="font-size: 40px;font-weight: bold">ABCD</div>
+<div [ngClass]="(x>7)?'clrRed':'clrGreen'" style="font-size: 40px;font-weight: bold">123456</div>
+
+<div *ngIf="x>7;then content else other_content">here is ignored</div>
+<ng-template #content>
+  <span style="font-size: 50px">content here...</span>
+</ng-template>
+<ng-template #other_content>
+  <span style="font-size: 50px">other content here...</span>
+</ng-template>
+
+<br>
+
+<button class="btn btn-primary" style="font-size: 40px" (click)="clickMe()">Click Me</button>
+<button class="btn btn-primary" style="font-size: 40px;margin-left: 10px" (click)="pushToArr()">Push</button>
+
+<!--==============================for loop-->
+
+<div *ngFor="let student of students, let i = index">
+  <span style="font-size: 30px">{{i+' - '+student}}</span>
+</div>
+
+<ng-container *ngFor="let student of students">
+  <span style="font-size: 30px">{{student}}, </span>
+</ng-container>

@@ -1,1 +1,2 @@
-<p>signup works!</p>
+<p style="color: orangered;font-size: 40px">signup works! {{stName}}</p>
+<input type="text" class="form-control" (keyup)="changeVal(myText.value)" #myText [value]="stName">

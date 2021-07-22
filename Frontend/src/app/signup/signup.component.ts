@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
+
+// import * as EventEmitter from "events";
 
 @Component({
   selector: 'app-signup',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignupComponent implements OnInit {
 
-  constructor() { }
+  @Input() stName;
+  @Output() stNameChange = new EventEmitter<string>();
+  myStName;
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
+  changeVal(txt){
+    this.stNameChange.emit(txt)
+  }
 }

@@ -2,6 +2,8 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {VaccineMapComponent} from "./vaccine-map/vaccine-map.component";
 import {LoginComponent} from "./login/login.component";
+import {ContComponent} from "./cont/cont.component";
+import {NavComponent} from "./nav/nav.component";
 
 const routes: Routes = [
   {
@@ -16,6 +18,24 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'cont',
+    component: ContComponent,
+  },
+  {
+    path: 'nav',
+    component: NavComponent,
+    children: [
+      {
+        path: 'cont',
+        component: ContComponent,
+      },
+      {
+        path: 'login',
+        component: LoginComponent,
+      }
+    ]
   },
 ];
 

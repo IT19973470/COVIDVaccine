@@ -1,0 +1,8 @@
+div{
+  /*border: 1px solid black;*/
+  /*font-size: 30px;*/
+}
+
+.invalid-feedback{
+  display: block;
+}
