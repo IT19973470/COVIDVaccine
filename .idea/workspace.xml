@@ -34,7 +34,7 @@
         <counts>
           <entry key="css" value="8" />
           <entry key="html" value="17" />
-          <entry key="java" value="64" />
+          <entry key="java" value="88" />
           <entry key="js" value="4" />
           <entry key="json" value="3" />
           <entry key="properties" value="3" />
@@ -46,7 +46,7 @@
         <counts>
           <entry key="CSS" value="8" />
           <entry key="HTML" value="17" />
-          <entry key="JAVA" value="64" />
+          <entry key="JAVA" value="88" />
           <entry key="JSON" value="3" />
           <entry key="JavaScript" value="4" />
           <entry key="Properties" value="3" />
@@ -58,7 +58,7 @@
         <counts>
           <entry key="css" value="80" />
           <entry key="html" value="1585" />
-          <entry key="java" value="880" />
+          <entry key="java" value="1534" />
           <entry key="json" value="18" />
           <entry key="properties" value="6" />
           <entry key="ts" value="760" />
@@ -69,7 +69,7 @@
         <counts>
           <entry key="CSS" value="80" />
           <entry key="HTML" value="1580" />
-          <entry key="JAVA" value="880" />
+          <entry key="JAVA" value="1534" />
           <entry key="JSON" value="18" />
           <entry key="JavaScript" value="5" />
           <entry key="Properties" value="6" />
@@ -87,10 +87,14 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Backend/src/main/java/lk/vaccine/repository/OfficerRepository.java">
+        <entry file="file://$PROJECT_DIR$/Backend/src/main/java/lk/vaccine/controller/PlaceController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="17" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="17" />
+            <state relative-caret-position="193">
+              <caret line="16" column="42" lean-forward="true" selection-start-line="16" selection-start-column="42" selection-end-line="16" selection-end-column="42" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#388#389#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -98,8 +102,20 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Backend/src/main/java/lk/vaccine/util/InitDB.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="34" column="45" selection-start-line="34" selection-start-column="45" selection-end-line="34" selection-end-column="45" />
+            <state relative-caret-position="306">
+              <caret line="44" column="80" selection-start-line="44" selection-start-column="80" selection-end-line="44" selection-end-column="80" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Backend/src/main/java/lk/vaccine/service/impl/PlaceServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="302">
+              <caret line="53" column="65" selection-start-line="53" selection-start-column="65" selection-end-line="53" selection-end-column="65" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -138,15 +154,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Frontend/angular.json" />
-        <option value="$PROJECT_DIR$/Frontend/src/app/vaccine-map/vaccine-map.component.ts" />
-        <option value="$PROJECT_DIR$/Frontend/src/app/vaccine-map/vaccine-map.component.css" />
-        <option value="$PROJECT_DIR$/Frontend/src/app/vaccine-map/vaccine-map.component.html" />
-        <option value="$PROJECT_DIR$/Frontend/src/app/app.module.ts" />
-        <option value="$PROJECT_DIR$/Frontend/src/app/login/login.component.css" />
-        <option value="$PROJECT_DIR$/Frontend/src/app/login/login.component.ts" />
-        <option value="$PROJECT_DIR$/Frontend/src/app/signup/signup.component.html" />
-        <option value="$PROJECT_DIR$/Frontend/src/app/signup/signup.component.ts" />
         <option value="$PROJECT_DIR$/Frontend/src/app/app.component.html" />
         <option value="$PROJECT_DIR$/Frontend/src/app/nav/nav.component.html" />
         <option value="$PROJECT_DIR$/Frontend/src/app/nav/nav.component.ts" />
@@ -187,7 +194,16 @@
         <option value="$PROJECT_DIR$/Backend/src/main/java/lk/vaccine/repository/OfficerRepository.java" />
         <option value="$PROJECT_DIR$/Backend/src/main/java/lk/vaccine/entity/VaccineUser.java" />
         <option value="$PROJECT_DIR$/Backend/src/main/java/lk/vaccine/entity/Officer.java" />
+        <option value="$PROJECT_DIR$/Backend/src/main/java/lk/vaccine/entity/SubDivision.java" />
+        <option value="$PROJECT_DIR$/Backend/src/main/java/lk/vaccine/dto/ProvinceDTO.java" />
+        <option value="$PROJECT_DIR$/Backend/src/main/java/lk/vaccine/dto/DistrictDTO.java" />
+        <option value="$PROJECT_DIR$/Backend/src/main/java/lk/vaccine/dto/SubDivisionDTO.java" />
+        <option value="$PROJECT_DIR$/Backend/src/main/java/lk/vaccine/dto/PlaceDTO.java" />
         <option value="$PROJECT_DIR$/Backend/src/main/java/lk/vaccine/repository/DistrictRepository.java" />
+        <option value="$PROJECT_DIR$/Backend/src/main/java/lk/vaccine/controller/PlaceController.java" />
+        <option value="$PROJECT_DIR$/Backend/src/main/java/lk/vaccine/service/PlaceService.java" />
+        <option value="$PROJECT_DIR$/Backend/src/main/java/lk/vaccine/repository/SubDivisionRepository.java" />
+        <option value="$PROJECT_DIR$/Backend/src/main/java/lk/vaccine/service/impl/PlaceServiceImpl.java" />
         <option value="$PROJECT_DIR$/Backend/src/main/java/lk/vaccine/util/InitDB.java" />
       </list>
     </option>
@@ -212,6 +228,9 @@
     <packageJsonPaths>
       <path value="$PROJECT_DIR$/Frontend/package.json" />
     </packageJsonPaths>
+  </component>
+  <component name="PhpServers">
+    <servers />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-10" />
@@ -287,6 +306,17 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="lk" type="462c0819:PsiDirectoryNode" />
               <item name="vaccine" type="462c0819:PsiDirectoryNode" />
+              <item name="dto" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="COVIDVaccine" type="b2602c69:ProjectViewProjectNode" />
+              <item name="COVIDVaccine" type="462c0819:PsiDirectoryNode" />
+              <item name="Backend" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="lk" type="462c0819:PsiDirectoryNode" />
+              <item name="vaccine" type="462c0819:PsiDirectoryNode" />
               <item name="entity" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -299,6 +329,28 @@
               <item name="lk" type="462c0819:PsiDirectoryNode" />
               <item name="vaccine" type="462c0819:PsiDirectoryNode" />
               <item name="repository" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="COVIDVaccine" type="b2602c69:ProjectViewProjectNode" />
+              <item name="COVIDVaccine" type="462c0819:PsiDirectoryNode" />
+              <item name="Backend" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="lk" type="462c0819:PsiDirectoryNode" />
+              <item name="vaccine" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="COVIDVaccine" type="b2602c69:ProjectViewProjectNode" />
+              <item name="COVIDVaccine" type="462c0819:PsiDirectoryNode" />
+              <item name="Backend" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="lk" type="462c0819:PsiDirectoryNode" />
+              <item name="vaccine" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="COVIDVaccine" type="b2602c69:ProjectViewProjectNode" />
@@ -388,7 +440,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1627419854133" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1627422773154" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -466,12 +518,12 @@
       <workItem from="1627145390872" duration="1808000" />
       <workItem from="1627279019833" duration="539000" />
       <workItem from="1627386759951" duration="7309000" />
-      <workItem from="1627419235973" duration="564000" />
+      <workItem from="1627419235973" duration="3490000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58228000" />
+    <option name="totallyTimeSpent" value="61154000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -487,7 +539,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32907802" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.24822696" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.2964539" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -520,62 +572,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Frontend/src/app/login/login.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7">
-          <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Frontend/src/app/signup/signup.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="1" column="58" selection-start-line="1" selection-start-column="49" selection-end-line="1" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Frontend/src/app/app.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="31" lean-forward="true" selection-start-column="31" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Frontend/src/app/nav/nav.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7">
-          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Frontend/src/app/item.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7">
-          <caret line="9" column="11" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Frontend/src/app/nav/nav.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7">
-          <caret line="14" column="40" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Frontend/node_modules/bootstrap/dist/css/bootstrap.min.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="2086" column="26" selection-start-line="2086" selection-start-column="26" selection-end-line="2086" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Frontend/src/app/app.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="24" column="15" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Frontend/src/app/cont/cont.component.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
@@ -692,41 +688,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Backend/src/main/java/lk/vaccine/entity/SubDivision.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Backend/src/main/java/lk/vaccine/entity/Province.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Backend/src/main/java/lk/vaccine/entity/Patient.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Backend/src/main/java/lk/vaccine/entity/Officer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="36" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Backend/src/main/java/lk/vaccine/repository/DistrictRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -744,17 +709,150 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Backend/src/main/java/lk/vaccine/entity/Province.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="9" column="3" selection-start-line="9" selection-start-column="3" selection-end-line="10" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Backend/src/main/java/lk/vaccine/dto/ProvinceDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="9" column="32" lean-forward="true" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Backend/src/main/java/lk/vaccine/entity/SubDivision.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Backend/src/main/java/lk/vaccine/dto/DistrictDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" selection-start-line="5" selection-end-line="6" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#186#187#0" expanded="true" />
+            <element signature="e#219#220#0" expanded="true" />
+            <element signature="e#271#272#0" expanded="true" />
+            <element signature="e#315#316#0" expanded="true" />
+            <element signature="e#354#355#0" expanded="true" />
+            <element signature="e#389#390#0" expanded="true" />
+            <element signature="e#445#446#0" expanded="true" />
+            <element signature="e#493#494#0" expanded="true" />
+            <element signature="e#533#534#0" expanded="true" />
+            <element signature="e#564#565#0" expanded="true" />
+            <element signature="e#617#618#0" expanded="true" />
+            <element signature="e#657#658#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Backend/src/main/java/lk/vaccine/dto/SubDivisionDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="21" column="33" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#430#431#0" expanded="true" />
+            <element signature="e#466#467#0" expanded="true" />
+            <element signature="e#524#525#0" expanded="true" />
+            <element signature="e#574#575#0" expanded="true" />
+            <element signature="e#616#617#0" expanded="true" />
+            <element signature="e#654#655#0" expanded="true" />
+            <element signature="e#716#717#0" expanded="true" />
+            <element signature="e#770#771#0" expanded="true" />
+            <element signature="e#810#811#0" expanded="true" />
+            <element signature="e#841#842#0" expanded="true" />
+            <element signature="e#894#895#0" expanded="true" />
+            <element signature="e#934#935#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Backend/src/main/java/lk/vaccine/dto/PlaceDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Backend/src/main/java/lk/vaccine/entity/District.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-68">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        <state relative-caret-position="187">
+          <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Backend/src/main/java/lk/vaccine/entity/Officer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="36" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Backend/src/main/java/lk/vaccine/repository/DistrictRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="9" column="54" selection-start-line="9" selection-start-column="54" selection-end-line="9" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Backend/src/main/java/lk/vaccine/service/PlaceService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="60" selection-start-line="14" selection-start-column="60" selection-end-line="14" selection-end-column="60" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Backend/src/main/java/lk/vaccine/repository/SubDivisionRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="9" column="69" selection-start-line="9" selection-start-column="69" selection-end-line="9" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Backend/src/main/java/lk/vaccine/service/impl/PlaceServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="53" column="65" selection-start-line="53" selection-start-column="65" selection-end-line="53" selection-end-column="65" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Backend/src/main/java/lk/vaccine/controller/PlaceController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="16" column="42" lean-forward="true" selection-start-line="16" selection-start-column="42" selection-end-line="16" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#388#389#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Backend/src/main/java/lk/vaccine/util/InitDB.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="34" column="45" selection-start-line="34" selection-start-column="45" selection-end-line="34" selection-end-column="45" />
+        <state relative-caret-position="306">
+          <caret line="44" column="80" selection-start-line="44" selection-start-column="80" selection-end-line="44" selection-end-column="80" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
