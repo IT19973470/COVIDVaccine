@@ -19,6 +19,9 @@ public class VaccineToken {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Patient patient;
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    private Place place;
+
     private LocalDate tokenDate;
     private int tokenType;
 
@@ -60,5 +63,13 @@ public class VaccineToken {
 
     public void setTokenType(int tokenType) {
         this.tokenType = tokenType;
+    }
+
+    public Place getPlace() {
+        return place;
+    }
+
+    public void setPlace(Place place) {
+        this.place = place;
     }
 }
