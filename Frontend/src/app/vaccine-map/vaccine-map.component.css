@@ -28,3 +28,12 @@
 #slmap path:hover {
   fill: #4caf50 !important;
 }
+
+th {
+  text-align: center;
+  font-size: 18px;
+}
+
+td {
+  text-align: center;
+}

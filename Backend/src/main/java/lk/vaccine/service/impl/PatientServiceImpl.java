@@ -1,6 +1,7 @@
 package lk.vaccine.service.impl;
 
 import lk.vaccine.dto.PatientDTO;
+import lk.vaccine.entity.Patient;
 import lk.vaccine.repository.PatientRepository;
 import lk.vaccine.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,21 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public List<PatientDTO> getVaccinatedCountForCountry(int age) {
+        return null;
+    }
+
+    @Override
+    public PatientDTO addPatient(Patient patient) {
+        return null;
+    }
+
+    @Override
+    public PatientDTO updatePatient(String patientId, Patient patient) {
+        return null;
+    }
+
+    @Override
+    public PatientDTO deletePatient(String patientId) {
         return null;
     }
 }

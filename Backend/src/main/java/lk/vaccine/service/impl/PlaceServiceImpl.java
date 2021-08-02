@@ -1,9 +1,11 @@
 package lk.vaccine.service.impl;
 
 import lk.vaccine.dto.DistrictDTO;
+import lk.vaccine.dto.PlaceDTO;
 import lk.vaccine.dto.ProvinceDTO;
 import lk.vaccine.dto.SubDivisionDTO;
 import lk.vaccine.entity.District;
+import lk.vaccine.entity.Place;
 import lk.vaccine.entity.Province;
 import lk.vaccine.entity.SubDivision;
 import lk.vaccine.repository.DistrictRepository;
@@ -54,5 +56,20 @@ public class PlaceServiceImpl implements PlaceService {
             subDivisionDTOS.add(new SubDivisionDTO(subDivision));
         }
         return subDivisionDTOS;
+    }
+
+    @Override
+    public PlaceDTO addPlace(Place place) {
+        return null;
+    }
+
+    @Override
+    public PlaceDTO updatePlace(String placeId, Place place) {
+        return null;
+    }
+
+    @Override
+    public PlaceDTO deletePlace(String placeId) {
+        return null;
     }
 }
