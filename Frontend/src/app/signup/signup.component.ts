@@ -17,8 +17,10 @@ export class SignupComponent implements OnInit {
   districts;
   subDivisions;
   vaccines;
+  patient;
 
   constructor(private vaccineMapService: VaccineMapService) {
+    this.patient = this.getPatient();
   }
 
   ngOnInit(): void {
@@ -48,6 +50,27 @@ export class SignupComponent implements OnInit {
     this.vaccineMapService.getVaccines().subscribe((vaccines) => {
       this.vaccines = vaccines;
     })
+  }
+
+  onSubmit() {
+
+  }
+
+  getPatient() {
+    return {
+      firstName: '',
+      lastName: '',
+      nic: '',
+      dateOfBirth: '',
+      contactNumber: '',
+      address: '',
+      subDivision: {
+        subDivisionId: ''
+      },
+      vaccine: {
+        vaccineId: ''
+      }
+    }
   }
 
   // changeVal(txt){
