@@ -38,7 +38,7 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public PatientDTO addPatient(Patient patient) {
-        return null;
+        return new PatientDTO(patientRepository.save(patient));
     }
 
     @Override
@@ -48,6 +48,7 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public PatientDTO deletePatient(String patientId) {
-        return null;
+        patientRepository.deleteById(patientId);
+        return new PatientDTO(patientId);
     }
 }

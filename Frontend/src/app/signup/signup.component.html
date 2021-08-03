@@ -1,7 +1,17 @@
 <div class="row">
-  <div class="col-12" style="margin-top: 20px">
+  <div class="col-12" style="margin-top: 20px;margin-bottom: 20px">
     <span style="font-size: 30px;font-weight: bold;margin-left: 20px">Register For Vaccine</span>
   </div>
+</div>
+
+<div class="alert alert-success" role="alert" *ngIf="success===1">
+  <i class="fas fa-check-circle" style="font-size: 21px;margin-right: 20px"></i>
+  <span style="font-size: 20px">You successfully registered with covid vaccine</span>
+</div>
+
+<div class="alert alert-danger" role="alert" *ngIf="success===2">
+  <i class="fas fa-times-circle" style="font-size: 21px;margin-right: 20px"></i>
+  <span style="font-size: 20px">You are not successfully registered with covid vaccine</span>
 </div>
 
 <form #vaccineForm="ngForm" (ngSubmit)="vaccineForm.form.valid && onSubmit()" novalidate>
@@ -13,7 +23,8 @@
           <span>First Name</span>
         </div>
         <div class="col-md-8 col-sm-12">
-          <input type="text" class="form-control" [(ngModel)]="patient.firstName" #firstName="ngModel" name="firstName" required>
+          <input type="text" class="form-control" [(ngModel)]="patient.firstName" #firstName="ngModel" name="firstName"
+                 required>
           <div *ngIf="(firstName.touched || vaccineForm.submitted) && firstName.errors?.required" class="validErr">
             First Name is required
           </div>
@@ -25,7 +36,8 @@
           <span>Last Name</span>
         </div>
         <div class="col-md-8 col-sm-12">
-          <input type="text" class="form-control" [(ngModel)]="patient.lastName" #lastName="ngModel" name="lastName" required>
+          <input type="text" class="form-control" [(ngModel)]="patient.lastName" #lastName="ngModel" name="lastName"
+                 required>
           <div *ngIf="(lastName.touched || vaccineForm.submitted) && lastName.errors?.required" class="validErr">
             Last Name is required
           </div>
@@ -36,8 +48,9 @@
           <span>National Identity</span>
         </div>
         <div class="col-md-8 col-sm-12">
-          <input type="text" class="form-control" [(ngModel)]="patient.nic" #nic="ngModel" name="nic" required>
-          <div *ngIf="(nic.touched || vaccineForm.submitted) && nic.errors?.required" class="validErr">
+          <input type="text" class="form-control" [(ngModel)]="patient.patientId" #patientId="ngModel" name="patientId"
+                 required>
+          <div *ngIf="(patientId.touched || vaccineForm.submitted) && patientId.errors?.required" class="validErr">
             National Identity is required
           </div>
         </div>
@@ -48,7 +61,8 @@
           <span>Date Of Birth</span>
         </div>
         <div class="col-md-8 col-sm-12">
-          <input type="date" class="form-control" [(ngModel)]="patient.dateOfBirth" #dateOfBirth="ngModel" name="dateOfBirth" required>
+          <input type="date" class="form-control" [(ngModel)]="patient.dateOfBirth" #dateOfBirth="ngModel"
+                 name="dateOfBirth" required>
           <div *ngIf="(dateOfBirth.touched || vaccineForm.submitted) && dateOfBirth.errors?.required" class="validErr">
             Date Of Birth is required
           </div>
@@ -60,8 +74,10 @@
           <span>Contact Number</span>
         </div>
         <div class="col-md-8 col-sm-12">
-          <input type="text" class="form-control" [(ngModel)]="patient.contactNumber" #contactNumber="ngModel" name="contactNumber" required>
-          <div *ngIf="(contactNumber.touched || vaccineForm.submitted) && contactNumber.errors?.required" class="validErr">
+          <input type="text" class="form-control" [(ngModel)]="patient.contactNumber" #contactNumber="ngModel"
+                 name="contactNumber" required>
+          <div *ngIf="(contactNumber.touched || vaccineForm.submitted) && contactNumber.errors?.required"
+               class="validErr">
             Contact Number is required
           </div>
         </div>
@@ -72,7 +88,8 @@
           <span>Address</span>
         </div>
         <div class="col-md-8 col-sm-12">
-          <input type="text" class="form-control" [(ngModel)]="patient.address" #address="ngModel" name="address" required>
+          <input type="text" class="form-control" [(ngModel)]="patient.address" #address="ngModel" name="address"
+                 required>
           <div *ngIf="(address.touched || vaccineForm.submitted) && address.errors?.required" class="validErr">
             Address is required
           </div>
@@ -112,13 +129,15 @@
           <span>Living Area</span>
         </div>
         <div class="col-md-8 col-sm-12">
-          <select class="form-control" [(ngModel)]="patient.subDivision.subDivisionId" #subDivisionId="ngModel" name="subDivisionId" required>
+          <select class="form-control" [(ngModel)]="patient.subDivision.subDivisionId" #subDivisionId="ngModel"
+                  name="subDivisionId" required>
             <option value="">Select Living Area</option>
             <option *ngFor="let subDivision of subDivisions" [value]="subDivision.subDivisionId">
               {{subDivision.subDivisionName}}
             </option>
           </select>
-          <div *ngIf="(subDivisionId.touched || vaccineForm.submitted) && subDivisionId.errors?.required" class="validErr">
+          <div *ngIf="(subDivisionId.touched || vaccineForm.submitted) && subDivisionId.errors?.required"
+               class="validErr">
             Living Area is required
           </div>
         </div>
@@ -129,7 +148,8 @@
           <span>Vaccine Expecting</span>
         </div>
         <div class="col-md-8 col-sm-12">
-          <select class="form-control" [(ngModel)]="patient.vaccine.vaccineId" #vaccineId="ngModel" name="vaccineId" required>
+          <select class="form-control" [(ngModel)]="patient.vaccine.vaccineId" #vaccineId="ngModel" name="vaccineId"
+                  required>
             <option value="">Select Vaccine</option>
             <option *ngFor="let vaccine of vaccines" [value]="vaccine.vaccineId">{{vaccine.vaccineName}}</option>
           </select>

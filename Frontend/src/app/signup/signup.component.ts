@@ -1,5 +1,6 @@
 import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {VaccineMapService} from "../_service/vaccine-map.service";
+import {PatientService} from "../_service/patient.service";
 
 // import * as EventEmitter from "events";
 
@@ -18,8 +19,9 @@ export class SignupComponent implements OnInit {
   subDivisions;
   vaccines;
   patient;
+  success = 0;
 
-  constructor(private vaccineMapService: VaccineMapService) {
+  constructor(private vaccineMapService: VaccineMapService, private patientService: PatientService) {
     this.patient = this.getPatient();
   }
 
@@ -53,14 +55,19 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit() {
-
+    this.patientService.addPatient(this.patient).subscribe((patient) => {
+      this.patient.patientId = patient.patientId;
+      this.success = 1;
+    }, (error) => {
+      this.success = 2;
+    })
   }
 
   getPatient() {
     return {
+      patientId: '',
       firstName: '',
       lastName: '',
-      nic: '',
       dateOfBirth: '',
       contactNumber: '',
       address: '',
