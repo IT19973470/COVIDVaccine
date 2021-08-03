@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
-@RequestMapping(value = "place")
+@RequestMapping(value = "vaccine/" + "place")
 public class PlaceController {
 
     @Autowired
@@ -27,6 +27,11 @@ public class PlaceController {
     @GetMapping(value = "getSubDivisions/{districtId}")
     public ResponseEntity getSubDivisions(@PathVariable String districtId) {
         return ResponseEntity.ok(placeService.getSubDivisions(districtId));
+    }
+
+    @GetMapping(value = "getPlaces/{subDivisionId}")
+    public ResponseEntity getPlaces(@PathVariable String subDivisionId) {
+        return ResponseEntity.ok(placeService.getPlaces(subDivisionId));
     }
 
     @PostMapping(value = "/addPlace")

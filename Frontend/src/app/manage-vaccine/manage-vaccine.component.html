@@ -17,27 +17,36 @@
     </div>
     <div class="col-3">
       <select class="form-control">
-        <option>Pfizer</option>
+        <option>Select Vaccine</option>
+        <option *ngFor="let vaccine of vaccines" [value]="vaccine.vaccineId">{{vaccine.vaccineName}}</option>
       </select>
     </div>
   </div>
 
+  <div class="row">
+    <div class="col-12">
+      <div style="display: flex;width: 100%;margin-top: 40px;margin-left: 30px">
+        <!--<div class="" style="margin-top: 40px">-->
+        <div class="" style="text-align: right;margin-right: 38px">
+          <div style="margin-top: 6px">Date</div>
+        </div>
+        <div style="margin-right: 30px">
+          <input type="date" class="form-control" style="width: 250px">
+        </div>
+
+        <div class="" style="text-align: right;margin-right: 20px">
+          <div style="margin-top: 6px">Time</div>
+        </div>
+        <div class="">
+          <input type="time" class="form-control" style="width: 150px">
+        </div>
+        <!--</div>-->
+      </div>
+    </div>
+  </div>
+
   <div class="row" style="margin-top: 40px">
-    <div class="col-1" style="text-align: right;margin-right: 10px">
-      <div style="margin-top: 6px">Date</div>
-    </div>
-    <div class="col-2">
-      <input type="date" class="form-control">
-    </div>
-
-    <div class="col-1" style="text-align: right;margin-right: 10px">
-      <div style="margin-top: 6px">Time</div>
-    </div>
-    <div class="col-2">
-      <input type="time" class="form-control">
-    </div>
-
-    <div class="col-5" style="font-size: 18px;text-align: right">
+    <div class="col-12" style="font-size: 18px;text-align: right">
       <div style="margin-top: 5px;">
        <span style="border: 1px solid #a36303;padding: 10px;border-radius: 10px">
            Add people to place <span style="font-weight: bold">Galle</span> on

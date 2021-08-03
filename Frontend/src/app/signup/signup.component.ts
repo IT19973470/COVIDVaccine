@@ -1,4 +1,5 @@
 import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
+import {VaccineMapService} from "../_service/vaccine-map.service";
 
 // import * as EventEmitter from "events";
 
@@ -9,17 +10,47 @@ import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 })
 export class SignupComponent implements OnInit {
 
-  @Input() stName;
-  @Output() stNameChange = new EventEmitter<string>();
-  myStName;
+  // @Input() stName;
+  // @Output() stNameChange = new EventEmitter<string>();
+  // myStName;
+  provinces;
+  districts;
+  subDivisions;
+  vaccines;
 
-  constructor() {
+  constructor(private vaccineMapService: VaccineMapService) {
   }
 
   ngOnInit(): void {
+    this.getProvinces();
+    this.getVaccines();
   }
 
-  changeVal(txt){
-    this.stNameChange.emit(txt)
+  getProvinces() {
+    this.vaccineMapService.getProvinces().subscribe((provinces) => {
+      this.provinces = provinces;
+    })
   }
+
+  getDistricts(provinceId) {
+    this.vaccineMapService.getDistricts(provinceId).subscribe((districts) => {
+      this.districts = districts;
+    })
+  }
+
+  getSubDivisions(placeId) {
+    this.vaccineMapService.getSubDivisions(placeId).subscribe((subDivisions) => {
+      this.subDivisions = subDivisions;
+    })
+  }
+
+  getVaccines() {
+    this.vaccineMapService.getVaccines().subscribe((vaccines) => {
+      this.vaccines = vaccines;
+    })
+  }
+
+  // changeVal(txt){
+  //   this.stNameChange.emit(txt)
+  // }
 }

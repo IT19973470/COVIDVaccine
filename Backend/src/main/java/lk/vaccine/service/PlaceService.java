@@ -21,4 +21,6 @@ public interface PlaceService {
     PlaceDTO updatePlace(String placeId, Place place);
 
     PlaceDTO deletePlace(String placeId);
+
+    List<PlaceDTO> getPlaces(String subDivisionId);
 }

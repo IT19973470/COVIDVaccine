@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
-@RequestMapping(value = "vaccine")
+@RequestMapping(value = "vaccine/" + "vaccine")
 public class VaccineController {
 
     @Autowired
@@ -27,5 +27,10 @@ public class VaccineController {
     @DeleteMapping(value = "/deleteVaccine/{vaccineId}")
     public ResponseEntity deleteVaccine(@PathVariable String vaccineId) {
         return ResponseEntity.ok(vaccineService.deleteVaccine(vaccineId));
+    }
+
+    @GetMapping(value = "/getVaccines")
+    public ResponseEntity getVaccines() {
+        return ResponseEntity.ok(vaccineService.getVaccines());
     }
 }

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
-@RequestMapping(value = "token")
+@RequestMapping(value = "vaccine/" + "token")
 public class VaccineTokenController {
 
     @Autowired

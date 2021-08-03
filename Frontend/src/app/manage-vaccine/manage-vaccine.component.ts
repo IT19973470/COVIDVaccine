@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {VaccineMapService} from "../_service/vaccine-map.service";
 
 @Component({
   selector: 'app-manage-vaccine',
@@ -12,11 +13,19 @@ export class ManageVaccineComponent implements OnInit {
     openTable: false,
     foundItem: ''
   };
+  vaccines;
 
-  constructor() {
+  constructor(private vaccineMapService: VaccineMapService) {
   }
 
   ngOnInit(): void {
+    this.getVaccines()
+  }
+
+  getVaccines() {
+    this.vaccineMapService.getVaccines().subscribe((vaccines) => {
+      this.vaccines = vaccines;
+    })
   }
 
   isTrueOrFalse(reply) {

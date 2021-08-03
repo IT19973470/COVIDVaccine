@@ -9,6 +9,7 @@ import lk.vaccine.entity.Place;
 import lk.vaccine.entity.Province;
 import lk.vaccine.entity.SubDivision;
 import lk.vaccine.repository.DistrictRepository;
+import lk.vaccine.repository.PlaceRepository;
 import lk.vaccine.repository.ProvinceRepository;
 import lk.vaccine.repository.SubDivisionRepository;
 import lk.vaccine.service.PlaceService;
@@ -27,6 +28,8 @@ public class PlaceServiceImpl implements PlaceService {
     private DistrictRepository districtRepository;
     @Autowired
     private SubDivisionRepository subDivisionRepository;
+    @Autowired
+    private PlaceRepository placeRepository;
 
     @Override
     public List<ProvinceDTO> getProvinces() {
@@ -71,5 +74,15 @@ public class PlaceServiceImpl implements PlaceService {
     @Override
     public PlaceDTO deletePlace(String placeId) {
         return null;
+    }
+
+    @Override
+    public List<PlaceDTO> getPlaces(String subDivisionId) {
+        List<Place> placeList = placeRepository.findAllBySubDivisionSubDivisionId(subDivisionId);
+        List<PlaceDTO> placeDTOS = new ArrayList<>();
+        for (Place place : placeList) {
+            placeDTOS.add(new PlaceDTO(place));
+        }
+        return placeDTOS;
     }
 }
