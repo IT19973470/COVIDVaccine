@@ -1,0 +1,134 @@
+<div class="row" style="margin-top: 30px">
+
+  <div class="row">
+    <div class="col-1" style="text-align: right;margin-right: 10px">
+      <div style="margin-top: 6px">Place</div>
+    </div>
+    <div class="col-4">
+      <select class="form-control">
+        <option>Galle</option>
+      </select>
+    </div>
+
+    <div class="col-2"></div>
+
+    <div class="col-1" style="text-align: right;margin-right: 10px">
+      <div style="margin-top: 6px">Vaccine</div>
+    </div>
+    <div class="col-3">
+      <select class="form-control">
+        <option>Pfizer</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 40px">
+    <div class="col-1" style="text-align: right;margin-right: 10px">
+      <div style="margin-top: 6px">Date</div>
+    </div>
+    <div class="col-2">
+      <input type="date" class="form-control">
+    </div>
+
+    <div class="col-1" style="text-align: right;margin-right: 10px">
+      <div style="margin-top: 6px">Time</div>
+    </div>
+    <div class="col-2">
+      <input type="time" class="form-control">
+    </div>
+
+    <div class="col-5" style="font-size: 18px;text-align: right">
+      <div style="margin-top: 5px;">
+       <span style="border: 1px solid #a36303;padding: 10px;border-radius: 10px">
+           Add people to place <span style="font-weight: bold">Galle</span> on
+           <span style="font-weight: bold">2020-02-02</span> at <span style="font-weight: bold">1:30 PM</span>
+         </span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!--<div class="row" style="margin-top: 20px;margin-bottom: 20px">-->
+<!--<div class="col-12" style="font-size: 18px;margin-left: 10px">-->
+<!--Add people to place <span style="font-weight: bold">Galle</span> on <span-->
+<!--style="font-weight: bold">2020-02-02</span> at <span style="font-weight: bold">1:30 PM</span>-->
+<!--</div>-->
+<!--</div>-->
+
+<div class="row" style="margin-bottom: 50px;margin-top: 50px">
+  <div class="col-12">
+    <table style="width: 100%">
+      <thead>
+      <tr style="border-bottom: 1px solid black">
+        <th style="text-align: left">
+          Name
+        </th>
+        <th style="width: 20%">
+          NIC
+        </th>
+        <th style="width: 15%">
+          Contact Number
+        </th>
+        <th style="width: 15%">
+          Vaccine Expecting
+        </th>
+        <th style="width: 5%"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr style="border-bottom: 1px solid black">
+        <td style="text-align: left">Galle</td>
+        <td>10</td>
+        <td>20</td>
+        <td>30</td>
+        <td>
+          <button class="btn btn-warning"
+                  style="padding-top: 2px;padding-bottom: 2px;font-weight: bold;margin-top: 5px;margin-bottom: 5px"
+                  (click)="isTrueOrFalse(true)">
+            Add
+          </button>
+        </td>
+      </tr>
+      <tr style="border-bottom: 1px solid black">
+        <td style="text-align: left">Galle</td>
+        <td>10</td>
+        <td>20</td>
+        <td>30</td>
+        <td>
+          <button class="btn btn-warning"
+                  style="padding-top: 2px;padding-bottom: 2px;font-weight: bold;margin-top: 5px;margin-bottom: 5px"
+                  (click)="isTrueOrFalse(true)">
+            Add
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!--=================================================================================================================-->
+
+<div class="modalTable" [style.visibility]="isModalTable.openTable?'visible':'hidden'" style="">
+  <div (click)="isTrueOrFalse(false)"></div>
+  <div style="overflow-x: scroll">
+    <div style="max-height: calc(100vh - 100px);overflow-y: scroll;min-width: 900px;margin-top: 50px">
+      <div style="margin-right: 10px">
+        <i class="fas fa-times" style="cursor: pointer" (click)="isTrueOrFalse(false)"></i>
+      </div>
+
+      <div>
+        <div>
+          <span style="font-weight: bold">Place</span> Galle
+        </div>
+        <div style="margin-top: 20px">
+          <select class="form-control">
+            <option>Pfizer</option>
+          </select>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

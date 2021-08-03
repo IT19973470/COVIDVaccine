@@ -9,6 +9,7 @@ import { SignupComponent } from './signup/signup.component';
 import {FormsModule} from "@angular/forms";
 import { ContComponent } from './cont/cont.component';
 import { NavComponent } from './nav/nav.component';
+import { ManageVaccineComponent } from './manage-vaccine/manage-vaccine.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { NavComponent } from './nav/nav.component';
     LoginComponent,
     SignupComponent,
     ContComponent,
-    NavComponent
+    NavComponent,
+    ManageVaccineComponent
   ],
   imports: [
     BrowserModule,
