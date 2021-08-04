@@ -44,4 +44,5 @@ public class VaccineUser {
     public void setType(String type) {
         this.type = type;
     }
+
 }

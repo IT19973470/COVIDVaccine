@@ -32,4 +32,12 @@ public class SubDivisionOfficerPK implements Serializable {
     public void setSubDivisionId(String subDivisionId) {
         this.subDivisionId = subDivisionId;
     }
+
+    @Override
+    public String toString() {
+        return "SubDivisionOfficerPK{" +
+                "officerId='" + officerId + '\'' +
+                ", subDivisionId='" + subDivisionId + '\'' +
+                '}';
+    }
 }

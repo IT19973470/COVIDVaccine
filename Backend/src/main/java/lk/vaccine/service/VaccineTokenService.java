@@ -9,5 +9,5 @@ public interface VaccineTokenService {
 
     VaccineTokenDTO updateToken(String vaccineTokenId, VaccineToken vaccineToken);
 
-    VaccineTokenDTO deleteToken(String vaccineTokenId);
+    boolean deleteToken(String vaccineTokenId);
 }

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
@@ -25,5 +25,13 @@ export class PatientService {
 
   getInstitutes(userId): Observable<any> {
     return this.http.get<any>(environment.backend_url + 'institute/admin/getInstitutesViaUser/' + userId);
+  }
+
+  addVaccineToken(vaccineToken): Observable<any> {
+    return this.http.post<any>(environment.backend_url + 'token/addToken', vaccineToken);
+  }
+
+  removeVaccineToken(tokenId): Observable<any> {
+    return this.http.delete<any>(environment.backend_url + 'token/deleteToken/' + tokenId);
   }
 }

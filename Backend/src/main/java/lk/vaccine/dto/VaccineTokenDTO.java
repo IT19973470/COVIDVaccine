@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lk.vaccine.entity.VaccineToken;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class VaccineTokenDTO {
@@ -12,22 +13,24 @@ public class VaccineTokenDTO {
     private SubDivisionOfficerDTO subDivisionOfficer;
     private PatientDTO patient;
     private PlaceDTO place;
-    private LocalDate tokenDate;
+    private LocalDateTime tokenDateTime;
+    private VaccineDTO vaccine;
     private int tokenType;
 
     public VaccineTokenDTO(VaccineToken vaccineToken) {
         if (vaccineToken != null) {
             this.tokenId = vaccineToken.getTokenId();
-            this.tokenDate = vaccineToken.getTokenDate();
+            this.tokenDateTime = vaccineToken.getTokenDateTime();
             this.tokenType = vaccineToken.getTokenType();
         }
     }
 
-    public VaccineTokenDTO(VaccineToken vaccineToken, SubDivisionOfficerDTO subDivisionOfficer, PatientDTO patient, PlaceDTO place) {
+    public VaccineTokenDTO(VaccineToken vaccineToken, SubDivisionOfficerDTO subDivisionOfficer, PatientDTO patient, PlaceDTO place, VaccineDTO vaccine) {
         this(vaccineToken);
         this.subDivisionOfficer = subDivisionOfficer;
         this.patient = patient;
         this.place = place;
+        this.vaccine = vaccine;
     }
 
     public String getTokenId() {
@@ -62,12 +65,12 @@ public class VaccineTokenDTO {
         this.place = place;
     }
 
-    public LocalDate getTokenDate() {
-        return tokenDate;
+    public LocalDateTime getTokenDateTime() {
+        return tokenDateTime;
     }
 
-    public void setTokenDate(LocalDate tokenDate) {
-        this.tokenDate = tokenDate;
+    public void setTokenDateTime(LocalDateTime tokenDateTime) {
+        this.tokenDateTime = tokenDateTime;
     }
 
     public int getTokenType() {
@@ -76,5 +79,13 @@ public class VaccineTokenDTO {
 
     public void setTokenType(int tokenType) {
         this.tokenType = tokenType;
+    }
+
+    public VaccineDTO getVaccine() {
+        return vaccine;
+    }
+
+    public void setVaccine(VaccineDTO vaccine) {
+        this.vaccine = vaccine;
     }
 }

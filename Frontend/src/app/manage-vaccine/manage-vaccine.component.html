@@ -17,7 +17,7 @@
       <div style="margin-top: 6px">Vaccine</div>
     </div>
     <div class="col-3">
-      <select class="form-control" (change)="vaccine = $event.target.value">
+      <select class="form-control" (change)="vaccineToken.vaccine.vaccineId = $event.target.value">
         <option>Select Vaccine</option>
         <option *ngFor="let vaccine of vaccines" [value]="vaccine.vaccineId">{{vaccine.vaccineName}}</option>
       </select>
@@ -53,7 +53,7 @@
       <div style="margin-top: 5px;">
        <span style="border: 2px solid #a36303;padding: 10px;border-radius: 10px">
            Add people to place <span style="font-weight: bold">{{place}}</span> on
-           <span style="font-weight: bold">{{date}}</span> to <span style="font-weight: bold">{{setTime()}} time slot</span>
+           <span style="font-weight: bold">{{date}}</span> to <span style="font-weight: bold">{{setTime()}}</span> time slot
          </span>
       </div>
     </div>
@@ -89,34 +89,29 @@
       </tr>
       </thead>
       <tbody>
-      <tr style="border-bottom: 1px solid black">
-        <td style="text-align: left">Galle</td>
-        <td>10</td>
-        <td>20</td>
-        <td>30</td>
-        <td>
-          <button class="btn btn-warning"
-                  style="padding-top: 2px;padding-bottom: 2px;font-weight: bold;margin-top: 5px;margin-bottom: 5px"
-                  (click)="isTrueOrFalse(true)">
+      <tr style="border-bottom: 1px solid black" *ngFor="let patient of patients, let i = index">
+        <td style="text-align: left">{{patient.firstName + ' ' + patient.lastName}}</td>
+        <td>{{patient.patientId}}</td>
+        <td>{{patient.contactNumber}}</td>
+        <td>{{patient.vaccine.vaccineName}}</td>
+        <td *ngIf="!patient.registered">
+          <button class="btn btn-warning" [disabled]="!(place!==undefined && date!==undefined && time!==undefined)"
+                  style="padding-top: 2px;padding-bottom: 2px;font-weight: bold;margin-top: 5px;margin-bottom: 5px" (click)="addVaccineToken(patient,i)">
             Add
           </button>
         </td>
-      </tr>
-      <tr style="border-bottom: 1px solid black">
-        <td style="text-align: left">Galle</td>
-        <td>10</td>
-        <td>20</td>
-        <td>30</td>
-        <td>
-          <button class="btn btn-warning"
-                  style="padding-top: 2px;padding-bottom: 2px;font-weight: bold;margin-top: 5px;margin-bottom: 5px"
-                  (click)="isTrueOrFalse(true)">
-            Add
+        <td *ngIf="patient.registered">
+          <button class="btn btn-danger"
+                  style="padding-top: 2px;padding-bottom: 2px;font-weight: bold;margin-top: 5px;margin-bottom: 5px" (click)="removeVaccineToken(patient,i)">
+            Remove
           </button>
         </td>
       </tr>
       </tbody>
     </table>
+    <div *ngIf="patients.length===0" style="text-align: center;font-weight: bold;margin-top: 10px;color: red;font-size: 20px">
+      No patients found
+    </div>
   </div>
 </div>
 

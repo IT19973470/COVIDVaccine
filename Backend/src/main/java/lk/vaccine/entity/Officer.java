@@ -27,4 +27,5 @@ public class Officer {
     public void setVaccineUser(VaccineUser vaccineUser) {
         this.vaccineUser = vaccineUser;
     }
+
 }

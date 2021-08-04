@@ -1,9 +1,6 @@
 package lk.vaccine.service;
 
-import lk.vaccine.dto.DistrictDTO;
-import lk.vaccine.dto.PlaceDTO;
-import lk.vaccine.dto.ProvinceDTO;
-import lk.vaccine.dto.SubDivisionDTO;
+import lk.vaccine.dto.*;
 import lk.vaccine.entity.Place;
 
 import java.util.List;
@@ -22,5 +19,5 @@ public interface PlaceService {
 
     PlaceDTO deletePlace(String placeId);
 
-    List<PlaceDTO> getPlacesWIthPatients(String subDivisionId);
+    PlacePatientDTO getPlacesWIthPatients(String subDivisionId);
 }

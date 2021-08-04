@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {VaccineMapService} from "../_service/vaccine-map.service";
 import {DatePipe} from "@angular/common";
+import {PatientService} from "../_service/patient.service";
 
 @Component({
   selector: 'app-manage-vaccine',
@@ -17,13 +18,40 @@ export class ManageVaccineComponent implements OnInit {
   };
   vaccines;
   @Input() places;
+  @Input() patients;
 
   place;
-  vaccine;
+  // vaccine;
   date;
   time;
 
-  constructor(private vaccineMapService: VaccineMapService, private datePipe: DatePipe) {
+  vaccineToken = {
+    tokenId: '',
+    subDivisionOfficer: {
+      subDivisionOfficerId: {
+        officerId: 'O1',
+        subDivisionId: 'Rathgama'
+      },
+      officer: {
+        officerId: 'O1'
+      },
+      subDivision: {
+        subDivisionId: 'Rathgama'
+      }
+    },
+    patient: {
+      patientId: ''
+    },
+    place: {
+      placeId: ''
+    },
+    vaccine: {
+      vaccineId: ''
+    },
+    tokenDateTime: ''
+  }
+
+  constructor(private vaccineMapService: VaccineMapService, private datePipe: DatePipe, private patientService: PatientService) {
   }
 
   ngOnInit(): void {
@@ -31,6 +59,7 @@ export class ManageVaccineComponent implements OnInit {
   }
 
   setPlace(placeId) {
+    this.vaccineToken.place.placeId = placeId;
     this.place = this.places.filter(place => {
       return place.placeId === placeId
     })[0]['placeName']
@@ -48,5 +77,23 @@ export class ManageVaccineComponent implements OnInit {
 
   isTrueOrFalse(reply) {
     this.isModalTable.openTable = reply;
+  }
+
+  addVaccineToken(patient,index) {
+    this.vaccineToken.patient.patientId = patient.patientId;
+    this.vaccineToken.tokenDateTime = this.date + 'T' + this.time;
+    this.vaccineToken.tokenId = this.vaccineToken.patient.patientId + this.vaccineToken.place.placeId + this.vaccineToken.tokenDateTime
+    this.patientService.addVaccineToken(this.vaccineToken).subscribe((patient) => {
+      // this.vaccineToken.patient.patientId = patientId;
+      // console.log(this.patients[this.patients.indexOf(patient)])
+      this.patients[index].tokenId = patient.tokenId;
+      this.patients[index].registered = true;
+    })
+  }
+
+  removeVaccineToken(patient,index) {
+    this.patientService.removeVaccineToken(patient.tokenId).subscribe((patientId) => {
+      this.patients[index].registered = false;
+    })
   }
 }

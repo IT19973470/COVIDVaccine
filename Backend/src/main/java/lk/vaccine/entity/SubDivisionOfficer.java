@@ -8,11 +8,11 @@ public class SubDivisionOfficer {
     @EmbeddedId
     private SubDivisionOfficerPK subDivisionOfficerId;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "officerId", referencedColumnName = "officerId", insertable = false, updatable = false, nullable = false)
     private Officer officer;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "subDivisionId", referencedColumnName = "subDivisionId", insertable = false, updatable = false, nullable = false)
     private SubDivision subDivision;
 
@@ -39,4 +39,5 @@ public class SubDivisionOfficer {
     public void setSubDivision(SubDivision subDivision) {
         this.subDivision = subDivision;
     }
+
 }

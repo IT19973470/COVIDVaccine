@@ -23,6 +23,8 @@ public class PlaceServiceImpl implements PlaceService {
     private PlaceRepository placeRepository;
     @Autowired
     private PatientRepository patientRepository;
+    @Autowired
+    private VaccineTokenRepository vaccineTokenRepository;
 
     @Override
     public List<ProvinceDTO> getProvinces() {
@@ -70,12 +72,22 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
-    public List<PlaceDTO> getPlacesWIthPatients(String subDivisionId) {
+    public PlacePatientDTO getPlacesWIthPatients(String subDivisionId) {
         List<Place> placeList = placeRepository.findAllBySubDivisionSubDivisionId(subDivisionId);
-        List<Patient> patientList = patientRepository.findAllBySubDivisionDistrictDistrictId(subDivisionId);
+        List<Patient> patientList = patientRepository.findAllBySubDivisionSubDivisionId(subDivisionId);
+        List<VaccineToken> vaccineTokenList = vaccineTokenRepository.getVaccineTokensBySubDivision(subDivisionId);
+
         List<PatientDTO> patientDTOS = new ArrayList<>();
         for (Patient patient : patientList) {
-            patientDTOS.add(new PatientDTO(patient));
+            PatientDTO patientDTO = new PatientDTO(patient, new VaccineDTO(patient.getVaccine()));
+            patientDTO.setRegistered(false);
+            for (VaccineToken vaccineToken : vaccineTokenList) {
+                if (vaccineToken.getPatient().getPatientId().equals(patient.getPatientId())) {
+                    patientDTO.setTokenId(vaccineToken.getTokenId());
+                    patientDTO.setRegistered(true);
+                } 
+            }
+            patientDTOS.add(patientDTO);
         }
 
         List<PlaceDTO> placeDTOS = new ArrayList<>();
@@ -83,8 +95,10 @@ public class PlaceServiceImpl implements PlaceService {
             placeDTOS.add(new PlaceDTO(place));
         }
 
-        
+        PlacePatientDTO placePatientDTO = new PlacePatientDTO();
+        placePatientDTO.setPatients(patientDTOS);
+        placePatientDTO.setPlaces(placeDTOS);
 
-        return placeDTOS;
+        return placePatientDTO;
     }
 }

@@ -2,6 +2,8 @@ package lk.vaccine.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 public class VaccineToken {
@@ -9,20 +11,24 @@ public class VaccineToken {
     @Id
     private String tokenId;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+//    @MapsId("subDivisionOfficerId")
     @JoinColumns({
-            @JoinColumn(name = "officerId", referencedColumnName = "officerId", insertable = false, updatable = false, nullable = false),
-            @JoinColumn(name = "subDivisionId", referencedColumnName = "subDivisionId", insertable = false, updatable = false, nullable = false)
+            @JoinColumn(name = "subDivisionId", referencedColumnName = "subDivisionId", updatable = false, nullable = false),
+            @JoinColumn(name = "officerId", referencedColumnName = "officerId", updatable = false, nullable = false)
     })
     private SubDivisionOfficer subDivisionOfficer;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Patient patient;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Place place;
 
-    private LocalDate tokenDate;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Vaccine vaccine;
+
+    private LocalDateTime tokenDateTime;
     private int tokenType;
 
     public String getTokenId() {
@@ -49,12 +55,12 @@ public class VaccineToken {
         this.patient = patient;
     }
 
-    public LocalDate getTokenDate() {
-        return tokenDate;
+    public LocalDateTime getTokenDateTime() {
+        return tokenDateTime;
     }
 
-    public void setTokenDate(LocalDate tokenDate) {
-        this.tokenDate = tokenDate;
+    public void setTokenDateTime(LocalDateTime tokenDateTime) {
+        this.tokenDateTime = tokenDateTime;
     }
 
     public int getTokenType() {
@@ -72,4 +78,13 @@ public class VaccineToken {
     public void setPlace(Place place) {
         this.place = place;
     }
+
+    public Vaccine getVaccine() {
+        return vaccine;
+    }
+
+    public void setVaccine(Vaccine vaccine) {
+        this.vaccine = vaccine;
+    }
+
 }

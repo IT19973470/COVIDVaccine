@@ -18,6 +18,7 @@ export class VaccineMapComponent implements OnInit {
   province;
   subDivisions = [];
   places = [];
+  patients = [];
 
   constructor(private vaccineMapService: VaccineMapService) {
     // super();
@@ -29,8 +30,9 @@ export class VaccineMapComponent implements OnInit {
   }
 
   getPlaces(subDivisionId) {
-    this.vaccineMapService.getPlacesWIthPatients(subDivisionId).subscribe((places) => {
-      this.places = places;
+    this.vaccineMapService.getPlacesWIthPatients(subDivisionId).subscribe((placesPatients) => {
+      this.places = placesPatients.places;
+      this.patients = placesPatients.patients;
     })
   }
 

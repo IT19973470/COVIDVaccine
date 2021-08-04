@@ -9,4 +9,6 @@ public interface PatientRepository extends JpaRepository<Patient, String> {
 
     List<Patient> findAllBySubDivisionDistrictDistrictId(String districtId);
 
+    List<Patient> findAllBySubDivisionSubDivisionId(String subDivisionId);
+
 }
