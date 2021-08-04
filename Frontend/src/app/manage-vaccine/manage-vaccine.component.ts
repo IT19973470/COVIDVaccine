@@ -1,10 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {VaccineMapService} from "../_service/vaccine-map.service";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-manage-vaccine',
   templateUrl: './manage-vaccine.component.html',
-  styleUrls: ['./manage-vaccine.component.css']
+  styleUrls: ['./manage-vaccine.component.css'],
+  providers: [DatePipe]
 })
 export class ManageVaccineComponent implements OnInit {
 
@@ -14,12 +16,28 @@ export class ManageVaccineComponent implements OnInit {
     foundItem: ''
   };
   vaccines;
+  @Input() places;
 
-  constructor(private vaccineMapService: VaccineMapService) {
+  place;
+  vaccine;
+  date;
+  time;
+
+  constructor(private vaccineMapService: VaccineMapService, private datePipe: DatePipe) {
   }
 
   ngOnInit(): void {
     this.getVaccines()
+  }
+
+  setPlace(placeId) {
+    this.place = this.places.filter(place => {
+      return place.placeId === placeId
+    })[0]['placeName']
+  }
+
+  setTime() {
+    return this.datePipe.transform(new Date(this.date + 'T' + this.time), 'hh:mm a')
   }
 
   getVaccines() {

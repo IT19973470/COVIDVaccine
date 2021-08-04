@@ -14,6 +14,7 @@ public class PatientDTO {
     private String contactNumber;
     private String address;
     private String type;
+    private boolean vaccined;
     private LocalDate dateOfBirth;
     private SubDivisionDTO subDivision;
     private VaccineDTO vaccine;
@@ -104,5 +105,13 @@ public class PatientDTO {
 
     public void setVaccine(VaccineDTO vaccine) {
         this.vaccine = vaccine;
+    }
+
+    public boolean isVaccined() {
+        return vaccined;
+    }
+
+    public void setVaccined(boolean vaccined) {
+        this.vaccined = vaccined;
     }
 }

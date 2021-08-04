@@ -25,24 +25,24 @@ public class InitDB {
     public void appReady(ApplicationReadyEvent event) {
         if (provinceRepository.findAll().size() == 0 && districtRepository.findAll().size() == 0) {
 
-            Province provinceSouthern = provinceRepository.save(new Province("P1", "Southern"));
-            District districtGalle = districtRepository.save(new District("D1", "Galle", provinceSouthern));
-            subDivisionRepository.save(new SubDivision("Galle1", "Ambalangoda", districtGalle));
-            subDivisionRepository.save(new SubDivision("Galle1", "Rathgama", districtGalle));
+            Province provinceSouthern = provinceRepository.save(new Province("SP", "Southern"));
+            District districtGalle = districtRepository.save(new District("Galle", "Galle", provinceSouthern));
+            subDivisionRepository.save(new SubDivision("Ambalangoda", "Ambalangoda", districtGalle));
+            subDivisionRepository.save(new SubDivision("Rathgama", "Rathgama", districtGalle));
 
-            District districtMathara = districtRepository.save(new District("D3", "Mathara", provinceSouthern));
-            subDivisionRepository.save(new SubDivision("Mathara1", "Makandura", districtMathara));
-            subDivisionRepository.save(new SubDivision("Mathara1", "Yatiyana", districtMathara));
+            District districtMathara = districtRepository.save(new District("Mathara", "Mathara", provinceSouthern));
+            subDivisionRepository.save(new SubDivision("Makandura", "Makandura", districtMathara));
+            subDivisionRepository.save(new SubDivision("Yatiyana", "Yatiyana", districtMathara));
 
-            District districtHambantota = districtRepository.save(new District("D4", "Hambantota", provinceSouthern));
-            subDivisionRepository.save(new SubDivision("Hambantota1", "Katharagama", districtHambantota));
-            subDivisionRepository.save(new SubDivision("Hambantota1", "Tangalle", districtHambantota));
+            District districtHambantota = districtRepository.save(new District("Hambantota", "Hambantota", provinceSouthern));
+            subDivisionRepository.save(new SubDivision("Katharagama", "Katharagama", districtHambantota));
+            subDivisionRepository.save(new SubDivision("Tangalle", "Tangalle", districtHambantota));
 
-            Province provinceWestern = provinceRepository.save(new Province("P2", "Western"));
-            districtRepository.save(new District("D2", "Colombo", provinceWestern));
+            Province provinceWestern = provinceRepository.save(new Province("WP", "Western"));
+            districtRepository.save(new District("Colombo", "Colombo", provinceWestern));
 
-            Province provinceNothern = provinceRepository.save(new Province("P3", "Nothern"));
-            districtRepository.save(new District("D5", "Jaffna", provinceNothern));
+            Province provinceNothern = provinceRepository.save(new Province("NP", "North"));
+            districtRepository.save(new District("Jaffna", "Jaffna", provinceNothern));
 
         }
     }

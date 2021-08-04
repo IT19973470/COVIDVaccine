@@ -1,13 +1,14 @@
 package lk.vaccine.service;
 
 import lk.vaccine.dto.PatientDTO;
+import lk.vaccine.dto.SubDivisionDTO;
 import lk.vaccine.entity.Patient;
 
 import java.util.List;
 
 public interface PatientService {
 
-    List<PatientDTO> getVaccinatedCountForSubDivision(String subDivisionId, int age);
+    List<SubDivisionDTO> getVaccinatedCountForSubDivision(String districtId, int age);
 
     List<PatientDTO> getVaccinatedCountForDistrict(String districtId, int age);
 

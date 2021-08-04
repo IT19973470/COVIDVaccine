@@ -8,6 +8,8 @@ public class SubDivisionDTO {
 
     private String subDivisionId;
     private String subDivisionName;
+    private int registered;
+    private int vaccinated;
     private DistrictDTO district;
 
     public SubDivisionDTO(SubDivision subDivision) {
@@ -15,6 +17,12 @@ public class SubDivisionDTO {
             this.subDivisionId = subDivision.getSubDivisionId();
             this.subDivisionName = subDivision.getSubDivisionName();
         }
+    }
+
+    public SubDivisionDTO(SubDivision subDivision, int registered, int vaccinated) {
+        this(subDivision);
+        this.registered = registered;
+        this.vaccinated = vaccinated;
     }
 
     public SubDivisionDTO(SubDivision subDivision, DistrictDTO district) {
@@ -44,5 +52,21 @@ public class SubDivisionDTO {
 
     public void setDistrict(DistrictDTO district) {
         this.district = district;
+    }
+
+    public int getRegistered() {
+        return registered;
+    }
+
+    public void setRegistered(int registered) {
+        this.registered = registered;
+    }
+
+    public int getVaccinated() {
+        return vaccinated;
+    }
+
+    public void setVaccinated(int vaccinated) {
+        this.vaccinated = vaccinated;
     }
 }

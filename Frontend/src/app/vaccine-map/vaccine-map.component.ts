@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import '../../assets/map/map.js';
 import '../../assets/map/jquery.min';
+import {VaccineMapService} from "../_service/vaccine-map.service";
 
-declare var slMap:any;
+declare var slMap: any;
 
 @Component({
   selector: 'app-vaccine-map',
@@ -13,8 +14,12 @@ declare var slMap:any;
 export class VaccineMapComponent implements OnInit {
 
   state;
+  district;
+  province;
+  subDivisions = [];
+  places = [];
 
-  constructor() {
+  constructor(private vaccineMapService: VaccineMapService) {
     // super();
     // this.handler = this.handler.bind(this);
     this.state = {selectedDistrict: ''};
@@ -23,5 +28,18 @@ export class VaccineMapComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getPlaces(subDivisionId) {
+    this.vaccineMapService.getPlacesWIthPatients(subDivisionId).subscribe((places) => {
+      this.places = places;
+    })
+  }
 
+  setDistrict(districtId, district, province) {
+    this.district = district;
+    this.province = province;
+    this.vaccineMapService.getVaccinatedCountForSubDivision(districtId).subscribe((subDivisions) => {
+      this.subDivisions = subDivisions;
+      // console.log(subDivisions)
+    })
+  }
 }

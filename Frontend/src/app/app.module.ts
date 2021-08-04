@@ -6,7 +6,7 @@ import {AppComponent} from './app.component';
 import {VaccineMapComponent} from './vaccine-map/vaccine-map.component';
 import {LoginComponent} from './login/login.component';
 import {SignupComponent} from './signup/signup.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ContComponent} from './cont/cont.component';
 import {NavComponent} from './nav/nav.component';
 import {ManageVaccineComponent} from './manage-vaccine/manage-vaccine.component';

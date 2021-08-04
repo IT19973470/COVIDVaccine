@@ -1,17 +1,8 @@
 package lk.vaccine.service.impl;
 
-import lk.vaccine.dto.DistrictDTO;
-import lk.vaccine.dto.PlaceDTO;
-import lk.vaccine.dto.ProvinceDTO;
-import lk.vaccine.dto.SubDivisionDTO;
-import lk.vaccine.entity.District;
-import lk.vaccine.entity.Place;
-import lk.vaccine.entity.Province;
-import lk.vaccine.entity.SubDivision;
-import lk.vaccine.repository.DistrictRepository;
-import lk.vaccine.repository.PlaceRepository;
-import lk.vaccine.repository.ProvinceRepository;
-import lk.vaccine.repository.SubDivisionRepository;
+import lk.vaccine.dto.*;
+import lk.vaccine.entity.*;
+import lk.vaccine.repository.*;
 import lk.vaccine.service.PlaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +21,8 @@ public class PlaceServiceImpl implements PlaceService {
     private SubDivisionRepository subDivisionRepository;
     @Autowired
     private PlaceRepository placeRepository;
+    @Autowired
+    private PatientRepository patientRepository;
 
     @Override
     public List<ProvinceDTO> getProvinces() {
@@ -77,12 +70,21 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
-    public List<PlaceDTO> getPlaces(String subDivisionId) {
+    public List<PlaceDTO> getPlacesWIthPatients(String subDivisionId) {
         List<Place> placeList = placeRepository.findAllBySubDivisionSubDivisionId(subDivisionId);
+        List<Patient> patientList = patientRepository.findAllBySubDivisionDistrictDistrictId(subDivisionId);
+        List<PatientDTO> patientDTOS = new ArrayList<>();
+        for (Patient patient : patientList) {
+            patientDTOS.add(new PatientDTO(patient));
+        }
+
         List<PlaceDTO> placeDTOS = new ArrayList<>();
         for (Place place : placeList) {
             placeDTOS.add(new PlaceDTO(place));
         }
+
+        
+
         return placeDTOS;
     }
 }

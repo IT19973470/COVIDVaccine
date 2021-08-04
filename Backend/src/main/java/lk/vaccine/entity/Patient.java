@@ -14,6 +14,7 @@ public class Patient {
     private String address;
     private String type;
     private LocalDate dateOfBirth;
+    private boolean vaccined;
 
 //    @OneToOne
 //    private VaccineUser vaccineUser;
@@ -94,5 +95,13 @@ public class Patient {
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public boolean isVaccined() {
+        return vaccined;
+    }
+
+    public void setVaccined(boolean vaccined) {
+        this.vaccined = vaccined;
     }
 }
