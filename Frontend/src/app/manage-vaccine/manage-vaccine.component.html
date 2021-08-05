@@ -35,10 +35,23 @@
       <input type="date" class="form-control" style="width: 250px" [(ngModel)]="date">
     </div>
 
+    <div class="col-2"></div>
+
+    <div class="col-2" style="text-align: right;margin-right: 10px">
+      <div style="margin-top: 6px">Vaccine Type</div>
+    </div>
+    <div class="col-3">
+      <select class="form-control" (change)="setTokenType($event.target.value)">
+        <option value="1">First Vaccine</option>
+        <option value="2">Second Vaccine</option>
+      </select>
+    </div>
+
     <!--</div>-->
     <!--</div>-->
     <!--</div>-->
   </div>
+
   <div class="row" style="margin-top: 20px">
     <div class="col-1" style="text-align: right;margin-right: 10px">
       <div style="margin-top: 6px">Time</div>
@@ -46,9 +59,16 @@
     <div class="col-3">
       <input type="time" class="form-control" style="width: 150px" [(ngModel)]="time">
     </div>
+    <div class="col-4" style="text-align: right;margin-right: 10px">
+      <div style="margin-top: 6px">Bulk Add</div>
+    </div>
+    <div class="col-3" style="display: flex">
+      <input type="number" class="form-control" min="1" value="10">
+      <button class="btn btn-warning" style="margin-left: 20px;font-weight: bold">Add</button>
+    </div>
   </div>
 
-  <div class="row" style="margin-top: 0px" *ngIf="place!==undefined && date!==undefined && time!==undefined">
+  <div class="row" style="margin-top: 40px" *ngIf="place!==undefined && date!==undefined && time!==undefined">
     <div class="col-12" style="font-size: 18px;text-align: right">
       <div style="margin-top: 5px;">
        <span style="border: 2px solid #a36303;padding: 10px;border-radius: 10px">
@@ -69,6 +89,7 @@
 <!--</div>-->
 
 <div class="row" style="margin-bottom: 50px;margin-top: 50px">
+  <div class="col-12" style="font-size: 22px;margin-bottom: 20px">- {{vaccineToken.tokenType==1?'First':'Second'}} Vaccine -</div>
   <div class="col-12">
     <table style="width: 100%">
       <thead>
@@ -76,15 +97,16 @@
         <th style="text-align: left">
           Name
         </th>
-        <th style="width: 20%">
+        <th style="width: 10%">
           NIC
         </th>
-        <th style="width: 15%">
+        <th style="width: 10%">
           Contact Number
         </th>
         <th style="width: 15%">
-          Vaccine Expecting
+          Vaccine
         </th>
+        <th style="width: 20%">View</th>
         <th style="width: 5%"></th>
       </tr>
       </thead>
@@ -93,23 +115,27 @@
         <td style="text-align: left">{{patient.firstName + ' ' + patient.lastName}}</td>
         <td>{{patient.patientId}}</td>
         <td>{{patient.contactNumber}}</td>
-        <td>{{patient.vaccine.vaccineName}}</td>
+        <td>{{!patient.registered ? patient.vaccineExpecting.vaccineName + ' (Expecting)' : patient.vaccine.vaccineName}}</td>
+        <td>{{!patient.registered ? 'N/A' : patient.place.placeName}}</td>
         <td *ngIf="!patient.registered">
           <button class="btn btn-warning" [disabled]="!(place!==undefined && date!==undefined && time!==undefined)"
-                  style="padding-top: 2px;padding-bottom: 2px;font-weight: bold;margin-top: 5px;margin-bottom: 5px" (click)="addVaccineToken(patient,i)">
+                  style="padding-top: 2px;padding-bottom: 2px;font-weight: bold;margin-top: 5px;margin-bottom: 5px"
+                  (click)="addVaccineToken(patient,i)">
             Add
           </button>
         </td>
         <td *ngIf="patient.registered">
           <button class="btn btn-danger"
-                  style="padding-top: 2px;padding-bottom: 2px;font-weight: bold;margin-top: 5px;margin-bottom: 5px" (click)="removeVaccineToken(patient,i)">
+                  style="padding-top: 2px;padding-bottom: 2px;font-weight: bold;margin-top: 5px;margin-bottom: 5px"
+                  (click)="removeVaccineToken(patient,i)">
             Remove
           </button>
         </td>
       </tr>
       </tbody>
     </table>
-    <div *ngIf="patients.length===0" style="text-align: center;font-weight: bold;margin-top: 10px;color: red;font-size: 20px">
+    <div *ngIf="patients.length===0"
+         style="text-align: center;font-weight: bold;margin-top: 10px;color: red;font-size: 20px">
       No patients found
     </div>
   </div>

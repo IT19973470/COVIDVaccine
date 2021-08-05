@@ -25,6 +25,12 @@ public class VaccineTokenDTO {
         }
     }
 
+    public VaccineTokenDTO(VaccineToken vaccineToken, VaccineDTO vaccine, PlaceDTO place) {
+        this(vaccineToken);
+        this.vaccine = vaccine;
+        this.place = place;
+    }
+
     public VaccineTokenDTO(VaccineToken vaccineToken, SubDivisionOfficerDTO subDivisionOfficer, PatientDTO patient, PlaceDTO place, VaccineDTO vaccine) {
         this(vaccineToken);
         this.subDivisionOfficer = subDivisionOfficer;
@@ -88,4 +94,6 @@ public class VaccineTokenDTO {
     public void setVaccine(VaccineDTO vaccine) {
         this.vaccine = vaccine;
     }
+
+
 }

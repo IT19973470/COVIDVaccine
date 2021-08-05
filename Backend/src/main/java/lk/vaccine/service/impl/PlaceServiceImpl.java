@@ -72,7 +72,7 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
-    public PlacePatientDTO getPlacesWIthPatients(String subDivisionId) {
+    public PlacePatientDTO getPlacesWIthPatients(String subDivisionId, int tokenType) {
         List<Place> placeList = placeRepository.findAllBySubDivisionSubDivisionId(subDivisionId);
         List<Patient> patientList = patientRepository.findAllBySubDivisionSubDivisionId(subDivisionId);
         List<VaccineToken> vaccineTokenList = vaccineTokenRepository.getVaccineTokensBySubDivision(subDivisionId);
@@ -82,10 +82,12 @@ public class PlaceServiceImpl implements PlaceService {
             PatientDTO patientDTO = new PatientDTO(patient, new VaccineDTO(patient.getVaccine()));
             patientDTO.setRegistered(false);
             for (VaccineToken vaccineToken : vaccineTokenList) {
-                if (vaccineToken.getPatient().getPatientId().equals(patient.getPatientId())) {
+                if (vaccineToken.getPatient().getPatientId().equals(patient.getPatientId()) && vaccineToken.getTokenType() == tokenType) {
                     patientDTO.setTokenId(vaccineToken.getTokenId());
+                    patientDTO.setPlace(new PlaceDTO(vaccineToken.getPlace()));
+                    patientDTO.setVaccine(new VaccineDTO(vaccineToken.getVaccine()));
                     patientDTO.setRegistered(true);
-                } 
+                }
             }
             patientDTOS.add(patientDTO);
         }

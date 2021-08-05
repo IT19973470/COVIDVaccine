@@ -19,5 +19,5 @@ public interface PlaceService {
 
     PlaceDTO deletePlace(String placeId);
 
-    PlacePatientDTO getPlacesWIthPatients(String subDivisionId);
+    PlacePatientDTO getPlacesWIthPatients(String subDivisionId, int tokenType);
 }

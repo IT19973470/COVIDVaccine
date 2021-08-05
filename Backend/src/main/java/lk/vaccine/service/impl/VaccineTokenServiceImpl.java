@@ -1,5 +1,7 @@
 package lk.vaccine.service.impl;
 
+import lk.vaccine.dto.PlaceDTO;
+import lk.vaccine.dto.VaccineDTO;
 import lk.vaccine.dto.VaccineTokenDTO;
 import lk.vaccine.entity.SubDivisionOfficerPK;
 import lk.vaccine.entity.VaccineToken;
@@ -17,7 +19,8 @@ public class VaccineTokenServiceImpl implements VaccineTokenService {
     @Override
     public VaccineTokenDTO addToken(VaccineToken vaccineToken) {
 //        vaccineToken.getSubDivisionOfficer().setSubDivisionOfficerId(new SubDivisionOfficerPK(vaccineToken.getSubDivisionOfficer().getSubDivision().getSubDivisionId(), vaccineToken.getSubDivisionOfficer().getOfficer().getOfficerId()));
-        return new VaccineTokenDTO(vaccineTokenRepository.save(vaccineToken));
+        vaccineToken = vaccineTokenRepository.save(vaccineToken);
+        return new VaccineTokenDTO(vaccineToken, new VaccineDTO(vaccineToken.getVaccine()), new PlaceDTO(vaccineToken.getPlace()));
     }
 
     @Override

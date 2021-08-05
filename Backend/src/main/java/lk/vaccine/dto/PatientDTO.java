@@ -17,9 +17,11 @@ public class PatientDTO {
     private boolean vaccined;
     private LocalDate dateOfBirth;
     private SubDivisionDTO subDivision;
+    private VaccineDTO vaccineExpecting;
     private VaccineDTO vaccine;
     private String tokenId;
     private boolean registered;
+    private PlaceDTO place;
 
     public PatientDTO(String patientId) {
         this.patientId = patientId;
@@ -39,7 +41,7 @@ public class PatientDTO {
 
     public PatientDTO(Patient patient, VaccineDTO vaccine) {
         this(patient);
-        this.vaccine = vaccine;
+        this.vaccineExpecting = vaccine;
     }
 
     public String getPatientId() {
@@ -136,5 +138,21 @@ public class PatientDTO {
 
     public void setTokenId(String tokenId) {
         this.tokenId = tokenId;
+    }
+
+    public PlaceDTO getPlace() {
+        return place;
+    }
+
+    public void setPlace(PlaceDTO place) {
+        this.place = place;
+    }
+
+    public VaccineDTO getVaccineExpecting() {
+        return vaccineExpecting;
+    }
+
+    public void setVaccineExpecting(VaccineDTO vaccineExpecting) {
+        this.vaccineExpecting = vaccineExpecting;
     }
 }
