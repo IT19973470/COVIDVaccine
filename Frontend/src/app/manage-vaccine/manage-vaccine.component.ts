@@ -58,7 +58,9 @@ export class ManageVaccineComponent implements OnInit {
 
   ngOnInit(): void {
     this.subDivisionId = this.vaccineMapService.subDivisionId;
+    console.log(this.subDivisionId)
     this.getVaccines()
+    this.setTokenType(1)
   }
 
   setPlace(placeId) {
@@ -87,7 +89,7 @@ export class ManageVaccineComponent implements OnInit {
     this.vaccineMapService.getPlacesWIthPatients(this.subDivisionId, tokenType).subscribe((placesPatients) => {
       this.places = placesPatients.places;
       this.patients = placesPatients.patients;
-      console.log(this.patients)
+      // console.log(this.patients)
     })
   }
 
