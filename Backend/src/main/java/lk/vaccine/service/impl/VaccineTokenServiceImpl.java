@@ -22,7 +22,7 @@ public class VaccineTokenServiceImpl implements VaccineTokenService {
 
     @Override
     public VaccineTokenDTO addToken(VaccineToken vaccineToken) {
-//        vaccineToken.getSubDivisionOfficer().setSubDivisionOfficerId(new SubDivisionOfficerPK(vaccineToken.getSubDivisionOfficer().getSubDivision().getSubDivisionId(), vaccineToken.getSubDivisionOfficer().getOfficer().getOfficerId()));
+        vaccineToken.getSubDivisionOfficer().setSubDivisionOfficerId(new SubDivisionOfficerPK(vaccineToken.getSubDivisionOfficer().getSubDivision().getSubDivisionId(), vaccineToken.getSubDivisionOfficer().getOfficer().getOfficerId()));
         vaccineToken = vaccineTokenRepository.save(vaccineToken);
         return new VaccineTokenDTO(vaccineToken, new VaccineDTO(vaccineToken.getVaccine()), new PlaceDTO(vaccineToken.getPlace()));
     }

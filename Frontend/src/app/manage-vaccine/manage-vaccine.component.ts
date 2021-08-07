@@ -18,8 +18,8 @@ export class ManageVaccineComponent implements OnInit {
   };
   vaccines;
   @Input() places;
-  patients=[];
-  @Input() subDivisionId;
+  patients = [];
+  subDivisionId;
 
   place;
   // vaccine;
@@ -57,6 +57,7 @@ export class ManageVaccineComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.subDivisionId = this.vaccineMapService.subDivisionId;
     this.getVaccines()
   }
 
@@ -93,7 +94,8 @@ export class ManageVaccineComponent implements OnInit {
   addVaccineToken(patient, index) {
     this.vaccineToken.patient.patientId = patient.patientId;
     this.vaccineToken.tokenDateTime = this.date + 'T' + this.time;
-    this.vaccineToken.tokenId = this.vaccineToken.patient.patientId + this.vaccineToken.tokenType
+    this.vaccineToken.tokenId = this.vaccineToken.patient.patientId + this.vaccineToken.tokenType;
+    this.vaccineToken.subDivisionOfficer.subDivision.subDivisionId = this.subDivisionId;
     this.patientService.addVaccineToken(this.vaccineToken).subscribe((patient) => {
       // this.vaccineToken.patient.patientId = patientId;
       // console.log(this.patients[this.patients.indexOf(patient)])

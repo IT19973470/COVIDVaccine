@@ -5,6 +5,7 @@ import {LoginComponent} from "./login/login.component";
 import {ContComponent} from "./cont/cont.component";
 import {NavComponent} from "./nav/nav.component";
 import {SignupComponent} from "./signup/signup.component";
+import {ManageVaccineComponent} from "./manage-vaccine/manage-vaccine.component";
 
 const routes: Routes = [
   {
@@ -15,6 +16,10 @@ const routes: Routes = [
   {
     path: 'map',
     component: VaccineMapComponent,
+  },
+  {
+    path: 'token',
+    component: ManageVaccineComponent,
   },
   {
     path: 'signup',

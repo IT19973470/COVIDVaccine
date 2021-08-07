@@ -2,10 +2,13 @@ package lk.vaccine.service.impl;
 
 import lk.vaccine.dto.OfficerDTO;
 import lk.vaccine.dto.SubDivisionOfficerDTO;
+import lk.vaccine.dto.VaccineUserDTO;
 import lk.vaccine.entity.Officer;
 import lk.vaccine.entity.SubDivisionOfficer;
 import lk.vaccine.entity.SubDivisionOfficerPK;
+import lk.vaccine.entity.VaccineUser;
 import lk.vaccine.repository.OfficerRepository;
+import lk.vaccine.repository.VaccineUserRepository;
 import lk.vaccine.service.OfficerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +18,8 @@ public class OfficerServiceImpl implements OfficerService {
 
     @Autowired
     private OfficerRepository officerRepository;
+    @Autowired
+    private VaccineUserRepository vaccineUserRepository;
 
     @Override
     public OfficerDTO addOfficer(Officer officer) {
@@ -43,6 +48,15 @@ public class OfficerServiceImpl implements OfficerService {
 
     @Override
     public SubDivisionOfficerDTO deleteSubDivisionOfficer(SubDivisionOfficerPK subDivisionOfficerPK) {
+        return null;
+    }
+
+    @Override
+    public VaccineUserDTO login(VaccineUser vaccineUser) {
+        VaccineUser usernameAndPassword = vaccineUserRepository.getAllByUsernameAndPassword(vaccineUser.getUsername(), vaccineUser.getPassword());
+        if (usernameAndPassword != null) {
+            return new VaccineUserDTO(usernameAndPassword);
+        }
         return null;
     }
 }

@@ -8,6 +8,8 @@ import {environment} from "../../environments/environment";
 })
 export class VaccineMapService {
 
+  subDivisionId;
+
   constructor(private http: HttpClient) {
   }
 

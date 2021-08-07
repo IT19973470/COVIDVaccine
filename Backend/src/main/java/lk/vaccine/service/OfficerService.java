@@ -2,9 +2,11 @@ package lk.vaccine.service;
 
 import lk.vaccine.dto.OfficerDTO;
 import lk.vaccine.dto.SubDivisionOfficerDTO;
+import lk.vaccine.dto.VaccineUserDTO;
 import lk.vaccine.entity.Officer;
 import lk.vaccine.entity.SubDivisionOfficer;
 import lk.vaccine.entity.SubDivisionOfficerPK;
+import lk.vaccine.entity.VaccineUser;
 
 public interface OfficerService {
 
@@ -19,4 +21,6 @@ public interface OfficerService {
     SubDivisionOfficerDTO updateSubDivisionOfficer(SubDivisionOfficerPK subDivisionOfficerPK, SubDivisionOfficer subDivisionOfficer);
 
     SubDivisionOfficerDTO deleteSubDivisionOfficer(SubDivisionOfficerPK subDivisionOfficerPK);
+
+    VaccineUserDTO login(VaccineUser vaccineUser);
 }

@@ -47,7 +47,8 @@ export class VaccineMapComponent implements OnInit {
       }
     }
   ];
-  @ViewChild('manageVehicle') manageVehicle;
+
+  // @ViewChild('manageVehicle') manageVehicle;
 
   constructor(private vaccineMapService: VaccineMapService, private patientService: PatientService) {
     // super();
@@ -59,12 +60,13 @@ export class VaccineMapComponent implements OnInit {
   }
 
   getPlaces(subDivisionId) {
+    this.vaccineMapService.subDivisionId = subDivisionId;
     this.subDivisionId = subDivisionId;
     this.totalRegistrationsFirst = 0;
     this.totalRegistrationsSecond = 0;
     this.vaccineMapService.getPlacesWIthPatients(subDivisionId, 1).subscribe((placesPatients) => {
       // this.places = placesPatients.places;
-      this.manageVehicle.setTokenType(1);
+      // this.manageVehicle.setTokenType(1);
       this.subDivisionVaccinesFirst = placesPatients.vaccinesFirst;
       this.subDivisionVaccinesSecond = placesPatients.vaccinesSecond;
       for (let vaccine of placesPatients.vaccinesFirst) {
@@ -120,5 +122,13 @@ export class VaccineMapComponent implements OnInit {
       }
       // console.log(this.vaccines)
     })
+  }
+
+  validateUser() {
+    return localStorage.getItem('user') !== null;
+  }
+
+  logout() {
+    localStorage.clear();
   }
 }

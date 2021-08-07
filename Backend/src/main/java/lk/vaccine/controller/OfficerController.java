@@ -3,6 +3,7 @@ package lk.vaccine.controller;
 import lk.vaccine.entity.Officer;
 import lk.vaccine.entity.SubDivisionOfficer;
 import lk.vaccine.entity.SubDivisionOfficerPK;
+import lk.vaccine.entity.VaccineUser;
 import lk.vaccine.service.OfficerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,11 @@ public class OfficerController {
 
     @Autowired
     private OfficerService officerService;
+
+    @PostMapping(value = "/login")
+    public ResponseEntity login(@RequestBody VaccineUser vaccineUser) {
+        return ResponseEntity.ok(officerService.login(vaccineUser));
+    }
 
     @PostMapping(value = "/addOfficer")
     public ResponseEntity addOfficer(@RequestBody Officer officer) {

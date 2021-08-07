@@ -17,8 +17,11 @@
             <button class="btn btn-success" style="font-weight: bold;margin-right: 20px" [routerLink]="['/signup']">
               Register for vaccine
             </button>
-            <button class="btn btn-success" style="font-weight: bold" [routerLink]="['/login']">
+            <button class="btn btn-success" style="font-weight: bold" [routerLink]="['/login']" *ngIf="!validateUser()">
               Manage vaccine
+            </button>
+            <button class="btn btn-success" style="font-weight: bold" (click)="logout()" *ngIf="validateUser()">
+              Logout
             </button>
           </div>
           <div style="display: flex;justify-content: flex-end;width: calc(100% - 345px)">
@@ -311,21 +314,27 @@
 
       <div style="font-size: 25px;font-weight: bold;margin-top: 50px">
         Total registrations for
-        <div style="margin-left: 80px">
+        <div style="margin-left: 80px;font-size: 22px">
           First vaccine - {{totalRegistrationsFirst}}
         </div>
-        <div style="margin-left: 80px">
+        <div style="margin-left: 80px;font-size: 22px">
           Second vaccine - {{totalRegistrationsSecond}}
         </div>
       </div>
+      <div class="row" *ngIf="validateUser()">
+        <div class="col-12" style="text-align: center">
+          <button class="btn btn-success" style="font-weight: bold;margin-top: 30px" [routerLink]="'/token'">Manage Vaccine Tokens</button>
+        </div>
+      </div>
     </div>
+
   </div>
 
-  <div class="row" style="border-top: 1px solid #cbcbcb;margin-top: 20px;min-width: 1100px">
-    <div class="col-12">
-      <app-manage-vaccine [subDivisionId]="subDivisionId" #manageVehicle></app-manage-vaccine>
-    </div>
-  </div>
+  <!--<div class="row" style="border-top: 1px solid #cbcbcb;margin-top: 20px;min-width: 1100px" *ngIf="validateUser()">-->
+    <!--<div class="col-12">-->
+      <!--<app-manage-vaccine [subDivisionId]="subDivisionId" #manageVehicle></app-manage-vaccine>-->
+    <!--</div>-->
+  <!--</div>-->
 </div>
 <!--</div>-->
 <!--</div>-->
