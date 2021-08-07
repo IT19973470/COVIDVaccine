@@ -6,6 +6,8 @@ public class VaccineDTO {
 
     private String vaccineId;
     private String vaccineName;
+    private int registered;
+    private int vaccinated;
 
     public VaccineDTO(Vaccine vaccine) {
         if (vaccine != null) {
@@ -28,5 +30,21 @@ public class VaccineDTO {
 
     public void setVaccineName(String vaccineName) {
         this.vaccineName = vaccineName;
+    }
+
+    public int getRegistered() {
+        return registered;
+    }
+
+    public void setRegistered(int registered) {
+        this.registered = registered;
+    }
+
+    public int getVaccinated() {
+        return vaccinated;
+    }
+
+    public void setVaccinated(int vaccinated) {
+        this.vaccinated = vaccinated;
     }
 }

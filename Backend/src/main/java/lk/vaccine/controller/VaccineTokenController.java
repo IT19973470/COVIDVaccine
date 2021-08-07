@@ -28,4 +28,9 @@ public class VaccineTokenController {
     public ResponseEntity deleteToken(@PathVariable String vaccineTokenId) {
         return ResponseEntity.ok(vaccineTokenService.deleteToken(vaccineTokenId));
     }
+
+    @GetMapping(value = "/getMyVaccines/{nic}")
+    public ResponseEntity getMyVaccines(@PathVariable String nic) {
+        return ResponseEntity.ok(vaccineTokenService.getMyVaccines(nic));
+    }
 }

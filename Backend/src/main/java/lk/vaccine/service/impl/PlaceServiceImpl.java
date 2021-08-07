@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class PlaceServiceImpl implements PlaceService {
@@ -25,6 +27,8 @@ public class PlaceServiceImpl implements PlaceService {
     private PatientRepository patientRepository;
     @Autowired
     private VaccineTokenRepository vaccineTokenRepository;
+    @Autowired
+    private VaccineRepository vaccineRepository;
 
     @Override
     public List<ProvinceDTO> getProvinces() {
@@ -76,6 +80,8 @@ public class PlaceServiceImpl implements PlaceService {
         List<Place> placeList = placeRepository.findAllBySubDivisionSubDivisionId(subDivisionId);
         List<Patient> patientList = patientRepository.findAllBySubDivisionSubDivisionId(subDivisionId);
         List<VaccineToken> vaccineTokenList = vaccineTokenRepository.getVaccineTokensBySubDivision(subDivisionId);
+        List<Vaccine> vaccines = vaccineRepository.findAll();
+        int registered = 0, vaccinated = 0;
 
         List<PatientDTO> patientDTOS = new ArrayList<>();
         for (Patient patient : patientList) {
@@ -100,6 +106,30 @@ public class PlaceServiceImpl implements PlaceService {
         PlacePatientDTO placePatientDTO = new PlacePatientDTO();
         placePatientDTO.setPatients(patientDTOS);
         placePatientDTO.setPlaces(placeDTOS);
+
+        List<VaccineDTO> vaccineDTOS = new ArrayList<>();
+        Map<String, VaccineToken> vaccineMap = new HashMap<>();
+        for (VaccineToken vaccineToken : vaccineTokenList) {
+            vaccineMap.put(vaccineToken.getPatient().getPatientId(), vaccineToken);
+        }
+
+        for (Vaccine vaccine : vaccines) {
+
+            for (Map.Entry<String, VaccineToken> vaccineEntry : vaccineMap.entrySet()) {
+                if (vaccine.getVaccineName().equals(vaccineEntry.getValue().getVaccine().getVaccineName())) {
+                    registered++;
+                    if (vaccineEntry.getValue().isVaccinated()) {
+                        vaccinated++;
+                    }
+                    VaccineDTO vaccineDTO = new VaccineDTO(vaccineEntry.getValue().getVaccine());
+                    vaccineDTO.setRegistered(registered);
+                    vaccineDTO.setVaccinated(vaccinated);
+                    vaccineDTOS.add(vaccineDTO);
+                }
+            }
+        }
+
+        placePatientDTO.setVaccines(vaccineDTOS);
 
         return placePatientDTO;
     }

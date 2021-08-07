@@ -3,6 +3,8 @@ package lk.vaccine.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lk.vaccine.entity.SubDivision;
 
+import java.util.List;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class SubDivisionDTO {
 
@@ -11,6 +13,7 @@ public class SubDivisionDTO {
     private int registered;
     private int vaccinated;
     private DistrictDTO district;
+    private List<VaccineDTO> vaccines;
 
     public SubDivisionDTO(SubDivision subDivision) {
         if (subDivision != null) {
@@ -68,5 +71,13 @@ public class SubDivisionDTO {
 
     public void setVaccinated(int vaccinated) {
         this.vaccinated = vaccinated;
+    }
+
+    public List<VaccineDTO> getVaccines() {
+        return vaccines;
+    }
+
+    public void setVaccines(List<VaccineDTO> vaccines) {
+        this.vaccines = vaccines;
     }
 }

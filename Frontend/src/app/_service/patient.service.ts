@@ -34,4 +34,8 @@ export class PatientService {
   removeVaccineToken(tokenId): Observable<any> {
     return this.http.delete<any>(environment.backend_url + 'token/deleteToken/' + tokenId);
   }
+
+  getMyVaccines(nic): Observable<any> {
+    return this.http.get<any>(environment.backend_url + 'token/getMyVaccines/' + nic);
+  }
 }

@@ -93,7 +93,7 @@ export class ManageVaccineComponent implements OnInit {
   addVaccineToken(patient, index) {
     this.vaccineToken.patient.patientId = patient.patientId;
     this.vaccineToken.tokenDateTime = this.date + 'T' + this.time;
-    this.vaccineToken.tokenId = this.vaccineToken.patient.patientId + this.vaccineToken.place.placeId + this.vaccineToken.tokenDateTime + this.vaccineToken.tokenType
+    this.vaccineToken.tokenId = this.vaccineToken.patient.patientId + this.vaccineToken.tokenType
     this.patientService.addVaccineToken(this.vaccineToken).subscribe((patient) => {
       // this.vaccineToken.patient.patientId = patientId;
       // console.log(this.patients[this.patients.indexOf(patient)])

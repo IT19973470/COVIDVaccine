@@ -11,4 +11,8 @@ public interface VaccineTokenRepository extends JpaRepository<VaccineToken, Stri
     @Query(value = "from VaccineToken where subDivisionOfficer.subDivision.subDivisionId=?1")
     List<VaccineToken> getVaccineTokensBySubDivision(String subDivisionId);
 
+    List<VaccineToken> getAllByPatientPatientId(String nic);
+
+    List<VaccineToken> getAllBySubDivisionOfficerSubDivisionSubDivisionId(String subDivisionId);
+
 }

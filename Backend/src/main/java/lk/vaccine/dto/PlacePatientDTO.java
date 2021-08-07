@@ -4,8 +4,9 @@ import java.util.List;
 
 public class PlacePatientDTO {
 
-    List<PlaceDTO> places;
-    List<PatientDTO> patients;
+    private List<PlaceDTO> places;
+    private List<PatientDTO> patients;
+    private List<VaccineDTO> vaccines;
 
     public List<PlaceDTO> getPlaces() {
         return places;
@@ -21,5 +22,13 @@ public class PlacePatientDTO {
 
     public void setPatients(List<PatientDTO> patients) {
         this.patients = patients;
+    }
+
+    public List<VaccineDTO> getVaccines() {
+        return vaccines;
+    }
+
+    public void setVaccines(List<VaccineDTO> vaccines) {
+        this.vaccines = vaccines;
     }
 }

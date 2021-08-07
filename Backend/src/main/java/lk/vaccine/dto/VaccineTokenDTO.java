@@ -5,6 +5,7 @@ import lk.vaccine.entity.VaccineToken;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class VaccineTokenDTO {
@@ -14,6 +15,8 @@ public class VaccineTokenDTO {
     private PatientDTO patient;
     private PlaceDTO place;
     private LocalDateTime tokenDateTime;
+    private String tokenDateTimeFormattedDate;
+    private String tokenDateTimeFormattedTime;
     private VaccineDTO vaccine;
     private int tokenType;
 
@@ -22,6 +25,8 @@ public class VaccineTokenDTO {
             this.tokenId = vaccineToken.getTokenId();
             this.tokenDateTime = vaccineToken.getTokenDateTime();
             this.tokenType = vaccineToken.getTokenType();
+            this.tokenDateTimeFormattedDate = vaccineToken.getTokenDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            this.tokenDateTimeFormattedTime = vaccineToken.getTokenDateTime().format(DateTimeFormatter.ofPattern("hh:mm a"));
         }
     }
 
@@ -95,5 +100,19 @@ public class VaccineTokenDTO {
         this.vaccine = vaccine;
     }
 
+    public String getTokenDateTimeFormattedDate() {
+        return tokenDateTimeFormattedDate;
+    }
 
+    public void setTokenDateTimeFormattedDate(String tokenDateTimeFormattedDate) {
+        this.tokenDateTimeFormattedDate = tokenDateTimeFormattedDate;
+    }
+
+    public String getTokenDateTimeFormattedTime() {
+        return tokenDateTimeFormattedTime;
+    }
+
+    public void setTokenDateTimeFormattedTime(String tokenDateTimeFormattedTime) {
+        this.tokenDateTimeFormattedTime = tokenDateTimeFormattedTime;
+    }
 }

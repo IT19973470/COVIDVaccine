@@ -155,10 +155,12 @@
           vaccine
         </div>
         <div class="col-10">
-          <input type="text" class="form-control" style="height: 30px" placeholder="Enter your NIC">
+          <input type="text" class="form-control" style="height: 30px" placeholder="Enter your NIC" #nic>
         </div>
         <div class="col-2">
-          <button class="btn btn-primary" style="padding-top: 2px;padding-bottom: 2px;font-weight: bold">Check</button>
+          <button class="btn btn-primary" style="padding-top: 2px;padding-bottom: 2px;font-weight: bold"
+                  (click)="getMyVaccines(nic.value)">Check
+          </button>
         </div>
       </div>
 
@@ -166,19 +168,39 @@
            style="margin-top: 20px;border-top: 2px solid #746704;border-bottom: 2px solid #746704;padding: 10px;margin-right: 2px;margin-left: 2px">
         <div class="col-6">
           <div style="font-weight: bold">First vaccine</div>
-          <div style="margin-left: 30px;font-size: 14px"><span style="font-weight: bold">Date :</span> 2020-02-02</div>
-          <div style="margin-left: 30px;font-size: 14px"><span style="font-weight: bold">Place :</span> Galle</div>
+          <div style="margin-left: 30px;font-size: 14px"><span style="font-weight: bold">Date :</span>
+            {{vaccines[0].tokenDateTimeFormattedDate}}
+          </div>
+          <div style="margin-left: 30px;font-size: 14px"><span style="font-weight: bold">Time :</span>
+            {{vaccines[0].tokenDateTimeFormattedTime}}
+          </div>
+          <div style="margin-left: 30px;font-size: 14px"><span style="font-weight: bold">Place :</span>
+            {{vaccines[0].place.placeName}}
+          </div>
+          <div style="margin-left: 30px;font-size: 14px"><span style="font-weight: bold">Vaccine :</span>
+            {{vaccines[0].vaccine.vaccineName}}
+          </div>
         </div>
         <div class="col-6">
           <div style="font-weight: bold">Second vaccine</div>
-          <div style="margin-left: 30px;font-size: 14px"><span style="font-weight: bold">Date :</span> 2020-02-02</div>
-          <div style="margin-left: 30px;font-size: 14px"><span style="font-weight: bold">Place :</span> Galle</div>
+          <div style="margin-left: 30px;font-size: 14px"><span style="font-weight: bold">Date :</span>
+            {{vaccines[1].tokenDateTimeFormattedDate}}
+          </div>
+          <div style="margin-left: 30px;font-size: 14px"><span style="font-weight: bold">Time :</span>
+            {{vaccines[1].tokenDateTimeFormattedTime}}
+          </div>
+          <div style="margin-left: 30px;font-size: 14px"><span style="font-weight: bold">Place :</span>
+            {{vaccines[1].place.placeName}}
+          </div>
+          <div style="margin-left: 30px;font-size: 14px"><span style="font-weight: bold">Vaccine :</span>
+            {{vaccines[1].vaccine.vaccineName}}
+          </div>
         </div>
-        <div style="margin-top: 30px;display: flex">
-          <div style="margin-right: 10px;font-size: 18px">Vaccine you are going to have</div>
-          <div style="padding-top: 4px"><i class="fas fa-caret-right" style="font-size: 20px;"></i></div>
-          <div style="margin-left: 20px;font-size: 18px;font-weight: bold">Sinopharm</div>
-        </div>
+        <!--<div style="margin-top: 30px;display: flex">-->
+        <!--<div style="margin-right: 10px;font-size: 18px">Vaccine you are going to have</div>-->
+        <!--<div style="padding-top: 4px"><i class="fas fa-caret-right" style="font-size: 20px;"></i></div>-->
+        <!--<div style="margin-left: 20px;font-size: 18px;font-weight: bold">Sinopharm</div>-->
+        <!--</div>-->
       </div>
 
       <div
@@ -209,7 +231,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr style="border-bottom: 1px solid black;cursor: pointer" *ngFor="let subDivision of subDivisions" (click)="getPlaces(subDivision.subDivisionId)">
+        <tr style="border-bottom: 1px solid black;cursor: pointer" *ngFor="let subDivision of subDivisions"
+            (click)="getPlaces(subDivision.subDivisionId)">
           <td style="text-align: left">{{subDivision.subDivisionName}}</td>
           <td>{{subDivision.vaccinated}}</td>
           <td>{{subDivision.registered - subDivision.vaccinated}}</td>
@@ -217,7 +240,8 @@
         </tr>
         </tbody>
       </table>
-      <div *ngIf="subDivisions.length===0" style="text-align: center;font-weight: bold;margin-top: 10px;color: red;font-size: 20px">
+      <div *ngIf="subDivisions.length===0"
+           style="text-align: center;font-weight: bold;margin-top: 10px;color: red;font-size: 20px">
         No areas found
       </div>
       <table style="width: 100%;margin-top: 50px">
@@ -238,22 +262,20 @@
         </tr>
         </thead>
         <tbody>
-        <tr style="border-bottom: 1px solid black">
-          <td style="text-align: left">Pfizer</td>
-          <td>10</td>
-          <td>20</td>
-          <td>30</td>
-        </tr>
-        <tr style="border-bottom: 1px solid black">
-          <td style="text-align: left">Pfizer</td>
-          <td>10</td>
-          <td>20</td>
-          <td>30</td>
+        <tr style="border-bottom: 1px solid black" *ngFor="let subDivisionVaccine of subDivisionVaccines">
+          <td style="text-align: left">{{subDivisionVaccine.vaccineName}}</td>
+          <td>{{subDivisionVaccine.vaccinated}}</td>
+          <td>{{subDivisionVaccine.registered - subDivisionVaccine.vaccinated}}</td>
+          <td>{{subDivisionVaccine.registered}}</td>
         </tr>
         </tbody>
       </table>
-      <div style="font-size: 25px;font-weight: bold;margin-top: 30px">
-        Total Registrations - 50
+      <div *ngIf="subDivisionVaccines.length===0"
+           style="text-align: center;font-weight: bold;margin-top: 10px;color: red;font-size: 20px">
+        No vaccines found
+      </div>
+      <div style="font-size: 25px;font-weight: bold;margin-top: 50px">
+        Total Registrations - {{totalRegistrations}}
       </div>
     </div>
   </div>

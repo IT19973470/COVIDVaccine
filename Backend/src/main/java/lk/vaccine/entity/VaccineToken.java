@@ -30,6 +30,7 @@ public class VaccineToken {
 
     private LocalDateTime tokenDateTime;
     private int tokenType;
+    private boolean vaccinated;
 
     public String getTokenId() {
         return tokenId;
@@ -87,4 +88,11 @@ public class VaccineToken {
         this.vaccine = vaccine;
     }
 
+    public boolean isVaccinated() {
+        return vaccinated;
+    }
+
+    public void setVaccinated(boolean vaccinated) {
+        this.vaccinated = vaccinated;
+    }
 }
