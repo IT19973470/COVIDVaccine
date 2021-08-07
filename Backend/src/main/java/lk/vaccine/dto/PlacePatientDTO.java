@@ -6,7 +6,8 @@ public class PlacePatientDTO {
 
     private List<PlaceDTO> places;
     private List<PatientDTO> patients;
-    private List<VaccineDTO> vaccines;
+    private List<VaccineDTO> vaccinesFirst;
+    private List<VaccineDTO> vaccinesSecond;
 
     public List<PlaceDTO> getPlaces() {
         return places;
@@ -24,11 +25,19 @@ public class PlacePatientDTO {
         this.patients = patients;
     }
 
-    public List<VaccineDTO> getVaccines() {
-        return vaccines;
+    public List<VaccineDTO> getVaccinesFirst() {
+        return vaccinesFirst;
     }
 
-    public void setVaccines(List<VaccineDTO> vaccines) {
-        this.vaccines = vaccines;
+    public void setVaccinesFirst(List<VaccineDTO> vaccinesFirst) {
+        this.vaccinesFirst = vaccinesFirst;
+    }
+
+    public List<VaccineDTO> getVaccinesSecond() {
+        return vaccinesSecond;
+    }
+
+    public void setVaccinesSecond(List<VaccineDTO> vaccinesSecond) {
+        this.vaccinesSecond = vaccinesSecond;
     }
 }

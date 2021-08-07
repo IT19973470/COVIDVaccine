@@ -41,7 +41,7 @@
       <div style="margin-top: 6px">Vaccine Type</div>
     </div>
     <div class="col-3">
-      <select class="form-control" (change)="setTokenType($event.target.value)">
+      <select class="form-control" (change)="setTokenType($event.target.value)" [ngModel]="vaccineToken.tokenType">
         <option value="1">First Vaccine</option>
         <option value="2">Second Vaccine</option>
       </select>

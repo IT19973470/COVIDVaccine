@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import '../../assets/map/map.js';
 import '../../assets/map/jquery.min';
 import {VaccineMapService} from "../_service/vaccine-map.service";
@@ -18,11 +18,13 @@ export class VaccineMapComponent implements OnInit {
   district;
   province;
   subDivisions = [];
-  places = [];
+  // places = [];
   patients = [];
   subDivisionId;
-  subDivisionVaccines = [];
-  totalRegistrations = 0;
+  subDivisionVaccinesFirst = [];
+  subDivisionVaccinesSecond = [];
+  totalRegistrationsFirst = 0;
+  totalRegistrationsSecond = 0;
   vaccines = [
     {
       tokenDateTimeFormattedDate: 'N/A',
@@ -45,6 +47,7 @@ export class VaccineMapComponent implements OnInit {
       }
     }
   ];
+  @ViewChild('manageVehicle') manageVehicle;
 
   constructor(private vaccineMapService: VaccineMapService, private patientService: PatientService) {
     // super();
@@ -56,13 +59,19 @@ export class VaccineMapComponent implements OnInit {
   }
 
   getPlaces(subDivisionId) {
-    this.subDivisionId = subDivisionId
+    this.subDivisionId = subDivisionId;
+    this.totalRegistrationsFirst = 0;
+    this.totalRegistrationsSecond = 0;
     this.vaccineMapService.getPlacesWIthPatients(subDivisionId, 1).subscribe((placesPatients) => {
-      this.places = placesPatients.places;
-      this.patients = placesPatients.patients;
-      this.subDivisionVaccines = placesPatients.vaccines;
-      for (let vaccine of placesPatients.vaccines) {
-        this.totalRegistrations += vaccine.registered;
+      // this.places = placesPatients.places;
+      this.manageVehicle.setTokenType(1);
+      this.subDivisionVaccinesFirst = placesPatients.vaccinesFirst;
+      this.subDivisionVaccinesSecond = placesPatients.vaccinesSecond;
+      for (let vaccine of placesPatients.vaccinesFirst) {
+        this.totalRegistrationsFirst += vaccine.registered;
+      }
+      for (let vaccine of placesPatients.vaccinesSecond) {
+        this.totalRegistrationsSecond += vaccine.registered;
       }
       // console.log(placesPatients.vaccines)
     })

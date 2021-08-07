@@ -244,7 +244,9 @@
            style="text-align: center;font-weight: bold;margin-top: 10px;color: red;font-size: 20px">
         No areas found
       </div>
-      <table style="width: 100%;margin-top: 50px">
+
+      <div style="margin-top: 50px;font-size: 18px">- First Vaccine -</div>
+      <table style="width: 100%">
         <thead>
         <tr style="border-bottom: 1px solid black">
           <th style="text-align: left;width: 30%">
@@ -262,7 +264,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr style="border-bottom: 1px solid black" *ngFor="let subDivisionVaccine of subDivisionVaccines">
+        <tr style="border-bottom: 1px solid black" *ngFor="let subDivisionVaccine of subDivisionVaccinesFirst">
           <td style="text-align: left">{{subDivisionVaccine.vaccineName}}</td>
           <td>{{subDivisionVaccine.vaccinated}}</td>
           <td>{{subDivisionVaccine.registered - subDivisionVaccine.vaccinated}}</td>
@@ -270,19 +272,58 @@
         </tr>
         </tbody>
       </table>
-      <div *ngIf="subDivisionVaccines.length===0"
+      <div *ngIf="subDivisionVaccinesFirst.length===0"
            style="text-align: center;font-weight: bold;margin-top: 10px;color: red;font-size: 20px">
         No vaccines found
       </div>
+
+      <div style="margin-top: 50px;font-size: 18px">- Second Vaccine -</div>
+      <table style="width: 100%">
+        <thead>
+        <tr style="border-bottom: 1px solid black">
+          <th style="text-align: left;width: 30%">
+            Vaccine
+          </th>
+          <th>
+            Vaccinated
+          </th>
+          <th>
+            Not Vaccinated
+          </th>
+          <th>
+            Registered
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr style="border-bottom: 1px solid black" *ngFor="let subDivisionVaccine of subDivisionVaccinesSecond">
+          <td style="text-align: left">{{subDivisionVaccine.vaccineName}}</td>
+          <td>{{subDivisionVaccine.vaccinated}}</td>
+          <td>{{subDivisionVaccine.registered - subDivisionVaccine.vaccinated}}</td>
+          <td>{{subDivisionVaccine.registered}}</td>
+        </tr>
+        </tbody>
+      </table>
+      <div *ngIf="subDivisionVaccinesSecond.length===0"
+           style="text-align: center;font-weight: bold;margin-top: 10px;color: red;font-size: 20px">
+        No vaccines found
+      </div>
+
       <div style="font-size: 25px;font-weight: bold;margin-top: 50px">
-        Total Registrations - {{totalRegistrations}}
+        Total registrations for
+        <div style="margin-left: 80px">
+          First vaccine - {{totalRegistrationsFirst}}
+        </div>
+        <div style="margin-left: 80px">
+          Second vaccine - {{totalRegistrationsSecond}}
+        </div>
       </div>
     </div>
   </div>
 
   <div class="row" style="border-top: 1px solid #cbcbcb;margin-top: 20px;min-width: 1100px">
     <div class="col-12">
-      <app-manage-vaccine [places]="places" [patients]="patients" [subDivisionId]="subDivisionId"></app-manage-vaccine>
+      <app-manage-vaccine [subDivisionId]="subDivisionId" #manageVehicle></app-manage-vaccine>
     </div>
   </div>
 </div>

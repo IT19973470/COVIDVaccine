@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {VaccineMapService} from "../_service/vaccine-map.service";
 import {DatePipe} from "@angular/common";
 import {PatientService} from "../_service/patient.service";
@@ -18,7 +18,7 @@ export class ManageVaccineComponent implements OnInit {
   };
   vaccines;
   @Input() places;
-  @Input() patients;
+  patients=[];
   @Input() subDivisionId;
 
   place;
@@ -51,7 +51,7 @@ export class ManageVaccineComponent implements OnInit {
     },
     tokenDateTime: '',
     tokenType: 1
-  }
+  };
 
   constructor(private vaccineMapService: VaccineMapService, private datePipe: DatePipe, private patientService: PatientService) {
   }

@@ -81,7 +81,7 @@ public class PlaceServiceImpl implements PlaceService {
         List<Patient> patientList = patientRepository.findAllBySubDivisionSubDivisionId(subDivisionId);
         List<VaccineToken> vaccineTokenList = vaccineTokenRepository.getVaccineTokensBySubDivision(subDivisionId);
         List<Vaccine> vaccines = vaccineRepository.findAll();
-        int registered = 0, vaccinated = 0;
+        int registeredFirst = 0, vaccinatedFirst = 0, registeredSecond = 0, vaccinatedSecond = 0;
 
         List<PatientDTO> patientDTOS = new ArrayList<>();
         for (Patient patient : patientList) {
@@ -107,29 +107,42 @@ public class PlaceServiceImpl implements PlaceService {
         placePatientDTO.setPatients(patientDTOS);
         placePatientDTO.setPlaces(placeDTOS);
 
-        List<VaccineDTO> vaccineDTOS = new ArrayList<>();
-        Map<String, VaccineToken> vaccineMap = new HashMap<>();
-        for (VaccineToken vaccineToken : vaccineTokenList) {
-            vaccineMap.put(vaccineToken.getPatient().getPatientId(), vaccineToken);
-        }
+        List<VaccineDTO> vaccineDTOSFirst = new ArrayList<>();
+        List<VaccineDTO> vaccineDTOSSecond = new ArrayList<>();
+//        Map<String, VaccineToken> vaccineMap = new HashMap<>();
+//        for (VaccineToken vaccineToken : vaccineTokenList) {
+//            vaccineMap.put(vaccineToken.getPatient().getPatientId(), vaccineToken);
+//        }
 
         for (Vaccine vaccine : vaccines) {
 
-            for (Map.Entry<String, VaccineToken> vaccineEntry : vaccineMap.entrySet()) {
-                if (vaccine.getVaccineName().equals(vaccineEntry.getValue().getVaccine().getVaccineName())) {
-                    registered++;
-                    if (vaccineEntry.getValue().isVaccinated()) {
-                        vaccinated++;
+            for (VaccineToken vaccineToken : vaccineTokenList) {
+                if (vaccine.getVaccineName().equals(vaccineToken.getVaccine().getVaccineName()) && vaccineToken.getTokenType() == 1) {
+                    registeredFirst++;
+                    if (vaccineToken.isVaccinated()) {
+                        vaccinatedFirst++;
                     }
-                    VaccineDTO vaccineDTO = new VaccineDTO(vaccineEntry.getValue().getVaccine());
-                    vaccineDTO.setRegistered(registered);
-                    vaccineDTO.setVaccinated(vaccinated);
-                    vaccineDTOS.add(vaccineDTO);
+                    VaccineDTO vaccineDTO = new VaccineDTO(vaccineToken.getVaccine());
+                    vaccineDTO.setRegistered(registeredFirst);
+                    vaccineDTO.setVaccinated(vaccinatedFirst);
+                    vaccineDTOSFirst.add(vaccineDTO);
+                }
+
+                if (vaccine.getVaccineName().equals(vaccineToken.getVaccine().getVaccineName()) && vaccineToken.getTokenType() == 2) {
+                    registeredSecond++;
+                    if (vaccineToken.isVaccinated()) {
+                        vaccinatedSecond++;
+                    }
+                    VaccineDTO vaccineDTO = new VaccineDTO(vaccineToken.getVaccine());
+                    vaccineDTO.setRegistered(registeredSecond);
+                    vaccineDTO.setVaccinated(vaccinatedSecond);
+                    vaccineDTOSSecond.add(vaccineDTO);
                 }
             }
         }
 
-        placePatientDTO.setVaccines(vaccineDTOS);
+        placePatientDTO.setVaccinesFirst(vaccineDTOSFirst);
+        placePatientDTO.setVaccinesSecond(vaccineDTOSSecond);
 
         return placePatientDTO;
     }
