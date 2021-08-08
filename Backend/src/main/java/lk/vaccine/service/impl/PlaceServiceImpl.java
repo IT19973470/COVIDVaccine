@@ -76,74 +76,14 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
-    public PlacePatientDTO getPlacesWIthPatients(String subDivisionId, int tokenType) {
+    public List<PlaceDTO> getPlaces(String subDivisionId) {
         List<Place> placeList = placeRepository.findAllBySubDivisionSubDivisionId(subDivisionId);
-        List<Patient> patientList = patientRepository.findAllBySubDivisionSubDivisionId(subDivisionId);
-        List<VaccineToken> vaccineTokenList = vaccineTokenRepository.getVaccineTokensBySubDivision(subDivisionId);
-        List<Vaccine> vaccines = vaccineRepository.findAll();
-        int registeredFirst = 0, vaccinatedFirst = 0, registeredSecond = 0, vaccinatedSecond = 0;
-
-        List<PatientDTO> patientDTOS = new ArrayList<>();
-        for (Patient patient : patientList) {
-            PatientDTO patientDTO = new PatientDTO(patient, new VaccineDTO(patient.getVaccine()));
-            patientDTO.setRegistered(false);
-            for (VaccineToken vaccineToken : vaccineTokenList) {
-                if (vaccineToken.getPatient().getPatientId().equals(patient.getPatientId()) && vaccineToken.getTokenType() == tokenType) {
-                    patientDTO.setTokenId(vaccineToken.getTokenId());
-                    patientDTO.setPlace(new PlaceDTO(vaccineToken.getPlace()));
-                    patientDTO.setVaccine(new VaccineDTO(vaccineToken.getVaccine()));
-                    patientDTO.setRegistered(true);
-                }
-            }
-            patientDTOS.add(patientDTO);
-        }
 
         List<PlaceDTO> placeDTOS = new ArrayList<>();
         for (Place place : placeList) {
             placeDTOS.add(new PlaceDTO(place));
         }
 
-        PlacePatientDTO placePatientDTO = new PlacePatientDTO();
-        placePatientDTO.setPatients(patientDTOS);
-        placePatientDTO.setPlaces(placeDTOS);
-
-        List<VaccineDTO> vaccineDTOSFirst = new ArrayList<>();
-        List<VaccineDTO> vaccineDTOSSecond = new ArrayList<>();
-//        Map<String, VaccineToken> vaccineMap = new HashMap<>();
-//        for (VaccineToken vaccineToken : vaccineTokenList) {
-//            vaccineMap.put(vaccineToken.getPatient().getPatientId(), vaccineToken);
-//        }
-
-        for (Vaccine vaccine : vaccines) {
-
-            for (VaccineToken vaccineToken : vaccineTokenList) {
-                if (vaccine.getVaccineName().equals(vaccineToken.getVaccine().getVaccineName()) && vaccineToken.getTokenType() == 1) {
-                    registeredFirst++;
-                    if (vaccineToken.isVaccinated()) {
-                        vaccinatedFirst++;
-                    }
-                    VaccineDTO vaccineDTO = new VaccineDTO(vaccineToken.getVaccine());
-                    vaccineDTO.setRegistered(registeredFirst);
-                    vaccineDTO.setVaccinated(vaccinatedFirst);
-                    vaccineDTOSFirst.add(vaccineDTO);
-                }
-
-                if (vaccine.getVaccineName().equals(vaccineToken.getVaccine().getVaccineName()) && vaccineToken.getTokenType() == 2) {
-                    registeredSecond++;
-                    if (vaccineToken.isVaccinated()) {
-                        vaccinatedSecond++;
-                    }
-                    VaccineDTO vaccineDTO = new VaccineDTO(vaccineToken.getVaccine());
-                    vaccineDTO.setRegistered(registeredSecond);
-                    vaccineDTO.setVaccinated(vaccinatedSecond);
-                    vaccineDTOSSecond.add(vaccineDTO);
-                }
-            }
-        }
-
-        placePatientDTO.setVaccinesFirst(vaccineDTOSFirst);
-        placePatientDTO.setVaccinesSecond(vaccineDTOSSecond);
-
-        return placePatientDTO;
+        return placeDTOS;
     }
 }

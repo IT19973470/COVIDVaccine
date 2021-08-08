@@ -64,7 +64,7 @@ export class VaccineMapComponent implements OnInit {
     this.subDivisionId = subDivisionId;
     this.totalRegistrationsFirst = 0;
     this.totalRegistrationsSecond = 0;
-    this.vaccineMapService.getPlacesWIthPatients(subDivisionId, 1).subscribe((placesPatients) => {
+    this.vaccineMapService.getPatientsCountForPlace(subDivisionId, 1).subscribe((placesPatients) => {
       // this.places = placesPatients.places;
       // this.manageVehicle.setTokenType(1);
       this.subDivisionVaccinesFirst = placesPatients.vaccinesFirst;
@@ -82,8 +82,18 @@ export class VaccineMapComponent implements OnInit {
   setDistrict(districtId, district, province) {
     this.district = district;
     this.province = province;
-    this.vaccineMapService.getVaccinatedCountForSubDivision(districtId).subscribe((subDivisions) => {
-      this.subDivisions = subDivisions;
+    this.totalRegistrationsFirst = 0;
+    this.totalRegistrationsSecond = 0;
+    this.vaccineMapService.getVaccinatedCountForSubDivision(districtId).subscribe((placesPatients) => {
+      this.subDivisions = placesPatients.subDivisions;
+      this.subDivisionVaccinesFirst = placesPatients.vaccinesFirst;
+      this.subDivisionVaccinesSecond = placesPatients.vaccinesSecond;
+      for (let vaccine of placesPatients.vaccinesFirst) {
+        this.totalRegistrationsFirst += vaccine.registered;
+      }
+      for (let vaccine of placesPatients.vaccinesSecond) {
+        this.totalRegistrationsSecond += vaccine.registered;
+      }
       // console.log(subDivisions)
     })
   }

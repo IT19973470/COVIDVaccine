@@ -1,13 +1,10 @@
 package lk.vaccine.service.impl;
 
-import lk.vaccine.dto.PatientDTO;
-import lk.vaccine.dto.SubDivisionDTO;
-import lk.vaccine.dto.VaccineDTO;
-import lk.vaccine.entity.Patient;
-import lk.vaccine.entity.SubDivision;
-import lk.vaccine.entity.VaccineToken;
+import lk.vaccine.dto.*;
+import lk.vaccine.entity.*;
 import lk.vaccine.repository.PatientRepository;
 import lk.vaccine.repository.PlaceRepository;
+import lk.vaccine.repository.VaccineRepository;
 import lk.vaccine.repository.VaccineTokenRepository;
 import lk.vaccine.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +19,18 @@ public class PatientServiceImpl implements PatientService {
     private PatientRepository patientRepository;
     @Autowired
     private VaccineTokenRepository vaccineTokenRepository;
+    @Autowired
+    private VaccineRepository vaccineRepository;
 
 
     @Override
-    public List<SubDivisionDTO> getVaccinatedCountForSubDivision(String districtId, int age) {
+    public PlacePatientDTO getVaccinatedCountForSubDivision(String districtId, int age) {
+        PlacePatientDTO placePatientDTO = new PlacePatientDTO();
+        List<VaccineDTO> vaccineDTOSFirst = new ArrayList<>();
+        List<VaccineDTO> vaccineDTOSSecond = new ArrayList<>();
+        List<Vaccine> vaccines = vaccineRepository.findAll();
+        List<VaccineToken> vaccineTokenList = vaccineTokenRepository.getVaccineTokensByDistrict(districtId);
+        int registeredFirst = 0, vaccinatedFirst = 0, registeredSecond = 0, vaccinatedSecond = 0;
         List<Patient> patientList = patientRepository.findAllBySubDivisionDistrictDistrictId(districtId);
 
         Map<String, SubDivision> divisionsSet = new HashMap<>();
@@ -52,7 +57,43 @@ public class PatientServiceImpl implements PatientService {
             registered = 0;
             vaccinated = 0;
         }
-        return subDivisionDTOS;
+
+        for (Vaccine vaccine : vaccines) {
+
+            for (VaccineToken vaccineToken : vaccineTokenList) {
+                if (vaccine.getVaccineName().equals(vaccineToken.getVaccine().getVaccineName()) && vaccineToken.getTokenType() == 1) {
+                    registeredFirst++;
+                    if (vaccineToken.isVaccinated()) {
+                        vaccinatedFirst++;
+                    }
+                    VaccineDTO vaccineDTO = new VaccineDTO(vaccineToken.getVaccine());
+                    vaccineDTO.setRegistered(registeredFirst);
+                    vaccineDTO.setVaccinated(vaccinatedFirst);
+                    vaccineDTOSFirst.add(vaccineDTO);
+                }
+
+                if (vaccine.getVaccineName().equals(vaccineToken.getVaccine().getVaccineName()) && vaccineToken.getTokenType() == 2) {
+                    registeredSecond++;
+                    if (vaccineToken.isVaccinated()) {
+                        vaccinatedSecond++;
+                    }
+                    VaccineDTO vaccineDTO = new VaccineDTO(vaccineToken.getVaccine());
+                    vaccineDTO.setRegistered(registeredSecond);
+                    vaccineDTO.setVaccinated(vaccinatedSecond);
+                    vaccineDTOSSecond.add(vaccineDTO);
+                }
+            }
+            registeredFirst = 0;
+            registeredSecond = 0;
+            vaccinatedFirst = 0;
+            vaccinatedSecond = 0;
+        }
+
+        placePatientDTO.setSubDivisions(subDivisionDTOS);
+        placePatientDTO.setVaccinesFirst(vaccineDTOSFirst);
+        placePatientDTO.setVaccinesSecond(vaccineDTOSSecond);
+
+        return placePatientDTO;
     }
 
     @Override
@@ -84,5 +125,78 @@ public class PatientServiceImpl implements PatientService {
     public PatientDTO deletePatient(String patientId) {
         patientRepository.deleteById(patientId);
         return new PatientDTO(patientId);
+    }
+
+    @Override
+    public PlacePatientDTO getPatientsCountForPlace(String subDivisionId, int tokenType) {
+        List<VaccineDTO> vaccineDTOSFirst = new ArrayList<>();
+        List<VaccineDTO> vaccineDTOSSecond = new ArrayList<>();
+        List<Vaccine> vaccines = vaccineRepository.findAll();
+        List<VaccineToken> vaccineTokenList = vaccineTokenRepository.getVaccineTokensBySubDivision(subDivisionId);
+        int registeredFirst = 0, vaccinatedFirst = 0, registeredSecond = 0, vaccinatedSecond = 0;
+//        Map<String, VaccineToken> vaccineMap = new HashMap<>();
+//        for (VaccineToken vaccineToken : vaccineTokenList) {
+//            vaccineMap.put(vaccineToken.getPatient().getPatientId(), vaccineToken);
+//        }
+
+        for (Vaccine vaccine : vaccines) {
+
+            for (VaccineToken vaccineToken : vaccineTokenList) {
+                if (vaccine.getVaccineName().equals(vaccineToken.getVaccine().getVaccineName()) && vaccineToken.getTokenType() == 1) {
+                    registeredFirst++;
+                    if (vaccineToken.isVaccinated()) {
+                        vaccinatedFirst++;
+                    }
+                    VaccineDTO vaccineDTO = new VaccineDTO(vaccineToken.getVaccine());
+                    vaccineDTO.setRegistered(registeredFirst);
+                    vaccineDTO.setVaccinated(vaccinatedFirst);
+                    vaccineDTOSFirst.add(vaccineDTO);
+                }
+
+                if (vaccine.getVaccineName().equals(vaccineToken.getVaccine().getVaccineName()) && vaccineToken.getTokenType() == 2) {
+                    registeredSecond++;
+                    if (vaccineToken.isVaccinated()) {
+                        vaccinatedSecond++;
+                    }
+                    VaccineDTO vaccineDTO = new VaccineDTO(vaccineToken.getVaccine());
+                    vaccineDTO.setRegistered(registeredSecond);
+                    vaccineDTO.setVaccinated(vaccinatedSecond);
+                    vaccineDTOSSecond.add(vaccineDTO);
+                }
+            }
+            registeredFirst = 0;
+            registeredSecond = 0;
+            vaccinatedFirst = 0;
+            vaccinatedSecond = 0;
+        }
+
+        PlacePatientDTO placePatientDTO = new PlacePatientDTO();
+
+        placePatientDTO.setVaccinesFirst(vaccineDTOSFirst);
+        placePatientDTO.setVaccinesSecond(vaccineDTOSSecond);
+
+        return placePatientDTO;
+    }
+
+    @Override
+    public List<PatientDTO> getPatientsForPlace(String subDivisionId, int tokenType, int age) {
+        List<Patient> patientList = patientRepository.getPatientsByAge(subDivisionId, age);
+        List<VaccineToken> vaccineTokenList = vaccineTokenRepository.getVaccineTokensBySubDivision(subDivisionId);
+
+        List<PatientDTO> patientDTOS = new ArrayList<>();
+        for (Patient patient : patientList) {
+            PatientDTO patientDTO = new PatientDTO(patient, new VaccineDTO(patient.getVaccine()));
+            patientDTO.setRegistered(false);
+            for (VaccineToken vaccineToken : vaccineTokenList) {
+                if (vaccineToken.getPatient().getPatientId().equals(patient.getPatientId()) && vaccineToken.getTokenType() == tokenType) {
+                    patientDTO.setTokenId(vaccineToken.getTokenId());
+                    patientDTO.setPlace(new PlaceDTO(vaccineToken.getPlace()));
+                    patientDTO.setVaccine(new VaccineDTO(vaccineToken.getVaccine()));
+                    patientDTO.setRegistered(true);
+                }
+            }
+            patientDTOS.add(patientDTO);
+        }
+        return patientDTOS;
     }
 }

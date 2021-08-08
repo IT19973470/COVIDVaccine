@@ -29,9 +29,9 @@ public class PlaceController {
         return ResponseEntity.ok(placeService.getSubDivisions(districtId));
     }
 
-    @GetMapping(value = "getPlacesWIthPatients/{subDivisionId}/{tokenType}")
-    public ResponseEntity getPlacesWIthPatients(@PathVariable String subDivisionId, @PathVariable int tokenType) {
-        return ResponseEntity.ok(placeService.getPlacesWIthPatients(subDivisionId, tokenType));
+    @GetMapping(value = "getPlaces/{subDivisionId}")
+    public ResponseEntity getPlaces(@PathVariable String subDivisionId) {
+        return ResponseEntity.ok(placeService.getPlaces(subDivisionId));
     }
 
     @PostMapping(value = "/addPlace")

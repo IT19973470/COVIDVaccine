@@ -41,11 +41,20 @@ export class VaccineMapService {
     return this.http.get<any>(environment.backend_url + 'patient/getVaccinatedCountForSubDivision/' + districtId + '/30');
   }
 
-  getPlacesWIthPatients(subDivisionId, tokenType): Observable<any> {
-    return this.http.get<any>(environment.backend_url + 'place/getPlacesWIthPatients/' + subDivisionId + '/' + tokenType);
+  getPlaces(subDivisionId): Observable<any> {
+    return this.http.get<any>(environment.backend_url + 'place/getPlaces/' + subDivisionId);
+  }
+
+  getPatientsForPlace(subDivisionId, tokenType, age): Observable<any> {
+    return this.http.get<any>(environment.backend_url + 'patient/getPatientsForPlace/' + subDivisionId + '/' + tokenType + '/' + age);
   }
 
   getVaccines(): Observable<any> {
     return this.http.get<any>(environment.backend_url + 'vaccine/getVaccines');
   }
+
+  getPatientsCountForPlace(subDivisionId, tokenType): Observable<any> {
+    return this.http.get<any>(environment.backend_url + 'patient/getPatientsCountForPlace/' + subDivisionId + '/' + tokenType);
+  }
+
 }

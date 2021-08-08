@@ -323,7 +323,11 @@
       </div>
       <div class="row" *ngIf="validateUser()">
         <div class="col-12" style="text-align: center">
-          <button class="btn btn-success" style="font-weight: bold;margin-top: 30px" [routerLink]="'/token'">Manage Vaccine Tokens</button>
+          <button class="btn btn-success" style="font-weight: bold;margin-top: 50px;margin-bottom: 50px"
+                  [routerLink]="'/token'"
+                  [disabled]="subDivisionId===undefined">
+            Manage Vaccine Tokens
+          </button>
         </div>
       </div>
     </div>
@@ -331,9 +335,9 @@
   </div>
 
   <!--<div class="row" style="border-top: 1px solid #cbcbcb;margin-top: 20px;min-width: 1100px" *ngIf="validateUser()">-->
-    <!--<div class="col-12">-->
-      <!--<app-manage-vaccine [subDivisionId]="subDivisionId" #manageVehicle></app-manage-vaccine>-->
-    <!--</div>-->
+  <!--<div class="col-12">-->
+  <!--<app-manage-vaccine [subDivisionId]="subDivisionId" #manageVehicle></app-manage-vaccine>-->
+  <!--</div>-->
   <!--</div>-->
 </div>
 <!--</div>-->

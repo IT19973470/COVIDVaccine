@@ -25,6 +25,7 @@ export class ManageVaccineComponent implements OnInit {
   // vaccine;
   date;
   time;
+  age=10;
 
   vaccineToken = {
     tokenId: '',
@@ -59,7 +60,8 @@ export class ManageVaccineComponent implements OnInit {
   ngOnInit(): void {
     this.subDivisionId = this.vaccineMapService.subDivisionId;
     console.log(this.subDivisionId)
-    this.getVaccines()
+    this.getVaccines();
+    this.getPlaces();
     this.setTokenType(1)
   }
 
@@ -84,11 +86,27 @@ export class ManageVaccineComponent implements OnInit {
     this.isModalTable.openTable = reply;
   }
 
+  getPlaces() {
+    this.vaccineMapService.getPlaces(this.subDivisionId).subscribe((placesPatients) => {
+      this.places = placesPatients.places;
+      // console.log(this.patients)
+    })
+  }
+
   setTokenType(tokenType) {
     this.vaccineToken.tokenType = tokenType;
-    this.vaccineMapService.getPlacesWIthPatients(this.subDivisionId, tokenType).subscribe((placesPatients) => {
-      this.places = placesPatients.places;
-      this.patients = placesPatients.patients;
+    this.vaccineMapService.getPatientsForPlace(this.subDivisionId, tokenType, this.age).subscribe((patients) => {
+      // this.places = placesPatients.places;
+      this.patients = patients;
+      // console.log(this.patients)
+    })
+  }
+
+  getByAge(age) {
+    this.age = age;
+    this.vaccineMapService.getPatientsForPlace(this.subDivisionId, this.vaccineToken.tokenType, this.age).subscribe((patients) => {
+      // this.places = placesPatients.places;
+      this.patients = patients;
       // console.log(this.patients)
     })
   }

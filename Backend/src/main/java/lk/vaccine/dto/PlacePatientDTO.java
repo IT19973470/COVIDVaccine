@@ -8,6 +8,7 @@ public class PlacePatientDTO {
     private List<PatientDTO> patients;
     private List<VaccineDTO> vaccinesFirst;
     private List<VaccineDTO> vaccinesSecond;
+    private List<SubDivisionDTO> subDivisions;
 
     public List<PlaceDTO> getPlaces() {
         return places;
@@ -39,5 +40,13 @@ public class PlacePatientDTO {
 
     public void setVaccinesSecond(List<VaccineDTO> vaccinesSecond) {
         this.vaccinesSecond = vaccinesSecond;
+    }
+
+    public List<SubDivisionDTO> getSubDivisions() {
+        return subDivisions;
+    }
+
+    public void setSubDivisions(List<SubDivisionDTO> subDivisions) {
+        this.subDivisions = subDivisions;
     }
 }

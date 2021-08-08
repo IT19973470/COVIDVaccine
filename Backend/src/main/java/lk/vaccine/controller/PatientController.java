@@ -31,6 +31,16 @@ public class PatientController {
         return ResponseEntity.ok(patientService.getVaccinatedCountForProvince(provinceId, age));
     }
 
+    @GetMapping(value = "getPatientsForPlace/{subDivisionId}/{tokenType}/{age}")
+    public ResponseEntity getPatientsForPlace(@PathVariable String subDivisionId, @PathVariable int tokenType, @PathVariable int age) {
+        return ResponseEntity.ok(patientService.getPatientsForPlace(subDivisionId, tokenType, age));
+    }
+
+    @GetMapping(value = "getPatientsCountForPlace/{subDivisionId}/{tokenType}")
+    public ResponseEntity getPatientsCountForPlace(@PathVariable String subDivisionId, @PathVariable int tokenType) {
+        return ResponseEntity.ok(patientService.getPatientsCountForPlace(subDivisionId, tokenType));
+    }
+
     @GetMapping(value = "getVaccinatedCountForCountry/{age}")
     public ResponseEntity getVaccinatedCountForCountry(@PathVariable int age) {
         return ResponseEntity.ok(patientService.getVaccinatedCountForCountry(age));
