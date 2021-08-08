@@ -14,7 +14,7 @@
     </div>
 
     <div class="row" style="margin-top: 40px">
-      <div class="col-1" style="text-align: right;margin-right: 10px">
+      <div class="col-1" style="text-align: right;">
         <div style="margin-top: 6px">Place</div>
       </div>
       <div class="col-3">
@@ -24,12 +24,12 @@
         </select>
       </div>
       <div class="col-2">
-        <button class="btn btn-primary">Manage Places</button>
+        <button class="btn btn-primary" style="font-weight: bold" [routerLink]="'/manage_places'">Manage Places</button>
       </div>
 
       <!--<div class="col-2"></div>-->
 
-      <div class="col-1" style="text-align: right;margin-right: 10px">
+      <div class="col-2" style="text-align: right;">
         <div style="margin-top: 6px">Vaccine</div>
       </div>
       <div class="col-2">
@@ -39,7 +39,7 @@
         </select>
       </div>
       <div class="col-2">
-        <button class="btn btn-primary">Manage Vaccines</button>
+        <button class="btn btn-primary" style="font-weight: bold" [routerLink]="'/manage_vaccines'">Manage Vaccines</button>
       </div>
     </div>
 
@@ -47,16 +47,16 @@
       <!--<div class="col-12">-->
       <!--<div style="display: flex;width: 100%;margin-top: 40px">-->
       <!--<div class="row" style="">-->
-      <div class="col-1" style="text-align: right;margin-right: 10px">
+      <div class="col-1" style="text-align: right;">
         <div style="margin-top: 6px">Date</div>
       </div>
       <div class="col-3">
         <input type="date" class="form-control" style="width: 250px" [(ngModel)]="date">
       </div>
 
-      <div class="col-1"></div>
+      <div class="col-2"></div>
 
-      <div class="col-2" style="text-align: right;margin-right: 10px">
+      <div class="col-2" style="text-align: right;">
         <div style="margin-top: 6px">Vaccine Type</div>
       </div>
       <div class="col-3">
@@ -72,13 +72,13 @@
     </div>
 
     <div class="row" style="margin-top: 20px">
-      <div class="col-1" style="text-align: right;margin-right: 10px">
+      <div class="col-1" style="text-align: right;">
         <div style="margin-top: 6px">Time</div>
       </div>
       <div class="col-3">
         <input type="time" class="form-control" style="width: 150px" [(ngModel)]="time">
       </div>
-      <div class="col-3" style="text-align: right;margin-right: 10px">
+      <div class="col-4" style="text-align: right;">
         <div style="margin-top: 6px">Age more than</div>
       </div>
       <div class="col-3" style="display: flex">

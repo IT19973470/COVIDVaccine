@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  backend_url: 'http://localhost:8082/vaccine/',
+  backend_url: 'http://localhost:8080/vaccine/',
 };
 
 /*

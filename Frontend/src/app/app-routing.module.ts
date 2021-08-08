@@ -6,6 +6,8 @@ import {ContComponent} from "./cont/cont.component";
 import {NavComponent} from "./nav/nav.component";
 import {SignupComponent} from "./signup/signup.component";
 import {ManageVaccineComponent} from "./manage-vaccine/manage-vaccine.component";
+import {ManagePlacesComponent} from "./manage-places/manage-places.component";
+import {ManageVaccinesComponent} from "./manage-vaccines/manage-vaccines.component";
 
 const routes: Routes = [
   {
@@ -24,6 +26,14 @@ const routes: Routes = [
   {
     path: 'signup',
     component: SignupComponent,
+  },
+  {
+    path: 'manage_places',
+    component: ManagePlacesComponent,
+  },
+  {
+    path: 'manage_vaccines',
+    component: ManageVaccinesComponent,
   },
   {
     path: 'login',

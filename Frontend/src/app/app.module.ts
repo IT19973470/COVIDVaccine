@@ -11,6 +11,8 @@ import {ContComponent} from './cont/cont.component';
 import {NavComponent} from './nav/nav.component';
 import {ManageVaccineComponent} from './manage-vaccine/manage-vaccine.component';
 import {HttpClientModule} from "@angular/common/http";
+import { ManagePlacesComponent } from './manage-places/manage-places.component';
+import { ManageVaccinesComponent } from './manage-vaccines/manage-vaccines.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import {HttpClientModule} from "@angular/common/http";
     SignupComponent,
     ContComponent,
     NavComponent,
-    ManageVaccineComponent
+    ManageVaccineComponent,
+    ManagePlacesComponent,
+    ManageVaccinesComponent
   ],
   imports: [
     BrowserModule,

@@ -38,7 +38,7 @@ export class VaccineMapService {
   }
 
   getVaccinatedCountForSubDivision(districtId): Observable<any> {
-    console.log(environment.backend_url)
+    // console.log(environment.backend_url)
     return this.http.get<any>(environment.backend_url + 'patient/getVaccinatedCountForSubDivision/' + districtId + '/30');
   }
 
