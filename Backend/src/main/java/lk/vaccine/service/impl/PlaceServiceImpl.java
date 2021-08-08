@@ -7,10 +7,9 @@ import lk.vaccine.service.PlaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 @Service
 public class PlaceServiceImpl implements PlaceService {
@@ -62,17 +61,26 @@ public class PlaceServiceImpl implements PlaceService {
 
     @Override
     public PlaceDTO addPlace(Place place) {
-        return null;
+        LocalDateTime localDateTime = LocalDateTime.now();
+        place.setPlaceId(place.getPlaceName() + localDateTime.format(DateTimeFormatter.ofPattern("hhmmss")));
+        return new PlaceDTO(placeRepository.save(place));
     }
 
     @Override
     public PlaceDTO updatePlace(String placeId, Place place) {
+        Optional<Place> optionalPlace = placeRepository.findById(placeId);
+        if (optionalPlace.isPresent()) {
+            Place placeObj = optionalPlace.get();
+            placeObj.setPlaceName(place.getPlaceName());
+            return new PlaceDTO(placeRepository.save(placeObj));
+        }
         return null;
     }
 
     @Override
-    public PlaceDTO deletePlace(String placeId) {
-        return null;
+    public boolean deletePlace(String placeId) {
+        placeRepository.deleteById(placeId);
+        return true;
     }
 
     @Override

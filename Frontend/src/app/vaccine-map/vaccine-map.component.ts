@@ -20,7 +20,7 @@ export class VaccineMapComponent implements OnInit {
   subDivisions = [];
   // places = [];
   patients = [];
-  subDivisionId;
+  subDivision;
   subDivisionVaccinesFirst = [];
   subDivisionVaccinesSecond = [];
   totalRegistrationsFirst = 0;
@@ -59,12 +59,12 @@ export class VaccineMapComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getPlaces(subDivisionId) {
-    this.vaccineMapService.subDivisionId = subDivisionId;
-    this.subDivisionId = subDivisionId;
+  getPlaces(subDivision) {
+    this.vaccineMapService.subDivision = subDivision;
+    this.subDivision = subDivision;
     this.totalRegistrationsFirst = 0;
     this.totalRegistrationsSecond = 0;
-    this.vaccineMapService.getPatientsCountForPlace(subDivisionId, 1).subscribe((placesPatients) => {
+    this.vaccineMapService.getPatientsCountForPlace(subDivision.subDivisionId, 1).subscribe((placesPatients) => {
       // this.places = placesPatients.places;
       // this.manageVehicle.setTokenType(1);
       this.subDivisionVaccinesFirst = placesPatients.vaccinesFirst;

@@ -9,7 +9,7 @@
 
     <div>
       <div style="margin-left: 50px;font-size: 30px;margin-top: 40px">
-        Sub Division - {{subDivisionId!==undefined?subDivisionId:'N/A'}}
+        Sub Division - {{subDivision!==undefined?subDivision.subDivisionName:'N/A'}}
       </div>
     </div>
 
@@ -24,7 +24,7 @@
         </select>
       </div>
       <div class="col-2">
-        <button class="btn btn-primary" style="font-weight: bold" [routerLink]="'/manage_places'">Manage Places</button>
+        <button class="btn btn-primary" style="font-weight: bold" [routerLink]="'/manage_places'" [disabled]="subDivision===undefined">Manage Places</button>
       </div>
 
       <!--<div class="col-2"></div>-->

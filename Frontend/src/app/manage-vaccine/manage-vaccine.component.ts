@@ -19,7 +19,7 @@ export class ManageVaccineComponent implements OnInit {
   vaccines;
   @Input() places;
   patients = [];
-  subDivisionId;
+  subDivision;
 
   place;
   // vaccine;
@@ -58,8 +58,8 @@ export class ManageVaccineComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.subDivisionId = this.vaccineMapService.subDivisionId;
-    console.log(this.subDivisionId)
+    this.subDivision = this.vaccineMapService.subDivision;
+    // console.log(this.subDivisionId)
     this.getVaccines();
     this.getPlaces();
     this.setTokenType(1)
@@ -87,15 +87,15 @@ export class ManageVaccineComponent implements OnInit {
   }
 
   getPlaces() {
-    this.vaccineMapService.getPlaces(this.subDivisionId).subscribe((placesPatients) => {
-      this.places = placesPatients.places;
+    this.vaccineMapService.getPlaces(this.subDivision.subDivisionId).subscribe((places) => {
+      this.places = places;
       // console.log(this.patients)
     })
   }
 
   setTokenType(tokenType) {
     this.vaccineToken.tokenType = tokenType;
-    this.vaccineMapService.getPatientsForPlace(this.subDivisionId, tokenType, this.age).subscribe((patients) => {
+    this.vaccineMapService.getPatientsForPlace(this.subDivision.subDivisionId, tokenType, this.age).subscribe((patients) => {
       // this.places = placesPatients.places;
       this.patients = patients;
       // console.log(this.patients)
@@ -104,7 +104,7 @@ export class ManageVaccineComponent implements OnInit {
 
   getByAge(age) {
     this.age = age;
-    this.vaccineMapService.getPatientsForPlace(this.subDivisionId, this.vaccineToken.tokenType, this.age).subscribe((patients) => {
+    this.vaccineMapService.getPatientsForPlace(this.subDivision.subDivisionId, this.vaccineToken.tokenType, this.age).subscribe((patients) => {
       // this.places = placesPatients.places;
       this.patients = patients;
       // console.log(this.patients)
@@ -115,7 +115,7 @@ export class ManageVaccineComponent implements OnInit {
     this.vaccineToken.patient.patientId = patient.patientId;
     this.vaccineToken.tokenDateTime = this.date + 'T' + this.time;
     this.vaccineToken.tokenId = this.vaccineToken.patient.patientId + this.vaccineToken.tokenType;
-    this.vaccineToken.subDivisionOfficer.subDivision.subDivisionId = this.subDivisionId;
+    this.vaccineToken.subDivisionOfficer.subDivision.subDivisionId = this.subDivision.subDivisionId;
     this.patientService.addVaccineToken(this.vaccineToken).subscribe((patient) => {
       // this.vaccineToken.patient.patientId = patientId;
       // console.log(this.patients[this.patients.indexOf(patient)])

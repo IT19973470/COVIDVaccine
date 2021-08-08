@@ -8,21 +8,33 @@ import {environment} from "../../environments/environment";
 })
 export class VaccineMapService {
 
-  subDivisionId;
+  subDivision;
 
   constructor(private http: HttpClient) {
   }
 
-  addPatient(patient): Observable<any> {
-    return this.http.post<any>(environment.backend_url + 'patient/addPatient', patient);
+  addPlace(place): Observable<any> {
+    return this.http.post<any>(environment.backend_url + 'place/addPlace', place);
   }
 
-  updatePatient(patient): Observable<any> {
-    return this.http.post<any>(environment.backend_url + 'patient/updatePatient/' + patient.patientId, patient);
+  updatePlace(placeId, place): Observable<any> {
+    return this.http.put<any>(environment.backend_url + 'place/updatePlace/' + placeId, place);
   }
 
-  removePatient(patientId): Observable<any> {
-    return this.http.delete<any>(environment.backend_url + 'patient/deletePatient/' + patientId);
+  removePlace(placeId): Observable<any> {
+    return this.http.delete<any>(environment.backend_url + 'place/deletePlace/' + placeId);
+  }
+
+  addVaccine(vaccine): Observable<any> {
+    return this.http.post<any>(environment.backend_url + 'vaccine/addVaccine', vaccine);
+  }
+
+  updateVaccine(vaccineId, vaccine): Observable<any> {
+    return this.http.put<any>(environment.backend_url + 'vaccine/updateVaccine/' + vaccineId, vaccine);
+  }
+
+  removeVaccine(vaccineId): Observable<any> {
+    return this.http.delete<any>(environment.backend_url + 'vaccine/deleteVaccine/' + vaccineId);
   }
 
   getProvinces(): Observable<any> {

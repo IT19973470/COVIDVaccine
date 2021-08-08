@@ -6,7 +6,7 @@
 
 <div>
   <div style="margin-left: 50px;font-size: 30px;margin-top: 40px">
-    Manage Places
+    Manage places for {{subDivision.subDivisionName}}
   </div>
 </div>
 
@@ -24,28 +24,41 @@
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <td></td>
-        <td></td>
+      <tr style="border-bottom: 1px solid black" *ngFor="let place of places, let i = index"
+          (click)="setPlace(place);tblIndex=i">
+        <td>{{place.placeId}}</td>
+        <td>{{place.placeName}}</td>
       </tr>
       </tbody>
     </table>
   </div>
-  <div class="col-1"></div>
-  <div class="col-5">
+  <!--<div class="col-1"></div>-->
+  <div class="col-6" style="border-left: 1px solid #c9c9c9">
     <div class="row">
       <div class="col-12">
         <span>Place ID</span>
-        <input type="text" class="form-control" disabled>
+        <input type="text" class="form-control" disabled [value]="placeObj.placeId">
       </div>
       <div class="col-12" style="margin-top: 20px">
         <span>Place Name</span>
-        <input type="text" class="form-control">
+        <input type="text" class="form-control" [(ngModel)]="placeObj.placeName">
       </div>
-      <div class="col-12" style="margin-top: 30px">
-        <button class="btn btn-warning" style="font-weight: bold;margin-right: 20px">Add Place</button>
-        <button class="btn btn-warning" style="font-weight: bold;margin-right: 20px">Update Place</button>
-        <button class="btn btn-danger" style="font-weight: bold">Remove Place</button>
+      <div class="col-12" style="margin-top: 30px;text-align: center">
+        <button class="btn btn-success" style="font-weight: bold" (click)="newPlace()">New Place</button>
+      </div>
+      <div class="col-12" style="margin-top: 30px;text-align: center">
+        <button class="btn btn-warning" style="font-weight: bold"
+                [disabled]="placeObj.placeId!=='N/A' || placeObj.placeName===''" (click)="addPlace()">Add Place
+        </button>
+      </div>
+      <div class="col-12" style="margin-top: 30px;text-align: center">
+        <button class="btn btn-warning" style="font-weight: bold" [disabled]="placeObj.placeId==='N/A'"
+                (click)="updatePlace()">Update Place
+        </button>
+      </div>
+      <div class="col-12" style="margin-top: 30px;text-align: center">
+        <button class="btn btn-danger" style="font-weight: bold" [disabled]="placeObj.placeId==='N/A'" (click)="removePlace()">Remove Place
+        </button>
       </div>
     </div>
   </div>

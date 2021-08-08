@@ -235,7 +235,7 @@
         </thead>
         <tbody>
         <tr style="border-bottom: 1px solid black;cursor: pointer" *ngFor="let subDivision of subDivisions"
-            (click)="getPlaces(subDivision.subDivisionId)">
+            (click)="getPlaces(subDivision)">
           <td style="text-align: left">{{subDivision.subDivisionName}}</td>
           <td>{{subDivision.vaccinated}}</td>
           <td>{{subDivision.registered - subDivision.vaccinated}}</td>
@@ -325,7 +325,7 @@
         <div class="col-12" style="text-align: center">
           <button class="btn btn-success" style="font-weight: bold;margin-top: 50px;margin-bottom: 50px"
                   [routerLink]="'/token'"
-                  [disabled]="subDivisionId===undefined">
+                  [disabled]="subDivision===undefined">
             Manage Vaccine Tokens
           </button>
         </div>

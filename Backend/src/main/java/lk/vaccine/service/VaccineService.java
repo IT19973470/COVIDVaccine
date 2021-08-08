@@ -11,7 +11,7 @@ public interface VaccineService {
 
     VaccineDTO updateVaccine(String vaccineId, Vaccine vaccine);
 
-    VaccineDTO deleteVaccine(String vaccineId);
+    boolean deleteVaccine(String vaccineId);
 
     List<VaccineDTO> getVaccines();
 
