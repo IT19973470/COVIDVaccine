@@ -11,7 +11,47 @@
 </div>
 
 <div class="row" style="margin-top: 30px">
-  <div class="col-6">
+  <div class="col-12" style="">
+    <div class="row">
+      <div class="col-8">
+        <div class="row">
+          <div class="col-12">
+            <span style="font-weight: bold">Vaccine ID</span>
+            <input type="text" class="form-control" disabled [value]="vaccineObj.vaccineId">
+          </div>
+          <div class="col-12" style="margin-top: 20px">
+            <span style="font-weight: bold">Vaccine Name</span>
+            <input type="text" class="form-control" [(ngModel)]="vaccineObj.vaccineName">
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="row">
+          <div class="col-12" style="margin-top: 0px;text-align: center">
+            <button class="btn btn-success" style="font-weight: bold" (click)="newVaccine()">New Vaccine</button>
+          </div>
+          <div class="col-12" style="margin-top: 30px;text-align: center">
+            <button class="btn btn-warning" style="font-weight: bold"
+                    [disabled]="vaccineObj.vaccineId!=='N/A' || vaccineObj.vaccineName===''" (click)="addVaccine()">Add
+              Vaccine
+            </button>
+          </div>
+          <div class="col-12" style="margin-top: 30px;text-align: center">
+            <button class="btn btn-warning" style="font-weight: bold" [disabled]="vaccineObj.vaccineId==='N/A'"
+                    (click)="updateVaccine()">Update Vaccine
+            </button>
+          </div>
+          <div class="col-12" style="margin-top: 30px;text-align: center">
+            <button class="btn btn-danger" style="font-weight: bold" [disabled]="vaccineObj.vaccineId==='N/A'"
+                    (click)="removeVaccine()">Remove Vaccine
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12" style="margin-top: 30px">
     <table style="width: 100%">
       <thead>
       <tr style="border-bottom: 1px solid black">
@@ -33,35 +73,5 @@
     </table>
   </div>
   <!--<div class="col-1"></div>-->
-  <div class="col-6" style="border-left: 1px solid #c9c9c9">
-    <div class="row">
-      <div class="col-12">
-        <span>Vaccine ID</span>
-        <input type="text" class="form-control" disabled [value]="vaccineObj.vaccineId">
-      </div>
-      <div class="col-12" style="margin-top: 20px">
-        <span>Vaccine Name</span>
-        <input type="text" class="form-control" [(ngModel)]="vaccineObj.vaccineName">
-      </div>
-      <div class="col-12" style="margin-top: 30px;text-align: center">
-        <button class="btn btn-success" style="font-weight: bold" (click)="newVaccine()">New Vaccine</button>
-      </div>
-      <div class="col-12" style="margin-top: 30px;text-align: center">
-        <button class="btn btn-warning" style="font-weight: bold"
-                [disabled]="vaccineObj.vaccineId!=='N/A' || vaccineObj.vaccineName===''" (click)="addVaccine()">Add
-          Vaccine
-        </button>
-      </div>
-      <div class="col-12" style="margin-top: 30px;text-align: center">
-        <button class="btn btn-warning" style="font-weight: bold" [disabled]="vaccineObj.vaccineId==='N/A'"
-                (click)="updateVaccine()">Update Vaccine
-        </button>
-      </div>
-      <div class="col-12" style="margin-top: 30px;text-align: center">
-        <button class="btn btn-danger" style="font-weight: bold" [disabled]="vaccineObj.vaccineId==='N/A'"
-                (click)="removeVaccine()">Remove Vaccine
-        </button>
-      </div>
-    </div>
-  </div>
+
 </div>

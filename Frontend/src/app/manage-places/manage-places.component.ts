@@ -13,6 +13,7 @@ export class ManagePlacesComponent implements OnInit {
   placeObj = {
     placeId: 'N/A',
     placeName: '',
+    address: '',
     subDivision: {
       subDivisionId: ''
     }
@@ -56,7 +57,7 @@ export class ManagePlacesComponent implements OnInit {
   getPlaces() {
     this.vaccineMapService.getPlaces(this.subDivision.subDivisionId).subscribe((places) => {
       this.places = places;
-      // console.log(this.places)
+      console.log(this.places)
     })
   }
 
@@ -64,6 +65,7 @@ export class ManagePlacesComponent implements OnInit {
     this.placeObj = {
       placeId: 'N/A',
       placeName: '',
+      address: '',
       subDivision: {
         subDivisionId: ''
       }
@@ -73,5 +75,6 @@ export class ManagePlacesComponent implements OnInit {
   setPlace(place) {
     this.placeObj.placeId = place.placeId;
     this.placeObj.placeName = place.placeName;
+    this.placeObj.address = place.address;
   }
 }

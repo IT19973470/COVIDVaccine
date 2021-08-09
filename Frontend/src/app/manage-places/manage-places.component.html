@@ -11,7 +11,52 @@
 </div>
 
 <div class="row" style="margin-top: 30px">
-  <div class="col-6">
+
+  <!--<div class="col-1"></div>-->
+  <div class="col-12" style="">
+    <div class="row">
+      <div class="col-8">
+        <div class="row">
+          <div class="col-12">
+            <span style="font-weight: bold">Place ID</span>
+            <input type="text" class="form-control" disabled [value]="placeObj.placeId">
+          </div>
+          <div class="col-12" style="margin-top: 20px">
+            <span style="font-weight: bold">Place Name</span>
+            <input type="text" class="form-control" [(ngModel)]="placeObj.placeName">
+          </div>
+          <div class="col-12" style="margin-top: 20px">
+            <span style="font-weight: bold">Place Address</span>
+            <input type="text" class="form-control" [(ngModel)]="placeObj.address">
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="row">
+          <div class="col-12" style="margin-top: 0px;text-align: center">
+            <button class="btn btn-success" style="font-weight: bold" (click)="newPlace()">New Place</button>
+          </div>
+          <div class="col-12" style="margin-top: 30px;text-align: center">
+            <button class="btn btn-warning" style="font-weight: bold"
+                    [disabled]="placeObj.placeId!=='N/A' || placeObj.placeName===''" (click)="addPlace()">Add Place
+            </button>
+          </div>
+          <div class="col-12" style="margin-top: 30px;text-align: center">
+            <button class="btn btn-warning" style="font-weight: bold" [disabled]="placeObj.placeId==='N/A'"
+                    (click)="updatePlace()">Update Place
+            </button>
+          </div>
+          <div class="col-12" style="margin-top: 30px;text-align: center;margin-bottom: 30px">
+            <button class="btn btn-danger" style="font-weight: bold" [disabled]="placeObj.placeId==='N/A'"
+                    (click)="removePlace()">Remove Place
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12" style="margin-top: 30px">
     <table style="width: 100%">
       <thead>
       <tr style="border-bottom: 1px solid black">
@@ -21,6 +66,9 @@
         <th>
           Place Name
         </th>
+        <th>
+          Address
+        </th>
       </tr>
       </thead>
       <tbody>
@@ -28,38 +76,9 @@
           (click)="setPlace(place);tblIndex=i">
         <td>{{place.placeId}}</td>
         <td>{{place.placeName}}</td>
+        <td>{{place.address}}</td>
       </tr>
       </tbody>
     </table>
-  </div>
-  <!--<div class="col-1"></div>-->
-  <div class="col-6" style="border-left: 1px solid #c9c9c9">
-    <div class="row">
-      <div class="col-12">
-        <span>Place ID</span>
-        <input type="text" class="form-control" disabled [value]="placeObj.placeId">
-      </div>
-      <div class="col-12" style="margin-top: 20px">
-        <span>Place Name</span>
-        <input type="text" class="form-control" [(ngModel)]="placeObj.placeName">
-      </div>
-      <div class="col-12" style="margin-top: 30px;text-align: center">
-        <button class="btn btn-success" style="font-weight: bold" (click)="newPlace()">New Place</button>
-      </div>
-      <div class="col-12" style="margin-top: 30px;text-align: center">
-        <button class="btn btn-warning" style="font-weight: bold"
-                [disabled]="placeObj.placeId!=='N/A' || placeObj.placeName===''" (click)="addPlace()">Add Place
-        </button>
-      </div>
-      <div class="col-12" style="margin-top: 30px;text-align: center">
-        <button class="btn btn-warning" style="font-weight: bold" [disabled]="placeObj.placeId==='N/A'"
-                (click)="updatePlace()">Update Place
-        </button>
-      </div>
-      <div class="col-12" style="margin-top: 30px;text-align: center">
-        <button class="btn btn-danger" style="font-weight: bold" [disabled]="placeObj.placeId==='N/A'" (click)="removePlace()">Remove Place
-        </button>
-      </div>
-    </div>
   </div>
 </div>

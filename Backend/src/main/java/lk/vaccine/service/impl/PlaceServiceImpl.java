@@ -72,6 +72,7 @@ public class PlaceServiceImpl implements PlaceService {
         if (optionalPlace.isPresent()) {
             Place placeObj = optionalPlace.get();
             placeObj.setPlaceName(place.getPlaceName());
+            placeObj.setAddress(place.getAddress());
             return new PlaceDTO(placeRepository.save(placeObj));
         }
         return null;
