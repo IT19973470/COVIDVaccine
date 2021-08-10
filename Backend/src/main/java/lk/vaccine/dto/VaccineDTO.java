@@ -9,6 +9,10 @@ public class VaccineDTO {
     private int registered;
     private int vaccinated;
 
+    public VaccineDTO() {
+
+    }
+
     public VaccineDTO(Vaccine vaccine) {
         if (vaccine != null) {
             this.vaccineId = vaccine.getVaccineId();

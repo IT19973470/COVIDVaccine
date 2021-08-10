@@ -29,6 +29,18 @@ public class PatientServiceImpl implements PatientService {
         List<VaccineDTO> vaccineDTOSFirst = new ArrayList<>();
         List<VaccineDTO> vaccineDTOSSecond = new ArrayList<>();
         List<Vaccine> vaccines = vaccineRepository.findAll();
+
+        VaccineDTO vaccineDTOs[] = new VaccineDTO[2];
+
+        Map<String, VaccineDTO[]> stringVaccineMap = new HashMap<>();
+
+        for (Vaccine vaccine : vaccines) {
+            vaccineDTOs = new VaccineDTO[2];
+            vaccineDTOs[0] = new VaccineDTO(vaccine);
+            vaccineDTOs[1] = new VaccineDTO(vaccine);
+            stringVaccineMap.put(vaccine.getVaccineName(), vaccineDTOs);
+        }
+
         List<VaccineToken> vaccineTokenList = vaccineTokenRepository.getVaccineTokensByDistrict(districtId);
         int registeredFirst = 0, vaccinatedFirst = 0, registeredSecond = 0, vaccinatedSecond = 0;
         List<Patient> patientList = patientRepository.findAllBySubDivisionDistrictDistrictId(districtId);
@@ -58,40 +70,45 @@ public class PatientServiceImpl implements PatientService {
             vaccinated = 0;
         }
 
-        for (Vaccine vaccine : vaccines) {
+        for (Map.Entry<String, VaccineDTO[]> vaccine : stringVaccineMap.entrySet()) {
 
             for (VaccineToken vaccineToken : vaccineTokenList) {
-                if (vaccine.getVaccineName().equals(vaccineToken.getVaccine().getVaccineName()) && vaccineToken.getTokenType() == 1) {
+                if (vaccine.getValue()[0].getVaccineName().equals(vaccineToken.getVaccine().getVaccineName()) && vaccineToken.getTokenType() == 1) {
                     registeredFirst++;
                     if (vaccineToken.isVaccinated()) {
                         vaccinatedFirst++;
                     }
-                    VaccineDTO vaccineDTO = new VaccineDTO(vaccineToken.getVaccine());
+                    VaccineDTO vaccineDTO = vaccine.getValue()[0];
                     vaccineDTO.setRegistered(registeredFirst);
                     vaccineDTO.setVaccinated(vaccinatedFirst);
-                    vaccineDTOSFirst.add(vaccineDTO);
+//                    vaccineDTOSFirst.add(vaccineDTO);
                 }
 
-                if (vaccine.getVaccineName().equals(vaccineToken.getVaccine().getVaccineName()) && vaccineToken.getTokenType() == 2) {
+                if (vaccine.getValue()[1].getVaccineName().equals(vaccineToken.getVaccine().getVaccineName()) && vaccineToken.getTokenType() == 2) {
                     registeredSecond++;
                     if (vaccineToken.isVaccinated()) {
                         vaccinatedSecond++;
                     }
-                    VaccineDTO vaccineDTO = new VaccineDTO(vaccineToken.getVaccine());
+                    VaccineDTO vaccineDTO = vaccine.getValue()[1];
                     vaccineDTO.setRegistered(registeredSecond);
                     vaccineDTO.setVaccinated(vaccinatedSecond);
-                    vaccineDTOSSecond.add(vaccineDTO);
                 }
             }
+
+            vaccineDTOSFirst.add(vaccine.getValue()[0]);
+            vaccineDTOSSecond.add(vaccine.getValue()[1]);
+
             registeredFirst = 0;
             registeredSecond = 0;
             vaccinatedFirst = 0;
             vaccinatedSecond = 0;
         }
 
-        placePatientDTO.setSubDivisions(subDivisionDTOS);
         placePatientDTO.setVaccinesFirst(vaccineDTOSFirst);
         placePatientDTO.setVaccinesSecond(vaccineDTOSSecond);
+
+        placePatientDTO.setSubDivisions(subDivisionDTOS);
+
 
         return placePatientDTO;
     }
@@ -131,6 +148,7 @@ public class PatientServiceImpl implements PatientService {
     public PlacePatientDTO getPatientsCountForPlace(String subDivisionId, int tokenType) {
         List<VaccineDTO> vaccineDTOSFirst = new ArrayList<>();
         List<VaccineDTO> vaccineDTOSSecond = new ArrayList<>();
+
         List<Vaccine> vaccines = vaccineRepository.findAll();
         List<VaccineToken> vaccineTokenList = vaccineTokenRepository.getVaccineTokensBySubDivision(subDivisionId);
         int registeredFirst = 0, vaccinatedFirst = 0, registeredSecond = 0, vaccinatedSecond = 0;
