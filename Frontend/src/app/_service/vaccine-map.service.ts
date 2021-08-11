@@ -57,6 +57,14 @@ export class VaccineMapService {
     return this.http.get<any>(environment.backend_url + 'place/getPlaces/' + subDivisionId);
   }
 
+  getSubDivisionOfficers(): Observable<any> {
+    return this.http.get<any>(environment.backend_url + 'officer/getSubDivisionOfficers');
+  }
+
+  getOfficersForSubDivision(placeId): Observable<any> {
+    return this.http.get<any>(environment.backend_url + 'officer/getOfficersForSubDivision/' + placeId);
+  }
+
   getPatientsForPlace(subDivisionId, tokenType, age): Observable<any> {
     return this.http.get<any>(environment.backend_url + 'patient/getPatientsForPlace/' + subDivisionId + '/' + tokenType + '/' + age);
   }

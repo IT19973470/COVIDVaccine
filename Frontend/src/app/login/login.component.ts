@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.loginService.login(this.vaccineUser).subscribe((user) => {
       if (user != null) {
-        localStorage.setItem('user', user.userNic);
+        localStorage.setItem('user', JSON.stringify(user));
         this.router.navigate(['/map']);
       } else {
         this.loggedIn = false;

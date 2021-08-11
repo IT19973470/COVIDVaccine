@@ -23,6 +23,11 @@ public class SubDivisionOfficerDTO {
         this.officer = officer;
     }
 
+    public SubDivisionOfficerDTO(SubDivisionOfficer subDivisionOfficer, OfficerDTO officer) {
+        this(subDivisionOfficer);
+        this.officer = officer;
+    }
+
     public SubDivisionOfficerPK getSubDivisionOfficerId() {
         return subDivisionOfficerId;
     }

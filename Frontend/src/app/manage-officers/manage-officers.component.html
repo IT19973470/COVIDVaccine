@@ -6,7 +6,7 @@
 
 <div>
   <div style="margin-left: 50px;font-size: 30px;margin-top: 40px">
-    Manage Vaccines
+    Manage Officers
   </div>
 </div>
 
@@ -16,34 +16,38 @@
       <div class="col-8">
         <div class="row">
           <div class="col-12">
-            <span style="font-weight: bold">Vaccine ID</span>
-            <input type="text" class="form-control" disabled [value]="vaccineObj.vaccineId">
+            <span style="font-weight: bold">Officer NIC</span>
+            <input type="text" class="form-control" [(ngModel)]="officerObj.officerId" [disabled]="!isAdding">
           </div>
           <div class="col-12" style="margin-top: 20px">
-            <span style="font-weight: bold">Vaccine Name</span>
-            <input type="text" class="form-control" [(ngModel)]="vaccineObj.vaccineName">
+            <span style="font-weight: bold">Officer Name</span>
+            <input type="text" class="form-control" [(ngModel)]="officerObj.firstName">
+          </div>
+          <div class="col-12" style="margin-top: 20px">
+            <span style="font-weight: bold">Officer Name</span>
+            <input type="text" class="form-control" [(ngModel)]="officerObj.lastName">
           </div>
         </div>
       </div>
       <div class="col-4">
         <div class="row">
           <div class="col-12" style="margin-top: 0px;text-align: center">
-            <button class="btn btn-success" style="font-weight: bold" (click)="newVaccine()">New Vaccine</button>
+            <button class="btn btn-success" style="font-weight: bold" (click)="newOfficer()">New Officer</button>
           </div>
           <div class="col-12" style="margin-top: 30px;text-align: center">
             <button class="btn btn-warning" style="font-weight: bold"
-                    [disabled]="vaccineObj.vaccineId!=='N/A' || vaccineObj.vaccineName===''" (click)="addVaccine()">Add
-              Vaccine
+                    [disabled]="(officerObj.officerId==='' || officerObj.firstName==='' || officerObj.lastName==='') || !isAdding" (click)="addOfficer()">Add
+              Officer
             </button>
           </div>
           <div class="col-12" style="margin-top: 30px;text-align: center">
-            <button class="btn btn-warning" style="font-weight: bold" [disabled]="vaccineObj.vaccineId==='N/A'"
-                    (click)="updateVaccine()">Update Vaccine
+            <button class="btn btn-warning" style="font-weight: bold" [disabled]="isAdding"
+                    (click)="updateOfficer()">Update Officer
             </button>
           </div>
           <div class="col-12" style="margin-top: 30px;text-align: center">
-            <button class="btn btn-danger" style="font-weight: bold" [disabled]="vaccineObj.vaccineId==='N/A'"
-                    (click)="removeVaccine()">Remove Vaccine
+            <button class="btn btn-danger" style="font-weight: bold" [disabled]="isAdding"
+                    (click)="removeOfficer()">Remove Officer
             </button>
           </div>
         </div>
@@ -56,18 +60,18 @@
       <thead>
       <tr style="border-bottom: 1px solid black">
         <th style="text-align: left">
-          Vaccine ID
+          Officer NIC
         </th>
         <th>
-          Vaccine Name
+          Officer Name
         </th>
       </tr>
       </thead>
       <tbody>
-      <tr style="border-bottom: 1px solid black" *ngFor="let vaccine of vaccines, let i = index"
-          (click)="setVaccine(vaccine);tblIndex=i">
-        <td>{{vaccine.vaccineId}}</td>
-        <td>{{vaccine.vaccineName}}</td>
+      <tr style="border-bottom: 1px solid black" *ngFor="let officer of officers, let i = index"
+          (click)="setOfficer(officer);tblIndex=i">
+        <td>{{officer.officerId}}</td>
+        <td>{{officer.firstName + ' ' + officer.lastName}}</td>
       </tr>
       </tbody>
     </table>

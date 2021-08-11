@@ -8,6 +8,8 @@ import {SignupComponent} from "./signup/signup.component";
 import {ManageVaccineComponent} from "./manage-vaccine/manage-vaccine.component";
 import {ManagePlacesComponent} from "./manage-places/manage-places.component";
 import {ManageVaccinesComponent} from "./manage-vaccines/manage-vaccines.component";
+import {MainOfficerComponent} from "./main-officer/main-officer.component";
+import {ManageOfficersComponent} from "./manage-officers/manage-officers.component";
 
 const routes: Routes = [
   {
@@ -34,6 +36,14 @@ const routes: Routes = [
   {
     path: 'manage_vaccines',
     component: ManageVaccinesComponent,
+  },
+  {
+    path: 'officers',
+    component: MainOfficerComponent,
+  },
+  {
+    path: 'manage_officers',
+    component: ManageOfficersComponent,
   },
   {
     path: 'login',

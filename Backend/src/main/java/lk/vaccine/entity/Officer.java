@@ -9,8 +9,26 @@ public class Officer {
 
     @Id
     private String officerId;
+    private String firstName;
+    private String lastName;
     @OneToOne
     private VaccineUser vaccineUser;
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
     public String getOfficerId() {
         return officerId;

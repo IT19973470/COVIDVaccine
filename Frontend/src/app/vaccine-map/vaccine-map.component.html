@@ -24,7 +24,12 @@
               Logout
             </button>
           </div>
-          <div style="display: flex;justify-content: flex-end;width: calc(100% - 280px)">
+          <div style="display: flex;justify-content: flex-end;width: calc(100% - 350px)" *ngIf="!validateUser()">
+            <button class="btn btn-warning" style="font-weight: bold">
+              View Island Wide Vaccination
+            </button>
+          </div>
+          <div style="display: flex;justify-content: flex-end;width: calc(100% - 280px)" *ngIf="validateUser()">
             <button class="btn btn-warning" style="font-weight: bold">
               View Island Wide Vaccination
             </button>
@@ -321,12 +326,28 @@
           Second vaccine - {{totalRegistrationsSecond}}
         </div>
       </div>
-      <div class="row" *ngIf="validateUser()">
+      <div class="row" *ngIf="validateUser() && getUser()['type']==='officer'">
         <div class="col-12" style="text-align: center">
           <button class="btn btn-success" style="font-weight: bold;margin-top: 50px;margin-bottom: 50px"
                   [routerLink]="'/token'"
                   [disabled]="subDivision===undefined">
             Manage Vaccine Tokens
+          </button>
+        </div>
+      </div>
+      <div class="row" *ngIf="validateUser() && getUser()['type']==='admin'">
+        <div class="col-6" style="text-align: center">
+          <button class="btn btn-success" style="font-weight: bold;margin-top: 50px;margin-bottom: 50px"
+                  [routerLink]="'/token'"
+                  [disabled]="subDivision===undefined">
+            Manage Vaccine Tokens
+          </button>
+        </div>
+        <div class="col-6" style="text-align: center">
+          <button class="btn btn-success" style="font-weight: bold;margin-top: 50px;margin-bottom: 50px"
+                  [routerLink]="'/officers'"
+                  [disabled]="subDivision===undefined">
+            Manage Officers
           </button>
         </div>
       </div>

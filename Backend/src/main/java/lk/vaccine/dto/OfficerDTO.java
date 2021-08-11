@@ -7,17 +7,37 @@ import lk.vaccine.entity.Officer;
 public class OfficerDTO {
 
     private String officerId;
+    private String firstName;
+    private String lastName;
     private VaccineUserDTO vaccineUser;
 
     public OfficerDTO(Officer officer) {
         if (officer != null) {
             this.officerId = officer.getOfficerId();
+            this.firstName = officer.getFirstName();
+            this.lastName = officer.getLastName();
         }
     }
 
     public OfficerDTO(Officer officer, VaccineUserDTO vaccineUser) {
         this(officer);
         this.vaccineUser = vaccineUser;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getOfficerId() {

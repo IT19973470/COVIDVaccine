@@ -1,0 +1,86 @@
+<div class="row" style="margin-top: 20px">
+  <div class="col-12">
+    <button class="btn btn-success" [routerLink]="'/map'" style="font-weight: bold">Back</button>
+  </div>
+</div>
+
+<div>
+  <div style="margin-left: 50px;font-size: 30px;margin-top: 40px">
+    Manage Officers for {{subDivision.subDivisionName}}
+  </div>
+</div>
+
+<div class="row" style="margin-top: 30px">
+
+  <!--<div class="col-1" style="text-align: right;">-->
+  <!--<div style="margin-top: 6px">Place</div>-->
+  <!--</div>-->
+  <!--<div class="col-3">-->
+  <!--<select class="form-control" (change)="setPlace($event.target.value)">-->
+  <!--<option value="">Select Place</option>-->
+  <!--<option *ngFor="let place of places" [value]="place.placeId">{{place.placeName}}</option>-->
+  <!--</select>-->
+  <!--</div>-->
+
+
+</div>
+
+<div class="row" style="margin-top: 30px">
+
+  <div class="col-1" style="text-align: right;">
+    <div style="margin-top: 6px">Officer</div>
+  </div>
+  <div class="col-3">
+    <select class="form-control" (change)="setOfficer($event.target.value)">
+      <option value="">Select Officer</option>
+      <option *ngFor="let officer of officers" [value]="officer.officerId">
+        {{officer.firstName + ' ' + officer.lastName + ' (' + officer.officerId + ')'}}
+      </option>
+    </select>
+  </div>
+  <div class="col-2">
+    <button class="btn btn-primary" style="font-weight: bold" [routerLink]="'/manage_officers'">Manage Officers</button>
+  </div>
+  <div class="col-2">
+    <button class="btn btn-primary" style="font-weight: bold" [routerLink]="'/manage_places'">Manage Places</button>
+  </div>
+  <div class="col-2">
+    <button class="btn btn-primary" style="font-weight: bold" [routerLink]="'/manage_vaccines'">Manage Vaccines</button>
+  </div>
+
+</div>
+
+<div class="row">
+  <div class="col-12" style="margin-top: 50px;text-align: center">
+    <button class="btn btn-warning" style="font-weight: bold"
+            (click)="addOfficer()">
+      Add Officer
+    </button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12" style="margin-top: 30px">
+    <table style="width: 100%">
+      <thead>
+      <tr style="border-bottom: 1px solid black">
+        <th style="text-align: left">
+          Officer
+        </th>
+        <th style="text-align: right">Remove</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr style="border-bottom: 1px solid black" *ngFor="let officer of subDivisionOfficers, let i = index"
+          (click)="setOfficer(officer);tblIndex=i">
+        <td>{{officer.firstName + ' ' + officer.lastName + ' (' + officer.officerId + ')'}}</td>
+        <td style="text-align: right;padding: 10px;">
+          <button class="btn btn-danger" style="font-weight: bold"
+                  (click)="removeOfficer(officer.officerId,i)">Remove Vaccine
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

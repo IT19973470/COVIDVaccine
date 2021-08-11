@@ -7,6 +7,15 @@
       </div>
     </div>
 
+  <div class="row" *ngIf="success===2">
+    <div class="col-12">
+      <div class="alert alert-danger" role="alert" style="margin-top: 20px;">
+        <i class="fas fa-times-circle" style="font-size: 21px;margin-right: 20px"></i>
+        <span style="font-size: 20px">You are not registered for {{subDivision.subDivisionName}} area to register vaccines.</span>
+      </div>
+    </div>
+  </div>
+
     <div>
       <div style="margin-left: 50px;font-size: 30px;margin-top: 40px">
         Sub Division - {{subDivision!==undefined?subDivision.subDivisionName:'N/A'}}
@@ -24,7 +33,7 @@
         </select>
       </div>
       <div class="col-2">
-        <button class="btn btn-primary" style="font-weight: bold" [routerLink]="'/manage_places'" [disabled]="subDivision===undefined">Manage Places</button>
+        <!--<button class="btn btn-primary" style="font-weight: bold" [routerLink]="'/manage_places'" [disabled]="subDivision===undefined">Manage Places</button>-->
       </div>
 
       <!--<div class="col-2"></div>-->
@@ -39,7 +48,7 @@
         </select>
       </div>
       <div class="col-2">
-        <button class="btn btn-primary" style="font-weight: bold" [routerLink]="'/manage_vaccines'">Manage Vaccines</button>
+        <!--<button class="btn btn-primary" style="font-weight: bold" [routerLink]="'/manage_vaccines'">Manage Vaccines</button>-->
       </div>
     </div>
 

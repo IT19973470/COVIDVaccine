@@ -52,5 +52,15 @@ public class OfficerController {
         return ResponseEntity.ok(officerService.deleteSubDivisionOfficer(new SubDivisionOfficerPK(subDivisionId, officerId)));
     }
 
+    @GetMapping(value = "/getSubDivisionOfficers")
+    public ResponseEntity getSubDivisionOfficers() {
+        return ResponseEntity.ok(officerService.getSubDivisionOfficers());
+    }
+
+    @GetMapping(value = "/getOfficersForSubDivision/{subDivisionId}")
+    public ResponseEntity getOfficersForSubDivision(@PathVariable String subDivisionId) {
+        return ResponseEntity.ok(officerService.getOfficersForSubDivision(subDivisionId));
+    }
+
 }
 

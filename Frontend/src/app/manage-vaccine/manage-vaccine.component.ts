@@ -25,20 +25,21 @@ export class ManageVaccineComponent implements OnInit {
   // vaccine;
   date;
   time;
-  age=10;
+  age = 10;
+  success = 0;
 
   vaccineToken = {
     tokenId: '',
     subDivisionOfficer: {
       subDivisionOfficerId: {
-        officerId: 'O1',
-        subDivisionId: 'Rathgama'
+        officerId: '',
+        subDivisionId: ''
       },
       officer: {
-        officerId: 'O1'
+        officerId: ''
       },
       subDivision: {
-        subDivisionId: 'Rathgama'
+        subDivisionId: ''
       }
     },
     patient: {
@@ -116,6 +117,8 @@ export class ManageVaccineComponent implements OnInit {
     this.vaccineToken.tokenDateTime = this.date + 'T' + this.time;
     this.vaccineToken.tokenId = this.vaccineToken.patient.patientId + this.vaccineToken.tokenType;
     this.vaccineToken.subDivisionOfficer.subDivision.subDivisionId = this.subDivision.subDivisionId;
+    this.vaccineToken.subDivisionOfficer.officer.officerId = JSON.parse(localStorage.getItem('user'))['userNic'];
+
     this.patientService.addVaccineToken(this.vaccineToken).subscribe((patient) => {
       // this.vaccineToken.patient.patientId = patientId;
       // console.log(this.patients[this.patients.indexOf(patient)])
@@ -123,6 +126,9 @@ export class ManageVaccineComponent implements OnInit {
       this.patients[index].vaccine = patient.vaccine;
       this.patients[index].place = patient.place;
       this.patients[index].registered = true;
+      this.success = 1;
+    }, (error) => {
+      this.success = 2;
     })
   }
 

@@ -138,6 +138,10 @@ export class VaccineMapComponent implements OnInit {
     return localStorage.getItem('user') !== null;
   }
 
+  getUser() {
+    return JSON.parse(localStorage.getItem('user'));
+  }
+
   logout() {
     localStorage.clear();
   }
