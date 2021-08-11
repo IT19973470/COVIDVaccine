@@ -59,6 +59,28 @@ export class VaccineMapComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  islandWideVaccine() {
+    this.district = undefined;
+    this.totalRegistrationsFirst = 0;
+    this.totalRegistrationsSecond = 0;
+    this.vaccineMapService.getVaccinatedCountForIslandWide().subscribe((placesPatients) => {
+      this.subDivisions = placesPatients.subDivisions;
+      this.subDivisionVaccinesFirst = placesPatients.vaccinesFirst;
+      this.subDivisionVaccinesSecond = placesPatients.vaccinesSecond;
+      for (let vaccine of placesPatients.vaccinesFirst) {
+        this.totalRegistrationsFirst += vaccine.registered;
+      }
+      for (let vaccine of placesPatients.vaccinesSecond) {
+        this.totalRegistrationsSecond += vaccine.registered;
+      }
+      if (this.subDivisions.length === 0) {
+        this.subDivisionVaccinesFirst = [];
+        this.subDivisionVaccinesSecond = [];
+      }
+      this.subDivisions.sort((a, b) => (a.registered > b.registered) ? -1 : ((b.registered > a.registered) ? 1 : 0))
+    })
+  }
+
   getPlaces(subDivision) {
     this.vaccineMapService.subDivision = subDivision;
     this.subDivision = subDivision;
@@ -93,6 +115,10 @@ export class VaccineMapComponent implements OnInit {
       }
       for (let vaccine of placesPatients.vaccinesSecond) {
         this.totalRegistrationsSecond += vaccine.registered;
+      }
+      if (this.subDivisions.length === 0) {
+        this.subDivisionVaccinesFirst = [];
+        this.subDivisionVaccinesSecond = [];
       }
       // console.log(subDivisions)
     })

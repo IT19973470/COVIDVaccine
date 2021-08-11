@@ -49,8 +49,12 @@ export class VaccineMapService {
     return this.http.get<any>(environment.backend_url + 'place/getSubDivisions/' + districtId);
   }
 
+  getVaccinatedCountForIslandWide(): Observable<any> {
+    return this.http.get<any>(environment.backend_url + 'patient/getVaccinatedCountForIslandWide');
+  }
+
   getVaccinatedCountForSubDivision(districtId): Observable<any> {
-    return this.http.get<any>(environment.backend_url + 'patient/getVaccinatedCountForSubDivision/' + districtId + '/30');
+    return this.http.get<any>(environment.backend_url + 'patient/getVaccinatedCountForSubDivision/' + districtId);
   }
 
   getPlaces(subDivisionId): Observable<any> {

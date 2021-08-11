@@ -16,9 +16,14 @@ public class PatientController {
     @Autowired
     private PatientService patientService;
 
-    @GetMapping(value = "getVaccinatedCountForSubDivision/{subDivisionId}/{age}")
-    public ResponseEntity getVaccinatedCountForSubDivision(@PathVariable String subDivisionId, @PathVariable int age) {
-        return ResponseEntity.ok(patientService.getVaccinatedCountForSubDivision(subDivisionId, age));
+    @GetMapping(value = "getVaccinatedCountForIslandWide")
+    public ResponseEntity getVaccinatedCountForIslandWide() {
+        return ResponseEntity.ok(patientService.getVaccinatedCountForIslandWide());
+    }
+
+    @GetMapping(value = "getVaccinatedCountForSubDivision/{subDivisionId}")
+    public ResponseEntity getVaccinatedCountForSubDivision(@PathVariable String subDivisionId) {
+        return ResponseEntity.ok(patientService.getVaccinatedCountForSubDivision(subDivisionId));
     }
 
     @GetMapping(value = "getVaccinatedCountForDistrict/{districtId}/{age}")

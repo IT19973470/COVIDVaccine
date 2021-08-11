@@ -25,12 +25,12 @@
             </button>
           </div>
           <div style="display: flex;justify-content: flex-end;width: calc(100% - 350px)" *ngIf="!validateUser()">
-            <button class="btn btn-warning" style="font-weight: bold">
+            <button class="btn btn-warning" style="font-weight: bold" (click)="islandWideVaccine()">
               View Island Wide Vaccination
             </button>
           </div>
           <div style="display: flex;justify-content: flex-end;width: calc(100% - 280px)" *ngIf="validateUser()">
-            <button class="btn btn-warning" style="font-weight: bold">
+            <button class="btn btn-warning" style="font-weight: bold" (click)="islandWideVaccine()">
               View Island Wide Vaccination
             </button>
           </div>

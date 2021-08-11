@@ -9,7 +9,9 @@ import java.util.List;
 
 public interface PatientService {
 
-    PlacePatientDTO getVaccinatedCountForSubDivision(String districtId, int age);
+    PlacePatientDTO getVaccinatedCountForIslandWide();
+
+    PlacePatientDTO getVaccinatedCountForSubDivision(String districtId);
 
     List<PatientDTO> getVaccinatedCountForDistrict(String districtId, int age);
 

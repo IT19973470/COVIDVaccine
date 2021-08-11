@@ -21,9 +21,44 @@ public class PatientServiceImpl implements PatientService {
     @Autowired
     private SubDivisionRepository subDivisionRepository;
 
+    @Override
+    public PlacePatientDTO getVaccinatedCountForIslandWide() {
+        PlacePatientDTO placePatientDTO = new PlacePatientDTO();
+
+        List<Patient> patientList = patientRepository.findAll();
+        List<VaccineToken> vaccineTokenList = vaccineTokenRepository.findAll();
+        List<SubDivision> subDivisions = subDivisionRepository.findAll();
+
+        List<SubDivisionDTO> subDivisionDTOS = new ArrayList<>();
+        int registered = 0, vaccinated = 0;
+
+        for (SubDivision division : subDivisions) {
+
+            for (Patient patient : patientList) {
+                if (division.getSubDivisionName().equals(patient.getSubDivision().getSubDivisionName())) {
+                    registered++;
+                    if (patient.isVaccined()) {
+                        vaccinated++;
+                    }
+                }
+            }
+
+            subDivisionDTOS.add(new SubDivisionDTO(division, registered, vaccinated));
+            registered = 0;
+            vaccinated = 0;
+        }
+
+        setVaccines(vaccineTokenList, placePatientDTO);
+
+        placePatientDTO.setSubDivisions(subDivisionDTOS);
+
+
+        return placePatientDTO;
+    }
+
 
     @Override
-    public PlacePatientDTO getVaccinatedCountForSubDivision(String districtId, int age) {
+    public PlacePatientDTO getVaccinatedCountForSubDivision(String districtId) {
         PlacePatientDTO placePatientDTO = new PlacePatientDTO();
 
         List<Patient> patientList = patientRepository.findAllBySubDivisionDistrictDistrictId(districtId);
