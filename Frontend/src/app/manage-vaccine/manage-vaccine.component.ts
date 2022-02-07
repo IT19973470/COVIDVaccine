@@ -144,6 +144,14 @@ export class ManageVaccineComponent implements OnInit {
     })
   }
 
+  groupAssign() {
+    for (let i = 0; i < this.patients.length; i++) {
+      this.addVaccineToken(this.patients[i], i);
+    }
+    // this.timeSlots.splice(this.timeSeq, 1)
+    this.getTimeSlots(1)
+  }
+
   addVaccineToken(patient, index) {
     this.vaccineToken.patient.patientId = patient.patientId;
     this.vaccineToken.tokenDateTime = this.date + 'T' + this.time;
