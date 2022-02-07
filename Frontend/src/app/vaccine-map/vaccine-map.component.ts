@@ -48,6 +48,8 @@ export class VaccineMapComponent implements OnInit {
     }
   ];
 
+  selectedArea = '';
+
   // @ViewChild('manageVehicle') manageVehicle;
 
   constructor(private vaccineMapService: VaccineMapService, private patientService: PatientService) {
@@ -82,6 +84,7 @@ export class VaccineMapComponent implements OnInit {
   }
 
   getPlaces(subDivision) {
+    this.selectedArea = subDivision.subDivisionName;
     this.vaccineMapService.subDivision = subDivision;
     this.subDivision = subDivision;
     this.totalRegistrationsFirst = 0;
@@ -102,6 +105,8 @@ export class VaccineMapComponent implements OnInit {
   }
 
   setDistrict(districtId, district, province) {
+    // console.log(district)
+    this.selectedArea = district;
     this.district = district;
     this.province = province;
     this.totalRegistrationsFirst = 0;

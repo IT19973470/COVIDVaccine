@@ -44,6 +44,9 @@ public class InitDB {
             Province provinceNothern = provinceRepository.save(new Province("NP", "North"));
             districtRepository.save(new District("Jaffna", "Jaffna", provinceNothern));
 
+            Province provinceSouthernNc = provinceRepository.save(new Province("NC", "North Central"));
+            District districtAnuradhapura = districtRepository.save(new District("Anuradhapura", "Anuradhapura", provinceSouthernNc));
+            subDivisionRepository.save(new SubDivision("Madawachchiya", "Madawachchiya", districtAnuradhapura));
         }
     }
 

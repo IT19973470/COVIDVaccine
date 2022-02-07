@@ -7,4 +7,5 @@ public interface VaccineUserRepository extends JpaRepository<VaccineUser, String
 
     VaccineUser getAllByUsernameAndPassword(String username, String password);
 
+
 }

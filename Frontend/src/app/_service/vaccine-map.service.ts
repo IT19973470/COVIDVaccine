@@ -73,6 +73,10 @@ export class VaccineMapService {
     return this.http.get<any>(environment.backend_url + 'patient/getPatientsForPlace/' + subDivisionId + '/' + tokenType + '/' + age);
   }
 
+  getPatientsForTime(time, subDivisionId): Observable<any> {
+    return this.http.get<any>(environment.backend_url + 'patient/getPatientsForTime/' + time + '/' + subDivisionId);
+  }
+
   getVaccines(): Observable<any> {
     return this.http.get<any>(environment.backend_url + 'vaccine/getVaccines');
   }
@@ -81,4 +85,7 @@ export class VaccineMapService {
     return this.http.get<any>(environment.backend_url + 'patient/getPatientsCountForPlace/' + subDivisionId + '/' + tokenType);
   }
 
+  getTimeSlots(): Observable<any> {
+    return this.http.get<any>(environment.backend_url + 'place/getTimeSlots');
+  }
 }

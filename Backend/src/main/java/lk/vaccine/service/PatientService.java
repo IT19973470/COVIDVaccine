@@ -28,4 +28,8 @@ public interface PatientService {
     List<PatientDTO> getPatientsForPlace(String subDivisionId, int tokenType, int age);
 
     PlacePatientDTO getPatientsCountForPlace(String subDivisionId, int tokenType);
+
+    PatientDTO vaccinateMe(String patientId);
+
+    List<PatientDTO> getPatientsForTime(String time, String subDivisionId);
 }

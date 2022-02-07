@@ -7,6 +7,8 @@ import lk.vaccine.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Service
@@ -136,6 +138,42 @@ public class PatientServiceImpl implements PatientService {
         setVaccines(vaccineTokenList, placePatientDTO);
 
         return placePatientDTO;
+    }
+
+    @Override
+    public PatientDTO vaccinateMe(String patientId) {
+        Optional<Patient> patientOptional = patientRepository.findById(patientId);
+        if (patientOptional.isPresent()) {
+            Patient patient = patientOptional.get();
+            if (patient.isVaccined()) {
+                patient.setVaccined(false);
+            } else {
+                patient.setVaccined(true);
+            }
+
+            return new PatientDTO(patientRepository.save(patient));
+        }
+        return null;
+    }
+
+    @Override
+    public List<PatientDTO> getPatientsForTime(String time, String subDivisionId) {
+
+        List<VaccineToken> vaccineTokenList = vaccineTokenRepository.getVaccineTokensByTime(
+                LocalDateTime.parse("2020-02-02 " + time, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
+                , subDivisionId);
+//        List<VaccineToken> vaccineTokenList = vaccineTokenRepository.getVaccineTokensBySubDivision(subDivisionId);
+
+        List<PatientDTO> patientDTOS = new ArrayList<>();
+        for (VaccineToken vaccineToken : vaccineTokenList) {
+            PatientDTO patientDTO = new PatientDTO(vaccineToken.getPatient(), new VaccineDTO(vaccineToken.getPatient().getVaccine()));
+            patientDTO.setTokenId(vaccineToken.getTokenId());
+            patientDTO.setPlace(new PlaceDTO(vaccineToken.getPlace()));
+            patientDTO.setVaccine(new VaccineDTO(vaccineToken.getVaccine()));
+            patientDTO.setRegistered(true);
+            patientDTOS.add(patientDTO);
+        }
+        return patientDTOS;
     }
 
     @Override

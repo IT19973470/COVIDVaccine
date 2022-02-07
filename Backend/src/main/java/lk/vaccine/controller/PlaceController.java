@@ -34,6 +34,11 @@ public class PlaceController {
         return ResponseEntity.ok(placeService.getPlaces(subDivisionId));
     }
 
+    @GetMapping(value = "getTimeSlots")
+    public ResponseEntity getTimeSlots() {
+        return ResponseEntity.ok(placeService.getTimeSlots());
+    }
+
     @PostMapping(value = "/addPlace")
     public ResponseEntity addPlace(@RequestBody Place place) {
         return ResponseEntity.ok(placeService.addPlace(place));

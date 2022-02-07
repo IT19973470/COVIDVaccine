@@ -21,14 +21,24 @@ public class PatientController {
         return ResponseEntity.ok(patientService.getVaccinatedCountForIslandWide());
     }
 
-    @GetMapping(value = "getVaccinatedCountForSubDivision/{subDivisionId}/{age}")
+    @GetMapping(value = "getVaccinatedCountForSubDivision/{subDivisionId}")
     public ResponseEntity getVaccinatedCountForSubDivision(@PathVariable String subDivisionId) {
+        return ResponseEntity.ok(patientService.getVaccinatedCountForSubDivision(subDivisionId));
+    }
+
+    @GetMapping(value = "getVaccinatedCountForSubDivision/{subDivisionId}/{age}")
+    public ResponseEntity getVaccinatedCountForSubDivision(@PathVariable String subDivisionId, @PathVariable String age) {
         return ResponseEntity.ok(patientService.getVaccinatedCountForSubDivision(subDivisionId));
     }
 
     @GetMapping(value = "getVaccinatedCountForDistrict/{districtId}/{age}")
     public ResponseEntity getVaccinatedCountForDistrict(@PathVariable String districtId, @PathVariable int age) {
         return ResponseEntity.ok(patientService.getVaccinatedCountForDistrict(districtId, age));
+    }
+
+    @GetMapping(value = "vaccinateMe/{patientId}")
+    public ResponseEntity vaccinateMe(@PathVariable String patientId) {
+        return ResponseEntity.ok(patientService.vaccinateMe(patientId));
     }
 
     @GetMapping(value = "getVaccinatedCountForProvince/{provinceId}/{age}")
@@ -49,6 +59,11 @@ public class PatientController {
     @GetMapping(value = "getVaccinatedCountForCountry/{age}")
     public ResponseEntity getVaccinatedCountForCountry(@PathVariable int age) {
         return ResponseEntity.ok(patientService.getVaccinatedCountForCountry(age));
+    }
+
+    @GetMapping(value = "getPatientsForTime/{time}/{subDivisionId}")
+    public ResponseEntity getPatientsForTime(@PathVariable String time, @PathVariable String subDivisionId) {
+        return ResponseEntity.ok(patientService.getPatientsForTime(time, subDivisionId));
     }
 
     @PostMapping(value = "/addPatient")

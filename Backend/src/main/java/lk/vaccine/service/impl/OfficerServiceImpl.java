@@ -72,7 +72,8 @@ public class OfficerServiceImpl implements OfficerService {
 
     @Override
     public boolean deleteSubDivisionOfficer(SubDivisionOfficerPK subDivisionOfficerPK) {
-        return false;
+        subDivisionOfficerRepository.deleteById(subDivisionOfficerPK);
+        return true;
     }
 
     @Override

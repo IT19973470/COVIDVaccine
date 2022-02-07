@@ -2,6 +2,7 @@ package lk.vaccine.service;
 
 import lk.vaccine.dto.*;
 import lk.vaccine.entity.Place;
+import lk.vaccine.entity.TimeSlot;
 
 import java.util.List;
 
@@ -22,4 +23,6 @@ public interface PlaceService {
 //    PlacePatientDTO getPlacesWIthPatients(String subDivisionId, int tokenType);
 
     List<PlaceDTO> getPlaces(String subDivisionId);
+
+    List<TimeSlot> getTimeSlots();
 }

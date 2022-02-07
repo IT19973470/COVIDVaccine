@@ -36,6 +36,7 @@ public class PatientDTO {
             this.address = patient.getAddress();
             this.type = patient.getType();
             this.dateOfBirth = patient.getDateOfBirth();
+            this.vaccined = patient.isVaccined();
         }
     }
 

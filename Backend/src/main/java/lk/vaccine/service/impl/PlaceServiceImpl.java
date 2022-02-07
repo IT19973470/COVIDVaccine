@@ -23,11 +23,7 @@ public class PlaceServiceImpl implements PlaceService {
     @Autowired
     private PlaceRepository placeRepository;
     @Autowired
-    private PatientRepository patientRepository;
-    @Autowired
-    private VaccineTokenRepository vaccineTokenRepository;
-    @Autowired
-    private VaccineRepository vaccineRepository;
+    private TimeSlotRepository timeSlotRepository;
 
     @Override
     public List<ProvinceDTO> getProvinces() {
@@ -94,5 +90,10 @@ public class PlaceServiceImpl implements PlaceService {
         }
 
         return placeDTOS;
+    }
+
+    @Override
+    public List<TimeSlot> getTimeSlots() {
+        return timeSlotRepository.getTimeSlots();
     }
 }

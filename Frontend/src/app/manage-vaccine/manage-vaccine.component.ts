@@ -54,6 +54,7 @@ export class ManageVaccineComponent implements OnInit {
     tokenDateTime: '',
     tokenType: 1
   };
+  timeSlots = [];
 
   constructor(private vaccineMapService: VaccineMapService, private datePipe: DatePipe, private patientService: PatientService) {
   }
@@ -64,6 +65,7 @@ export class ManageVaccineComponent implements OnInit {
     this.getVaccines();
     this.getPlaces();
     this.setTokenType(1)
+    this.getTimeSlots(0);
   }
 
   setPlace(placeId) {
@@ -80,6 +82,27 @@ export class ManageVaccineComponent implements OnInit {
   getVaccines() {
     this.vaccineMapService.getVaccines().subscribe((vaccines) => {
       this.vaccines = vaccines;
+    })
+  }
+
+  timeSeq = 0;
+
+  getTimeSlots(val) {
+    if (val === 0) {
+      this.vaccineMapService.getTimeSlots().subscribe((timeSlots) => {
+        this.timeSlots = timeSlots;
+        this.time = this.timeSlots[0].assignedTime;
+      })
+    } else if (val === 1 && this.timeSlots.length - 1 > this.timeSeq) {
+      this.time = this.timeSlots[++this.timeSeq].assignedTime;
+    } else if (val === 2 && this.timeSeq > 0) {
+      this.time = this.timeSlots[--this.timeSeq].assignedTime;
+    }
+  }
+
+  vaccinateMe(patient, index) {
+    this.patientService.vaccinateMe(patient.patientId).subscribe((patient) => {
+      this.patients[index].vaccined = patient.vaccined;
     })
   }
 
@@ -106,6 +129,15 @@ export class ManageVaccineComponent implements OnInit {
   getByAge(age) {
     this.age = age;
     this.vaccineMapService.getPatientsForPlace(this.subDivision.subDivisionId, this.vaccineToken.tokenType, this.age).subscribe((patients) => {
+      // this.places = placesPatients.places;
+      this.patients = patients;
+      // console.log(this.patients)
+    })
+  }
+
+  getByTime() {
+    // this.age = age;
+    this.vaccineMapService.getPatientsForTime(this.time, this.subDivision.subDivisionId).subscribe((patients) => {
       // this.places = placesPatients.places;
       this.patients = patients;
       // console.log(this.patients)
