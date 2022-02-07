@@ -57,7 +57,7 @@ export class ManagePlacesComponent implements OnInit {
   getPlaces() {
     this.vaccineMapService.getPlaces(this.subDivision.subDivisionId).subscribe((places) => {
       this.places = places;
-      console.log(this.places)
+      // console.log(this.places)
     })
   }
 

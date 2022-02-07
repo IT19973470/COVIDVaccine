@@ -8,7 +8,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class VaccineMapService {
 
-  subDivisionId;
+  subDivision;
 
   constructor(private http: HttpClient) {
   }

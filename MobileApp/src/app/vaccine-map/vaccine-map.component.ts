@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {VaccineMapService} from "./vaccine-map.service";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-vaccine-map',
@@ -8,6 +9,7 @@ import {VaccineMapService} from "./vaccine-map.service";
 })
 export class VaccineMapComponent implements OnInit {
 
+  subDivision;
   state;
   district;
   province;
@@ -42,6 +44,8 @@ export class VaccineMapComponent implements OnInit {
     }
   ];
 
+  selectedArea = '';
+
   // @ViewChild('manageVehicle') manageVehicle;
 
   constructor(private vaccineMapService: VaccineMapService) {
@@ -53,12 +57,13 @@ export class VaccineMapComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getPlaces(subDivisionId) {
-    this.vaccineMapService.subDivisionId = subDivisionId;
-    this.subDivisionId = subDivisionId;
+  getPlaces(subDivision) {
+    this.selectedArea = subDivision.subDivisionName;
+    this.vaccineMapService.subDivision = subDivision;
+    this.subDivision = subDivision;
     this.totalRegistrationsFirst = 0;
     this.totalRegistrationsSecond = 0;
-    this.vaccineMapService.getPatientsCountForPlace(subDivisionId, 1).subscribe((placesPatients) => {
+    this.vaccineMapService.getPatientsCountForPlace(subDivision.subDivisionId, 1).subscribe((placesPatients) => {
       // this.places = placesPatients.places;
       // this.manageVehicle.setTokenType(1);
       this.subDivisionVaccinesFirst = placesPatients.vaccinesFirst;
@@ -74,6 +79,7 @@ export class VaccineMapComponent implements OnInit {
   }
 
   setDistrict(districtId, district, province) {
+    this.selectedArea = district;
     this.district = district;
     this.province = province;
     this.totalRegistrationsFirst = 0;
@@ -136,4 +142,7 @@ export class VaccineMapComponent implements OnInit {
     localStorage.clear();
   }
 
+  getEnv(){
+    return environment.backend_url
+  }
 }

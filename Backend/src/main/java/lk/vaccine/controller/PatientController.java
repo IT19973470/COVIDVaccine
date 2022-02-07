@@ -21,7 +21,7 @@ public class PatientController {
         return ResponseEntity.ok(patientService.getVaccinatedCountForIslandWide());
     }
 
-    @GetMapping(value = "getVaccinatedCountForSubDivision/{subDivisionId}")
+    @GetMapping(value = "getVaccinatedCountForSubDivision/{subDivisionId}/{age}")
     public ResponseEntity getVaccinatedCountForSubDivision(@PathVariable String subDivisionId) {
         return ResponseEntity.ok(patientService.getVaccinatedCountForSubDivision(subDivisionId));
     }
