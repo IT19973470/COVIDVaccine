@@ -1,5 +1,6 @@
 package lk.vaccine.service;
 
+import lk.vaccine.dto.PatientDTO;
 import lk.vaccine.dto.VaccineTokenDTO;
 import lk.vaccine.entity.VaccineToken;
 
@@ -13,5 +14,5 @@ public interface VaccineTokenService {
 
     boolean deleteToken(String vaccineTokenId);
 
-    List<VaccineTokenDTO> getMyVaccines(String nic);
+    PatientDTO getMyVaccines(String nic);
 }

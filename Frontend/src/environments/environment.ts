@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  backend_url: 'http://192.168.1.4:8080/vaccine/',
+  backend_url: 'http://192.168.1.4:8082/vaccine/',
 };
 
 /*

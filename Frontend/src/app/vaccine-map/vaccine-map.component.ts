@@ -47,7 +47,12 @@ export class VaccineMapComponent implements OnInit {
       }
     }
   ];
-
+  patient = {
+    firstName: '',
+    lastName: '',
+    contactNumber: '',
+    address: ''
+  };
   selectedArea = '';
 
   // @ViewChild('manageVehicle') manageVehicle;
@@ -152,13 +157,16 @@ export class VaccineMapComponent implements OnInit {
         }
       }
     ];
-    this.patientService.getMyVaccines(nic).subscribe((vaccines) => {
-      for (let i = 0; i < vaccines.length; i++) {
-        console.log(vaccines[i])
-        if (vaccines[i].tokenType === 1) {
-          this.vaccines[0] = vaccines[i];
-        } else if (vaccines[i].tokenType === 2) {
-          this.vaccines[1] = vaccines[i];
+    this.patientService.getMyVaccines(nic).subscribe((patient) => {
+      if (patient !== null) {
+        this.patient = patient;
+        for (let i = 0; i < patient.vaccines.length; i++) {
+          console.log(patient.vaccines[i])
+          if (patient.vaccines[i].tokenType === 1) {
+            this.vaccines[0] = patient.vaccines[i];
+          } else if (patient.vaccines[i].tokenType === 2) {
+            this.vaccines[1] = patient.vaccines[i];
+          }
         }
       }
       // console.log(this.vaccines)

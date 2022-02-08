@@ -170,6 +170,11 @@
                   (click)="getMyVaccines(nic.value)">Check
           </button>
         </div>
+        <div *ngIf="patient.firstName!==''" style="margin-top: 10px">
+          <span style="font-weight: bold">Name :</span> {{patient.firstName+' '+patient.lastName}}<br>
+          <span style="font-weight: bold">Place :</span> {{patient.address}}<br>
+          <span style="font-weight: bold">Contact Number :</span> {{patient.contactNumber}}
+        </div>
       </div>
 
       <div class="row"

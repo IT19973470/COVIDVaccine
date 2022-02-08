@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lk.vaccine.entity.Patient;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PatientDTO {
@@ -22,6 +23,7 @@ public class PatientDTO {
     private String tokenId;
     private boolean registered;
     private PlaceDTO place;
+    private List<VaccineTokenDTO> vaccines;
 
     public PatientDTO(String patientId) {
         this.patientId = patientId;
@@ -155,5 +157,13 @@ public class PatientDTO {
 
     public void setVaccineExpecting(VaccineDTO vaccineExpecting) {
         this.vaccineExpecting = vaccineExpecting;
+    }
+
+    public List<VaccineTokenDTO> getVaccineTokens() {
+        return vaccines;
+    }
+
+    public void setVaccineTokens(List<VaccineTokenDTO> vaccineTokens) {
+        this.vaccines = vaccineTokens;
     }
 }
