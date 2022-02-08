@@ -160,6 +160,7 @@ export class VaccineMapComponent implements OnInit {
     this.patientService.getMyVaccines(nic).subscribe((patient) => {
       if (patient !== null) {
         this.patient = patient;
+        console.log(this.patient)
         for (let i = 0; i < patient.vaccines.length; i++) {
           console.log(patient.vaccines[i])
           if (patient.vaccines[i].tokenType === 1) {

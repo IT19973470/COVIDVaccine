@@ -58,7 +58,7 @@ public class VaccineTokenServiceImpl implements VaccineTokenService {
                 vaccineTokenDTO.setVaccine(new VaccineDTO(vaccineToken.getVaccine()));
                 vaccineTokenDTOS.add(vaccineTokenDTO);
             }
-            patientDTO.setVaccineTokens(vaccineTokenDTOS);
+            patientDTO.setVaccines(vaccineTokenDTOS);
 
             return patientDTO;
         }

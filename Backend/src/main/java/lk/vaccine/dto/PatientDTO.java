@@ -159,11 +159,11 @@ public class PatientDTO {
         this.vaccineExpecting = vaccineExpecting;
     }
 
-    public List<VaccineTokenDTO> getVaccineTokens() {
+    public List<VaccineTokenDTO> getVaccines() {
         return vaccines;
     }
 
-    public void setVaccineTokens(List<VaccineTokenDTO> vaccineTokens) {
+    public void setVaccines(List<VaccineTokenDTO> vaccineTokens) {
         this.vaccines = vaccineTokens;
     }
 }
